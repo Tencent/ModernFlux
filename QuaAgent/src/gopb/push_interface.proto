@@ -1,0 +1,871 @@
+syntax = "proto2";
+import "ams_act_con.proto";
+package ams_act_con;
+
+enum CMD_TYPE {
+
+    
+    SVR_PUSH_ONLINE_MSG = 1;   
+
+    
+    KICKOUT= 2;     
+    PEER_PUSH_ONLINE_MSG = 3;     
+
+    
+    CLIENT_LOGIN=1001;          
+    CLIENT_HEARTBEAT = 1002;    
+
+    
+    PUSH_ONLINE_MSG = 1003;   
+    CLIENT_KICKOUT  = 1004;     
+
+    
+    CLIENT_GET_ACT_LIST = 2004;  
+                                 
+    CLIENT_ATTEND_ACT = 2005;    
+
+    CLIENT_GET_ACT_LIST_FAST = 2006;  
+                                 
+
+    CLIENT_ATTEND_ACT_ALL = 2007;    
+    IDIP_BATCH_REQ = 2008;    
+	AMS_ACT_CONDITION_JUDGE = 2009;
+
+	
+	GPM_PRIME_GOODS_LIST = 2011;
+	
+	GPM_PAY = 2013;
+	GPM_CALLBACK = 2014;
+
+	AMS_LOTTERY_2_0 = 2015;
+
+	AMS_GPM_UION_ACT = 2016;
+
+    TLOGDATA_PANGGUAN_PLAYER_LOGIN = 3004;    
+    TLOGDATA_PANGGUAN_PLAYER_EXPFLOW = 3005;    
+    TLOGDATA_PANGGUAN_PLAYER_REGISTER = 3006;    
+
+    TLOGDATA_ALLTANK_PLAYER_LOGIN = 3007;    
+    TLOGDATA_ALLTANK_PLAYER_EXPFLOW = 3008;    
+    TLOGDATA_ALLTANK_PLAYER_REGISTER = 3009;    
+
+    TLOGDATA_COMMON = 3010;    
+		TLOGDATA_DIAMOND = 3011;    
+
+	ACTIVITY_MODIFIED_INFORM = 4000;
+
+	SDK_LOG_REPORT = 5000;
+	SDK_STATIC_REPORT = 5001;
+
+  QUERY_LUCKYSTAR = 6001;       
+  PAY_SUCCEED = 6002;      
+  
+  
+    AME_ACTIVITY_QUALIFICATION = 6003;  
+
+	
+    READ_TCAPLUS  = 100000;
+    WRITE_TCAPLUS = 100001;
+};
+
+
+enum BODY_TYPE
+{
+    BODY_REQUEST = 1;
+    BODY_RESPONSE = 2;
+    BODY_REQUEST_SIM = 3;
+    BODY_RESPONSE_SIM = 4;
+};
+
+message CmdBase
+{
+    optional int64 seq_id = 1;     
+    optional int64 cmd_id = 2;     
+    optional int64 type = 3;  
+    optional bytes from_ip = 4;    
+    optional int64 process_id = 5; 
+    optional int64 mod_id = 6;     
+	optional bytes version = 8;		
+    optional bytes body = 7;       
+                                   
+	optional bytes app_id = 9;             
+};
+
+message KV
+{
+    optional bytes name = 1;
+    optional bytes value = 2;
+};
+
+enum RET_CODE
+{
+	RET_SDK_ATTACK = -7;
+	RET_CREATE_TASK_ERROR = -6;
+	RET_PARSE_ERROR = -5;
+    RET_PARAM_ERROR = -4;
+    RET_PARAM_NOT_ENOUGH = -3;
+    RET_PARAM_FORMAT_ERROR = -2;
+    RET_CMD_NOT_SUPPORT = -1;
+    RET_SUCCESS = 0;
+    RET_TCAPLUS_ERROR = 1;
+    RET_REMOTE_KICKOUT_ERROR = 2;
+    RET_NOTIFY_SVC_ERROR = 4;
+    RET_SVC_CONN_NOT_EXIST = 5;
+    RET_REMOTE_PUSH_ERROR = 6;
+    RET_APP_CONN_NOT_EXIST = 7;
+    RET_SSL_ERROR = 8;
+    RET_APP_USER_NOT_EXIST = 9;
+    RET_DEVICE_TYPE_UNKNOWN = 10;
+    RET_DEVICE_TOKEN_NOT_EXIST = 11;
+    RET_USER_ID_CONFLICT = 12;
+    RET_KICK_OLD_SVC_FAIL = 13;
+    RET_INVALID_DEVICE_TOKEN = 14;
+    RET_ACCESS_TCAPLUS_PROXY_FAIL = 15;
+		RET_ACCESS_REDIS_FAIL = 16;
+};
+
+
+enum ACT_STYLE
+{
+    ONE_BUTTON_ACT = 1;    
+    MUTLI_BUTTON_ACT = 3;  
+    STATIC_SHOW_ACT = 4;   
+    LUCKY_STAR_ACT = 5;    
+    INCOMING_USER_ACT = 6; 
+    BACK_USER_ACT = 7;     
+    SECRET_SHOP_ACT = 8;   
+    EXCHANGE_ACT = 9;      
+    GRAND_TOTAL_ACT = 10;  
+    ADVERTISE_ACT = 11;    
+    INVITE_CODE_ACT = 12;    
+    ACTIVE_CODE_ACT = 13;    
+};
+
+message CmdBaseResp
+{
+    optional int64 ret = 1;      
+                                    
+    optional bytes err_msg= 2;     
+    optional bytes resp = 3;        
+    optional bytes md5val = 4;        
+    optional bytes amesn = 5;        
+};
+
+enum DEVICE_TYPE
+{
+    DEVICE_TYPE_UNKOWN =0;
+    DEVICE_TYPE_IPHONE = 1;
+    DEVICE_TYPE_ANDROID = 2;
+};
+
+
+message SvrPushOnlineMsgReq
+{
+    repeated OnlineMsgInfo online_msg = 1;
+	optional int64 get_all_list = 2;  
+};
+
+
+message PushOnlineMsgReq
+{
+    repeated OnlineMsgInfo online_msg = 1;
+	optional int64 get_all_list = 2;  
+	
+	repeated KV extend = 3;  
+};
+
+message ControlInfo
+{
+    optional int64 log_report_level = 1;
+    optional int64 statics_report_level = 2;
+	optional int64 polling_interval = 3;
+	optional int64 connection_type = 4;
+};
+
+
+message Channel
+{
+    optional bytes name=1; 
+	optional int64 id=2;   
+	optional int64 num=3;  
+    optional int64 begin=4; 
+    optional int64 end=5;   
+};
+
+message OnlineMsgInfo
+{
+    optional bytes open_id = 1;
+	repeated ActInfo act_info = 2;	
+    optional int64 act_num = 3;
+    optional bytes no_use = 4;
+    optional int64 msg_timestamp = 5;   
+	optional ControlInfo msg_control = 6;
+	repeated Channel chan=7;
+    optional bytes sarea = 8;
+    optional bytes splatid = 9;
+    optional bytes spartition = 10;
+	optional LuckyListRes lkr =11;
+	optional bytes sroleid = 12;
+	optional bytes sdk_extend = 13;
+	
+	repeated KV extend = 14;  
+};
+
+
+message LuckyListRes
+{
+	optional bytes entrance_flag =1;	
+	optional bytes info_id=2; 
+	repeated LuckyActInfo luck_act_info=3;	
+	optional bytes iGoodsId=4;
+	
+	repeated KV extend = 5;  
+}
+
+
+
+message LuckyActInfo
+{
+	optional bytes info_id=1;	
+	
+	optional bytes pic_url = 2;
+	optional bytes act_desc = 3;
+	optional bytes daojucheng_id=4;	
+	
+	repeated GPMPrimeGoodsInfo data = 5;
+	optional bytes picmd5val = 6;
+	optional bytes act_descmd5val = 7;
+	optional bytes recommend_id = 8;
+	optional bytes changjing_id = 9;
+	optional int64 act_style = 10;        
+	optional bytes act_title = 11;          
+	optional int64 left_second = 12;
+}
+
+message GoodsInfo
+{
+	optional int64 goodsid = 1;
+    optional int64 goodcount = 2;
+    optional bytes goodname = 3;
+    optional bytes good_pic_url = 4;
+}
+
+
+message ActInfo
+{
+    optional bytes app_id = 1;             
+    optional bytes act_id = 2;             
+    optional bytes act_title = 3;          
+    optional bytes act_content = 4;        
+    optional uint32 act_beg_time = 5;        
+    optional uint32 act_end_time = 6;        
+    optional uint32 user_finish_time = 7;    
+    repeated ActCondInfo condition_info = 8; 
+    optional bytes act_url = 9;        
+    repeated ActFlowInfo flow_list = 10;
+    optional int64 act_style = 11;       
+    optional bytes pic_url = 12;        
+    optional int64 pic_timestamp = 13;        
+	optional int64 showflag = 14;
+	optional bytes titleicon = 15;
+	optional bytes jumpurl = 16;
+
+	optional bytes limittype = 17;
+	optional bytes limitnum = 18;
+	optional bytes usenum = 19;	
+	optional bytes limitbusiness = 20; 
+    optional int64 info_id = 21;        
+	optional uint32 realicon = 23;
+	optional uint32 status = 24;
+	repeated  bytes extend_fields = 25;
+    optional uint32 type = 26;    
+    optional bytes  md5_val = 27;  
+    optional bytes daojucheng_id=28;	
+    repeated GPMPrimeGoodsInfo data = 29;
+	
+	repeated KV extend = 30;  
+};
+
+message ActFlowInfo
+{
+	optional int64 flow_id = 1;        
+	optional int64 can_get = 2;        
+	repeated ActCondInfo condition_info = 3; 
+	optional int64 show_type = 4;        
+	optional bytes flowname = 5;      
+	repeated GoodsInfo fromgoods = 6;
+	repeated GoodsInfo togoods = 7;
+
+	optional bytes iActionId = 8;		
+	optional bytes iGoodsId = 9;		
+	repeated ActCondiRsp condiRsp = 10; 
+	optional bytes Serial = 11;
+	optional int32 polltype = 12; // 1:poll hold
+        optional int64 pub_cur_val = 13;
+        optional int64 pub_obj_val = 14;
+}
+
+
+message ActCondInfo
+{
+    optional bool is_qualified = 1;    
+    optional int64 cur_val = 2;        
+    optional int64 obj_val = 3;        
+    optional bytes uint_name = 4;     
+};
+
+
+
+message ClientLoginReq
+{
+    optional bytes open_id = 1;       
+    optional bytes gid = 2;           
+    optional bytes device_id = 3;      
+    optional DEVICE_TYPE device_type = 4;  
+    optional bytes imei = 5;           
+    optional NET_TYPE net_type = 6;    
+    optional bytes imsi = 7;           
+    optional bytes client_ip = 8;      
+    optional bytes app_id = 9;        
+
+	optional bytes access_token = 10;
+	optional bytes acctype = 11;
+
+	optional bytes uin = 12;
+	optional bytes skey = 13;
+	optional bytes p_uin = 14;
+	optional bytes p_skey = 15;
+	optional bytes pt4_token = 16;
+	optional bytes IED_LOG_INFO2 = 17;
+    optional bytes sarea = 18;
+    optional bytes splatid = 19;
+    optional bytes spartition = 20;
+	optional bytes sroleid = 21;
+	
+	repeated KV extend = 22;  
+};
+
+
+message ClientHeartbeatReq
+{
+    optional bytes open_id = 1;
+    optional bytes device_id = 2;
+    optional uint64 gid = 3;
+    optional bytes app_id = 4;
+    optional bytes sarea = 5;
+    optional bytes splatid = 6;
+    optional bytes spartition = 7;
+	
+	repeated KV extend = 8;  
+};
+
+message ActStatus
+{
+    optional bytes info_id = 1; 
+    optional bytes md5_val = 2; 
+};
+
+
+
+message ClientGetActListReq
+{
+    optional bytes open_id = 1;       
+    optional bytes gid = 2;           
+    optional bytes device_id = 3;      
+    optional DEVICE_TYPE device_type = 4;  
+    optional bytes imei = 5;           
+    optional NET_TYPE net_type = 6;    
+    optional bytes imsi = 7;           
+    optional bytes client_ip = 8;      
+    optional bytes app_id = 9;        
+    optional bytes g_tk = 10;
+    optional bytes sarea = 11;
+    optional bytes splatid = 12;
+    optional bytes spartition = 13;
+    optional bytes sroleid = 14;
+    optional bytes access_token = 15;
+    optional bytes acctype = 16;
+    optional bytes uin = 17;
+    optional bytes skey = 18;
+    optional bytes p_uin = 19;
+    optional bytes p_skey = 20;
+    optional bytes pt4_token = 21;
+	optional bytes md5val = 22;
+	optional uint64 triger_type = 23;
+	optional bytes gameappversion = 24;	
+	repeated  DescMd5 desc_md5 = 25; 
+	repeated int64 channelid = 26;
+	repeated int64 infoid = 27;
+	optional bytes sdk_extend = 28;
+    repeated ActStatus act_status = 29;  
+	
+	repeated KV extend = 30;  
+};
+
+message DescMd5
+{
+	optional bytes info_id = 1;
+	optional bytes desc_md5 = 2;
+}
+
+
+message ClientAttendActReq
+{
+	optional bytes ameVersion = 1;
+	optional bytes sServiceType = 2;
+    optional int64 iActivityId = 3;
+	optional bytes sServiceDepartment = 4;
+
+	optional bytes appid = 5;
+	optional bytes openid = 6;       
+	optional bytes access_token = 7;
+	optional bytes acctype = 8;
+
+	optional bytes uin = 9;
+	optional bytes skey = 10;
+	optional bytes p_uin = 11;
+	optional bytes p_skey = 12;
+	optional bytes pt4_token = 13;
+	optional bytes IED_LOG_INFO2 = 14;
+
+	optional int64 iFlowId = 15;
+	optional bytes g_tk = 16;
+	optional bytes sArea = 17;
+
+	optional bytes sPlatId = 18;
+	optional bytes sPartition = 19;
+	optional bytes sRoleId = 20;
+
+	optional bytes pay_zone = 21;
+	optional bytes pay_token = 22;
+
+	optional bytes gameappversion = 23;	
+	optional bytes sCDkey = 24;
+	optional bytes sVerifyCode = 25;
+	optional bytes sUserIP = 26;
+
+    optional int64 act_style = 27;   
+	optional bytes pay_lottery_serial = 28; 
+	
+	repeated KV extend = 29;  
+};
+
+
+message ActivityInformReq
+{
+	optional bytes str_biz = 1;
+};
+
+
+message ClientAttendActRsp
+{
+	optional int64 flowRet_iRet = 1;
+	optional bytes flowRet_sMsg = 2;
+	optional int64 flowRet_iAlertSerial = 3;
+	optional bytes flowRet_sLogSerialNum = 4;
+
+	optional int64 modRet_bHasSendFailItem = 5;
+	optional int64 modRet_iRet = 6;
+	optional bytes modRet_sMsg = 7;
+
+	optional int64 modRet_iActivityId = 8;
+	optional int64 modRet_iPackageGroupId = 9;
+	optional int64 modRet_iPackageId = 10;
+	optional int64 modRet_iPackageIdCnt = 11;
+	optional bytes modRet_sPackageName = 12;
+	optional int64 modRet_iPackageNum = 13;
+	optional bytes modRet_sPackageRealFlag = 14;
+	optional bytes modRet_sPackageCDkey = 15;
+	optional bytes modRet_dTimeNow = 16;
+	optional bytes modRet_sPackageLimitCheckCode = 17;
+
+	optional int64 ret = 18;
+	optional bytes msg = 19;
+    repeated GoodsInfo get_goods=20;
+    repeated GoodsInfo exchange_goods=21;
+	
+	repeated KV extend = 22;  
+};
+
+message IDIPCMDReq
+{
+	optional int32 serial = 1;
+	optional bytes req = 2;
+};
+
+message IDIPBatchReq
+{
+	optional int32 req_num = 1;
+	repeated IDIPCMDReq reqs = 2;
+}
+
+message IDIPCMDRsp
+{
+	optional int32 serial = 1;
+	optional bytes rsp = 2;
+};
+
+message IDIPBatchRsp
+{
+	optional int32 rsp_num = 1;
+	repeated IDIPCMDRsp rsps = 2;
+}
+
+enum NET_TYPE
+{
+     NETWORK_TYPE_WIFI = -1;
+     NETWORK_TYPE_UNKNOWN  =0;
+     NETWORK_TYPE_GPRS = 1;
+     NETWORK_TYPE_EDGE = 2;
+     NETWORK_TYPE_UMTS = 3;
+     NETWORK_TYPE_CDMA = 4;
+     NETWORK_TYPE_EVDO = 5;
+     NETWORK_TYPE_EVDO_A = 6;
+     NETWORK_TYPE_1xRTT =7;
+     NETWORK_TYPE_HSDPA = 8;
+     NETWORK_TYPE_HSUPA = 9;
+     NETWORK_TYPE_HSPA = 10;
+}
+
+
+message KickoutReq
+{
+    optional bytes open_id = 1;
+    optional bytes sarea = 2;
+    optional bytes splatid = 3;
+    optional bytes spartition = 4;
+}
+
+
+message ClientKickoutReq
+{
+    optional bytes open_id = 1;
+    optional bytes sarea = 2;
+    optional bytes splatid = 3;
+    optional bytes spartition = 4;
+	
+	repeated KV extend = 5;  
+}
+
+
+message PeerPushOnlineMsgReq
+{
+    optional bytes open_id = 1;
+}
+
+enum TABLE_FIELD
+{
+    TABLE_FIELD_USER_ID = 1;
+    TABLE_FIELD_SVC_CONN_LOC = 2;
+    TABLE_FIELD_SVC_SEND_MSG = 3;
+    TABLE_FIELD_SVC_SEND_MSG_NUM = 4;
+}
+
+
+message ReadTcaplusReq
+{
+    optional bytes open_id = 1;
+    repeated int32 fields = 2;
+}
+
+
+message ReadTcaplusRsp
+{
+    optional bytes open_id = 1;
+    repeated int32 fields = 2;
+    repeated bytes fields_value = 3;
+}
+
+
+message WriteTcaplusReq
+{
+    optional bytes open_id = 1;
+    repeated int32 fields = 2;
+    repeated bytes fields_value = 3;
+}
+
+message report
+{
+	optional uint64 uint_timestamp = 1;
+	optional uint64 uint_clientip = 2;
+	optional bytes str_open_id = 3;
+	optional bytes str_phoneid = 4;
+	optional uint64 uint_module = 5;
+	optional uint64 uint_channel_id = 6;
+	optional uint64 uint_type = 7;
+	optional bytes str_appid = 8;
+	optional bytes str_sdkversion = 9;
+	optional uint64 uint_ostype = 10;
+	optional uint64 uint_act_id = 11 ; 
+	optional uint64 uint_jump_type = 12;
+	optional bytes str_jump_url = 13;
+	optional uint64 uint_cmd = 14;
+	optional bytes partition = 15;
+	optional bytes recommend_id = 16;
+	optional bytes changjing_id = 17;
+	optional bytes goods_id = 18;
+	optional uint64 uint_count = 19;
+	optional uint64 uint_fee = 20;
+	optional bytes currency_type = 21;
+	optional bytes sroleid = 22;
+	optional int64 act_style = 23;
+	optional int64 flow_id = 24;
+
+	repeated KV extend = 25;  
+}
+
+message reportack
+{
+	optional uint64 uint_result = 1;
+	optional bytes str_errmsg = 2;
+}
+
+message SDKLogReport
+{
+	optional uint64 uint_log_level = 1;
+	optional bytes str_sdk_version = 2;
+	optional bytes str_hardware_os = 3;
+	optional bytes str_openid = 4;
+	optional bytes str_userip = 5;
+	optional uint64 uint_report_type = 6;
+	optional uint64 uint_toreturncode = 7;
+	optional bytes str_respara = 8;
+	optional uint64 uint_serialtime = 9;
+	optional uint64 uint_cmd = 10;
+	
+	optional bytes sarea = 11;
+    optional bytes splatid = 12;
+    optional bytes spartition = 13;
+	
+	repeated KV extend = 14;  
+}
+
+message TLogData
+{
+	optional bytes str_service = 1;
+	optional bytes str_tlogdata = 2;
+}
+
+message Empty
+{
+}
+
+message GPMQueryPrimeGoodsListReq
+{
+	optional bytes gameappid = 1;
+	optional bytes actionid = 2;
+	optional bytes _output_fmt = 3;
+	optional bytes page_num = 4;
+	optional bytes page_size = 5;
+	optional bytes zone_type = 6;
+	optional bytes zoneid = 7;
+	optional bytes partition = 8;
+	optional bytes roleid = 9;
+	optional bytes uin = 10;
+	optional bytes plat = 11;
+	optional bytes md5val = 12;
+	optional bytes act_descmd5val = 13;
+}
+
+message GPMGoodsDetail
+{
+	optional bytes sItemId = 1;
+	optional bytes sGoodsName = 2;
+	optional bytes sGoodsPic = 3;
+	optional bytes iPacketNum = 4;
+	optional bytes picmd5val = 5;
+}
+
+message GPMPrimeGoodsInfo
+{
+	optional bytes iGoodsId = 1;
+	optional bytes iActionId = 2;
+	optional bytes sActionNo = 3;
+	optional bytes dtBeginTime = 4;
+	optional bytes dtEndTime = 5;
+	optional bytes sGoodsName = 6;
+	optional bytes sGoodsPic = 7;
+	optional bytes sPrice = 8;
+	optional bytes sRealPrice = 9;
+	repeated GPMGoodsDetail detail = 10;
+	optional bytes sGoodsDesc = 11;
+	optional bytes picmd5val = 12;
+	optional bytes productid = 13;
+	optional bytes cur_buy_num = 14; 
+	optional bytes max_buy_num = 15; 
+	optional bytes currency_type = 16;
+	optional bytes limittype = 17 ; 
+	optional bytes sGoodsDesc2 = 18;
+	optional bytes iMinLevel = 19;
+	optional bytes iMaxLevel = 20;
+	optional bytes iMinCapability = 21;
+	optional bytes iMaxCapability = 22;
+	optional bytes GoodsDetailDesc = 23;
+	optional bytes GamePicId = 24;
+}
+
+message GPMQueryPrimeGoodsListRsp
+{
+	optional int64 ret = 1;
+	optional bytes msg = 2;
+	optional bytes isLucky = 3;
+	optional bytes dtValidDate = 4;
+	optional bytes recommend_id = 5;
+	optional bytes serverTime = 6;
+	optional bytes from_cache = 7;
+	repeated GPMPrimeGoodsInfo data = 8;
+	optional bytes pic_url = 9;
+	optional bytes act_desc = 10;
+	optional bytes act_id = 11;
+	optional bytes flow_id = 12;
+	
+	
+	
+	
+	optional bytes showflag = 17;		
+	optional bytes picmd5val = 18;
+	optional bytes act_descmd5val = 19;
+	
+}
+
+message GPMBuyPayReq
+{
+	optional bytes gpm_app_id = 1;
+	optional bytes gameappid = 2;
+	optional bytes _plug_id = 3;
+	optional bytes _output_fmt = 4;
+	optional bytes acctype = 5;
+	optional bytes openid = 6;
+	optional bytes access_token = 7;
+	
+	optional bytes pay_token = 8;
+	optional bytes plat = 9;
+	optional bytes areaid = 10;
+	optional bytes partition = 11;
+	optional bytes roleid = 12;
+	optional bytes rolename = 13;
+	optional bytes propid = 14;
+	optional bytes buynum = 15;
+	optional bytes paytype = 16;
+	optional bytes _test = 17;
+	optional bytes _jsonp = 18;
+	optional bytes _cs = 19;
+	optional bytes _retkey = 20;
+	optional bytes apptype = 21;
+	optional bytes serial = 22;
+	optional bytes ru = 23;
+	optional bytes pu = 24;
+	optional bytes hu = 25;
+	optional bytes iGoodsId = 26;
+	optional bytes iActionId = 27;
+	optional bytes productid = 28;
+	optional bytes pay_zone = 29;
+	
+	repeated KV extend = 30;  
+}
+
+message GPMBuyPayRsp
+{
+	optional int64 ret = 1;
+	optional bytes msg = 2;
+	optional bytes serverTime = 3;
+	optional bytes act_amount = 4;
+	optional bytes event_id = 5;
+	optional bytes serial = 6;
+	optional bytes payPrice = 7;
+	optional bytes sandbox = 8;
+	optional bytes offerId = 9;
+	optional bytes pf = 10;
+	optional bytes token = 11;
+	optional bytes urlParams = 12;
+	optional bytes payUrl = 13;
+	
+	repeated KV extend = 14;  
+	
+    optional int64 amsActId = 15;  
+	optional int64 amsFlowId = 16; 
+}
+
+
+message PushLuckyCallBack
+{
+	optional bytes info_id = 1;		
+	optional bytes push_flag = 2;	
+	optional bytes appid = 3;
+	optional bytes openid = 4;
+	optional bytes plat = 5;
+	optional bytes areaid = 6;
+	optional bytes partition = 7;
+	optional bytes roleid = 8;
+}
+
+
+message LotteryReq
+{
+	optional int64 iAmsActivityId = 1;
+	optional int64 iModuleId = 2;
+	optional int64 iPackageGroupId = 3;
+	optional bytes iPackageGroupIdList = 4;
+	optional int64 sPackageNum = 5;
+	optional bytes iUin = 6;
+	optional bytes sAmsSerial= 7;
+	optional bytes sServiceType = 8;
+	optional bytes acctype = 9;
+	optional bytes uni_zoneid = 10;
+	optional bytes uni_payappid = 11;
+	optional bytes uni_clientver = 12;
+	optional bytes sPlatId = 13;
+	optional bytes sArea = 14;
+	optional bytes sPartition = 15;
+	optional bytes sRoleId = 16;
+	optional bytes sRoleName = 17;
+	optional bytes sUserIP = 18;
+	optional bytes sServerIP = 19;
+	optional bytes sPlatName = 20;
+	optional bytes sServiceDepartment = 21;
+	optional int64 iBaseUin = 22;
+	optional bytes sSendPlatId = 23;
+	optional bytes iSendUin = 24;
+
+	optional bytes skey = 25;
+	optional bytes p_uin = 26;
+	optional bytes p_skey = 27;
+	optional bytes pt4_token = 28;
+	optional bytes IED_LOG_INFO2 = 29;
+	optional int64 iflowid = 30;
+	optional bytes pay_lottery_serial = 31; 
+}
+
+
+message LotteryRsp
+{
+	optional int64 iRet = 1;
+	optional int64 bHasSendFailItem = 2;
+	optional bytes sMsg = 3;
+	optional int64 iActivityId = 4;
+	optional int64 iPackageGroupId = 5;
+	optional int64 iPackageId = 6;
+	optional bytes iPackageIdCnt = 7;
+	optional bytes sPackageName = 8;
+	optional int64 iPackageNum = 9;
+	optional int64 sPackageRealFlag = 10;
+	optional bytes sPackageCDkey = 11;
+	optional bytes dTimeNow = 12;
+	optional bytes sPackageLimitCheckCode = 13;
+	optional int64 costtime = 14;
+	repeated GoodsInfo get_goods = 15;
+	repeated GoodsInfo exchange_goods = 16;
+}
+
+message ActListInfo
+{
+	optional bytes open_id = 1;
+	optional bytes sarea = 2;
+	optional bytes splatid = 3;
+	optional bytes spartition = 4;
+	optional bytes sroleid = 5;
+	repeated ActInfo act_info = 6;	
+	optional bytes biz_code = 7;
+	optional bytes sServiceDepartment = 8;//sServiceDepartment
+	optional bytes suin = 9;
+}

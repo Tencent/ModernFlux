@@ -1,0 +1,14 @@
+global:
+  listen:
+    - address: eth1:5574/udp
+    - address: eth1:5575/tcp-oob
+  timeout: 60
+service:
+  - id: 1
+    module: ./spp_module_test.so
+    procnum: 4
+    flog:
+      level: 1
+    log:
+      level: 1
+    packetdump: off

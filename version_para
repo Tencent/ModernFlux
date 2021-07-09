@@ -1,0 +1,20 @@
+MAKEFILE=Makefile
+CC  = gcc 
+CXX = g++
+LIBZDIR=lib64
+GCCVER := $(shell $(CC) -dumpversion | awk -F. '{ print $1"."$2}' )
+GXXVER := $(shell $(CXX) -dumpversion )
+MYSQLINC=$(MYSQLVERSION)/include
+MYSQLLIB=$(MYSQLVERSION)/lib
+PROTOLIB=/usr/local/$(PBPATH)/lib/libprotobuf.a
+PROTOINC=/usr/local/$(PBPATH)/include/
+CFLAGS  += -g -fPIC  -Wall -O2 -pipe -fno-ident -MMD -D_GNU_SOURCE -D_REENTRANT  -D_FILE_OFFSET_BITS=64  -DSPP3
+
+OBJ_EXT= .o
+CXXSRC_EXT= .cpp
+CSRC_EXT= .c
+CCSRC_EXT= .cc
+
+PBOBJ_EXT= .pb.o
+CCXSRC_EXT= .pb.cc
+PROTO_EXT= .proto

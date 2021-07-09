@@ -1,0 +1,6 @@
+global:
+  type: spp
+  report: on
+  coredump: off
+  restart: on
+  monitor: off

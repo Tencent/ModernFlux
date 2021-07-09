@@ -1,0 +1,73 @@
+syntax = "proto2";
+
+package open_app_desc;
+
+// active/ip/set report
+message RealReport{
+	optional int32 keytype = 1; // 1:key 2: machine 3: SET 
+	optional bytes keyname = 2; 
+	optional int64 timekey = 3;
+	optional bytes setname = 4;
+	optional int32 total = 5;
+	optional int32 refuse = 6;
+	optional int32 setrefuse = 7;
+	optional int32 real = 8;
+	optional int32 quota = 9;
+}
+
+message QReport{
+	optional bytes actid = 1; // 1:
+	optional bytes ip = 2;
+	optional int32 procid = 3;
+	optional int64 timekey = 4;
+	optional bytes setname = 5;
+	optional int32 actquota = 6;
+	optional int32 setquota = 7;
+	optional int32 total = 8;	
+	optional int32 refuse = 9;
+	optional int32 setrefuse = 10;
+	optional int32 real = 11;
+}
+
+// quota
+message ReportItem{
+	optional int64 timekey = 1;
+	optional int64 reportnum = 2;
+	optional int64 refuse = 3;
+	optional int64 setrefuse = 4;
+}
+
+message QuotaReq{
+	optional bytes key = 1; // quote key: act, instanceid
+	optional bytes referkey = 2;
+	repeated ReportItem reportitem = 3;
+	optional int32 localquota = 4; // 
+	optional int32 id = 5; // process group id
+	optional bytes serial = 6; //
+	optional int32 totalquota = 7; // key total quota
+	optional bytes openid = 8;
+	optional int64 uin = 9;
+	optional int64 nowsum = 10; // percent seconds
+	optional int64 workernum = 11;
+	optional bytes setkey =12;
+}
+
+message QuotaRsp
+{
+	optional bytes key = 1;
+	optional int64 localq = 2; // totalq*(self)/total
+	optional int64 totalq = 3;
+	optional int32 partnernum = 4;
+	optional bytes serial = 5; //
+	optional int32 ipnum = 6;
+	optional int32 alloctype = 7;// 0:undo 1:average 2:dynamic 3:heart beat reset 4:history总量不够
+	optional int32 allocpartnum = 8;//
+	optional int64 alloctime = 9; //
+	optional int64 self = 10; //
+	optional int64 total = 11; //
+	optional int64 nowsum = 12; //
+	optional int64 totalworkernum = 13; //
+	optional int32 setquota = 14; //
+	optional int32 setsum = 15; //
+	optional int32 procquota = 16; //
+}

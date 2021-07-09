@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<proxy>
+    <acceptor timeout="60">
+        <entry type="udp" if="eth1" port="5574" />
+        <entry type="tcp" if="eth1" port="5575" oob="1" />
+    </acceptor>
+    <connector>
+        <entry groupid="1" />
+    </connector>
+    <flog level="1" />
+    <log level="1" />
+    <module bin="./spp_module_test.so" etc="" />
+</proxy>

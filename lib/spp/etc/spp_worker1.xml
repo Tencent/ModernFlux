@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<worker groupid="1">
+    <acceptor>
+        <entry />
+    </acceptor>
+    <flog level="1" />
+    <log level="1" />
+    <exception packetdump="1" />
+    <module bin="./spp_module_test.so" etc="" />
+    <session_config etc="" max_epoll_timeout="10" />
+</worker>

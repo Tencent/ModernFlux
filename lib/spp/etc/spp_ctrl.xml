@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controller>
+    <procmon>
+        <group id="0" exe="spp_proxy" etc="../etc/spp_proxy.xml" maxprocnum="1" minprocnum="1" />
+        <group id="1" exe="spp_worker" etc="../etc/spp_worker1.xml" maxprocnum="4" minprocnum="4" />
+    </procmon>
+    <report exe="./spp_dc_tool" />
+    <exception coredump="1" restart="1" />
+</controller>

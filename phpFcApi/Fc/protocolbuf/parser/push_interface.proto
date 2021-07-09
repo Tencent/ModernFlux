@@ -1,0 +1,85 @@
+//本协议基于 TCP，数据格式为：数据长度(4字节网络序)+protobuf序列化后的二进制数据
+//注：数据长度指protobuf.ByteSize()
+// 命令类型
+enum CMD_TYPE {
+    SVR_PUSH_ONLINE_MSG = 1;   // server推送在线消息
+    KICKOUT= 2;     // 通知push svr将svc踢下线
+    PEER_PUSH_ONLINE_MSG = 3;     // push svr通知 push svr推送消息
+    CLIENT_LOGIN = 1001;          // Svc登录
+    CLIENT_HEARTBEAT = 1002;    // Svc连接保活心跳
+    PUSH_ONLINE_MSG = 1003;   // PushSvr向Svc推送在线消息
+    CLIENT_KICKOUT  = 1004;     // Push通知Svc踢下线
+
+    // android sdk svc --> ams server
+    CLIENT_GET_ACT_LIST = 2004;  // 向server拉取活动列表，
+    
+	// server返回ActInfo活动信息列表
+    CLIENT_ATTEND_ACT = 2005;    // todo: svc玩家参与对应活动,对应返回协议待定
+
+    CLIENT_GET_ACT_LIST_FAST = 2006;  // 向server拉取活动列表，
+                                 // server返回ActInfo活动信息列表 客户端表现同2004完全相同，后台先拉缓存数据，缓存数据没有就按2004同样的流程拉新数据
+
+    CLIENT_ATTEND_ACT_ALL = 2007;    // 一键领取所有奖励。请求参数同 CLIENT_ATTEND_ACT = 2005，使用ClientAttendActReq。但 ClientAttendActReq.iActivityId 和 ClientAttendActReq.iFlowId 填 0 ，返回参数也同 2005 ，但增加错误码表示部分成功
+    IDIP_BATCH_REQ = 2008;    // IDIP Batch IDIPCMDReq/IDIPCMDRsp
+	AMS_ACT_CONDITION_JUDGE = 2009;//AMS活动条件达成与否判断，统一由条件判断server实现
+
+	//GPM_LUCK_QUERY = 2010;//幸运星资格获取，请求包体为GPMLuckQueryReq，响应包体为GPMLuckQueryRsp，合并到下列GPM_PRIME_GOODS_LIST = 2011
+	GPM_PRIME_GOODS_LIST = 2011;//幸运星资格查询和活动道具拉取，请求包体为GPMQueryPrimeGoodsListReq，响应包体为GPMQueryPrimeGoodsListRsp，后台先查询是否有资格，如果有资格再拉取列表返回
+	//GPM_BUY = 2012;//幸运星下单，请求包体为GPMBuyReq，响应包体为GPMBuyRsp，合并到下列GPM_PAY = 2013
+	GPM_PAY = 2013;//幸运星下单支付，请求包体为GPMBuyPayReq，响应包体为GPMBuyPayRsp
+	GPM_CALLBACK = 2014;//幸运星活动回调接口
+
+    TLOGDATA_PANGGUAN_PLAYER_LOGIN = 3004;    //胖滚战士 tlog 数据 “PlayerLogin 玩家登陆”表里面的数据
+    TLOGDATA_PANGGUAN_PLAYER_EXPFLOW = 3005;    //胖滚战士 tlog 数据“PlayerExpFlow 人物等级流水表”表里面的数据
+    TLOGDATA_PANGGUAN_PLAYER_REGISTER = 3006;    //胖滚战士 tlog 数据“PlayerRegister 玩家注册”表里面的数据
+
+    TLOGDATA_ALLTANK_PLAYER_LOGIN = 3007;    //全民坦克 tlog 数据 “PlayerLogin 玩家登陆”表里面的数据
+    TLOGDATA_ALLTANK_PLAYER_EXPFLOW = 3008;    //全民坦克 tlog 数据“PlayerExpFlow 人物等级流水表”表里面的数据
+    TLOGDATA_ALLTANK_PLAYER_REGISTER = 3009;    //全民坦克 tlog 数据“PlayerRegister 玩家注册”表里面的数据
+
+    TLOGDATA_COMMON = 3010;    //通用tlog数据推送接口，后续所有tlog以此接口推送给worker，推送包体为 TLogData
+
+	ACTIVITY_MODIFIED_INFORM = 4000;//
+
+	SDK_LOG_REPORT = 5000;//客户端上报日志数据，包体为 SDKLogReport
+	SDK_STATIC_REPORT = 5001;//客户端统计数据上报，包体为 report
+
+  QUERY_LUCKYSTAR = 6001;       // 查询幸运星资格 用于幸运星后台 jaimezhao和journeylv之间的通讯，协议体内容另有文档描述
+  PAY_SUCCEED = 6002;      // 购买成功回调函数 用于幸运星后台 jaimezhao和journeylv之间的通讯，协议体内容另有文档描述
+
+	// push_svr --> tcaplus proxy
+    READ_TCAPLUS  = 100000;
+    WRITE_TCAPLUS = 100001;
+}
+
+// 数据包是请求还是应答
+enum BODY_TYPE
+{
+    BODY_REQUEST = 1;
+    BODY_RESPONSE = 2;
+    BODY_REQUEST_SIM = 3;
+    BODY_RESPONSE_SIM = 4;
+}
+
+message CmdBase
+{
+    optional int64 seq_id = 1;     // 请求的序列号
+    optional int64 cmd_id = 2;     // 请求的命令类型
+    optional int64 type = 3;  // 1 表示请求包， 2表示响应包
+    optional bytes from_ip = 4;    // 来源ip
+    optional int64 process_id = 5; // 来源进程
+    optional int64 mod_id = 6;     // 来源模块编号
+	optional bytes version = 8;		//版本号
+    optional bytes body = 7;       // type = 1  就是 对应的请求体， 比如 LogoutReq;
+                                   // type = 2  就是CmdBaseResp对象
+}
+
+message CmdBaseResp
+{
+    optional int64 ret = 1;      // 返回码 0 正常， >0 业务相关的失败，
+                                    // -1 命令不支持， -2 请求格式错误，  -3 参数缺少，-4 参数错误
+    optional bytes err_msg = 2;     // 错误描述
+    optional bytes resp = 3;        // 具体的响应内容
+    optional bytes md5val = 4;        //响应内容的md5值，长度为16字节的二进制内容
+}
+
