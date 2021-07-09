@@ -1,4 +1,4 @@
-![Image text](https://github.com/cherieyuan/img-folder/blob/master/MorderFLux-Logo.png)
+![Image text](https://github.com/cherieyuan/img-folder/blob/master/ModernFLux-Logo.png)
 
 ## 1：项目背景
   在手游时代后台系统设计经常会遇到以下场景：
