@@ -1,53 +1,62 @@
-## 1：项目背景
-  在手游时代后台系统设计经常会遇到以下场景：
-  * 需求层面：秒杀活动瞬间会有巨大流量涌向后台，对系统形成冲击。这些瞬间流量往往是预估峰值流量的7-8倍，乃至10倍以上。
-  * 后台设计：后台大量采用微服务设计方案，系统TOPO结构复杂，整个系统安全负载量不易评估。同时系统内各个服务抗压能力不一，有的模块会随着流量的线性增加性能产生断崖式下降，从而引发“雪崩”，有可能造成整个系统瘫痪。
-  * 运维层面：各个业务独立部署会造成机器资源利用率低，混和部署有可能各个业务流量之间互相影响
+## 流控接口说明
+1. 上游流量管理API.
+```text
+int32_t ServiceQua::CheckQuota(string& keyid, int32_t groupid, int32_t totalquota, cl5::QOSREQUEST& aquol5,
+                               string referid, const string& serial)
+```
+- string& keyid: 业务标识ID.
+- int32_t groupid: 进程标识ID，保证单机唯一.
+- int32_t totalquota：业务总配额.
+- cl5::QOSREQUEST& aquol5：访问配额服务L5结构.
+- string referid：无历史数据参考数据key,不填则配额生效前配额取平均值.
+- const string& serial：请求流水号，用于定位问题，可不填.
+- 返回值: 0: 配额 < 100%, 1: 配额 >100%, <120% 2: 配额 > 120%; 3：set 拒绝.
 
-  对于这些场景不能简单通过堆机器来解决，首先事先不太可能申请这么多资源，即使申请了，峰值过后，机器利用率会比较低，形成浪费。所以需要一种负载保护机制，使系统能抗住突然流量冲击，对用户提供柔性服务，同时降低运营成本。
+2.本机资源管理API
+```text
+bool ServiceQua::InitSysload()
+```
+- 初始化函数，进程初始化调用(spp可在spp_handle_init).
+```text
+bool ServiceQua::SysOverload(const open_app_desc::Flux *flux)
+```
+- const open_app_desc::Flux *flux:参数配置结构，设置CPU阈值等配置信息.
+- 返回值：true:过载 false:负载正常.
 
-## 2：设计方案
-   设计方案需要满足以下一些基本原则
-  * 负载保护系统不能明显加重原有系统负载，需做到业务流量正常时对系统没明显负载增加，流量突发时能成功保护系统
-  * 支撑异构机器部署，同时方便系统动态扩缩容
-  * 流控服务本身对流量变化不敏感，以免流量剧烈变化时，流控服务本身经常扩缩容
-  * 既能控制单机流量又能控制整个系统流量
-  * 既能控制业务维度流量，又能控制资源维度流量，从而达到各个业务能够安全混用机器，提高资源利用率
-  * 上游下游能够有效互动，上游能管理好入口流量，下游能对上游产生“背压”，从而上游能主动限制对下游访问，必要时“熔断”
-  * 有比较好容灾能力，当流控服务暂时不能用时，不会对业务造成大的影响
-  * 流控系统足够简单，方便运维，不会明显增加系统复杂度
+3.下游负载检测API
+```text
+template<typename T>
+static bool CheckQos(const T& keyname, const open_app_desc::Flux *flux=NULL)
+```
+- const T& keyname:下游服务key,可以是接口ID或其它.
+- const open_app_desc::Flux *flux：阈值配置信息，可不填.
+- 返回值：true: 正常 false:下游异常，限制访问.
 
-  综上从三个层面设计负载保护系统
-  * 通过配额服务实时计算管理入口流量
-  * 定时检测单机硬件资源消耗
-  * 实时检测下游服务质量
+```text
+static int ServiceQua::UpdateQos(const T& keyname, int32_t ret, uint64_t ms=0)
+```
+- const T& keyname：下游服务key,可以是活动ID,PaaS ID，接口ID，以及其它.
+- int32_t ret：本次调用下游结果 0：成功 其它:失败(-3, 超时).
+- uint64_t ms: 本次调用下游耗时(毫秒).
 
-**系统架构图**
-![image.png](/uploads/2D71C496E07F42D9823FBB6389529A29/image.png)
+4.内存资源清理
+```text
+int ServiceQua::ClearData()
+```
+- 内存清理函数(spp可以在spp_handle_loop).
 
+5.伪码调用：
+- 进程初始化.
+- ServiceQua::InitSysload().
+- 收到请求.
+- ServiceQua::CheckQuota().
+- ServiceQua::SysOverload().
+- ServiceQua::CheckQos().
+- 向下游发请求.
+- 收到回复.
+- ServiceQua::UpdateQos.
+- 周期调用 ServiceQua::ClearData().
 
-## 3: 目录简介
-
-### 1.1	cppFcApi
-	流控API C++版本库，API使用方法详见wiki
-
-### 3.2	phpFcApi
-	流控API Php版本库，API使用方法详见wiki
-	
-### 3.3	protocal
-	Pb协议
-	
-### 3.4	QuaAgent
-	小配额agent,针对于qps不高的活动进行负载均衡。
-	编译：进入QuaAgent/src/flux,执行 sh huild.sh 即可。执行./qagent 
-
-### 3.5	QuaServer
-	配额计算Server,统计计算并分配各节点配额。
-	编译：进入QuaServer 执行 make 即可。 
-	
-## 4: 效果图
-![image.png](/uploads/AAC09C85D55D462591F54224A3BE048A/image.png)
-![image.png](/uploads/146DAECEA56D48FA83E261D191E5D54C/image.png)
 
 
 
