@@ -23,7 +23,8 @@
   * 实时检测下游服务质量
 
 **系统架构图**
-![image.png](/uploads/2D71C496E07F42D9823FBB6389529A29/image.png)
+
+ ![Image text](https://github.com/cherieyuan/img-folder/blob/master/flux.png)
 
 
 ## 3: 目录简介
@@ -46,8 +47,7 @@
 	编译：进入QuaServer 执行 make 即可。 
 	
 ## 4: 效果图
-![image.png](/uploads/AAC09C85D55D462591F54224A3BE048A/image.png)
-![image.png](/uploads/146DAECEA56D48FA83E261D191E5D54C/image.png)
+
 
 
 
