@@ -27,8 +27,7 @@
 
 **系统架构图**
 
- ![Image text](https://github.com/cherieyuan/img-folder/blob/master/flux.png)
-
+![Image text](https://github.com/cherieyuan/img-folder/blob/master/flux1.png)
 
 ## 3: 目录简介
 
