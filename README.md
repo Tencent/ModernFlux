@@ -1,5 +1,6 @@
 ![Image text](https://github.com/cherieyuan/img-folder/blob/master/ModernFLux-Logo.png)
 
+![Image text](https://img.shields.io/badge/license-BSD3-brightgreen)
 ## 1：项目背景
   在手游时代后台系统设计经常会遇到以下场景：
   * 需求层面：秒杀活动瞬间会有巨大流量涌向后台，对系统形成冲击。这些瞬间流量往往是预估峰值流量的7-8倍，乃至10倍以上。
