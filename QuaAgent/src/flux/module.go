@@ -60,8 +60,8 @@ const (
 	NUM_PER_INDEX          int64 = 10
 	REPORT_PERIOD          int64 = 5
 	QUOTA_QUERY_CMD        int64 = 150
-	AQUOTA_MOD             int32 = 64283201
-	AQUOTA_CMD             int32 = 589824
+	AQUOTA_IP              string = "127.0.0.1"
+	AQUOTA_PORT            string = "9999"
 	QUOTA_ARRAY_NUM        int   = 12
 	MAXINDEX               int   = 100
 	MaxOpenConn            int   = 10
