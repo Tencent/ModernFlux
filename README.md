@@ -1,4 +1,4 @@
-![Image text](https://github.com/cherieyuan/img-folder/blob/master/ModernFlux-Logo2)
+![Image text](https://github.com/cherieyuan/img-folder/blob/master/ModernFlux-Logo2.png)
 
 ![Image text](https://img.shields.io/badge/license-BSD3-brightgreen)  ![Image text](https://img.shields.io/badge/release-v1.0.0-brightgreen)
 ## 1：项目背景
