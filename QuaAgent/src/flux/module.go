@@ -1,7 +1,6 @@
 package main
 
 import (
-	"l5"
 	"log"
 
 	"net"
@@ -203,20 +202,3 @@ type ConnStruct struct {
 	MaxIndex int
 }
 
-var L5Api *l5.Api
-var L5Err error
-
-func init() {
-
-	L5Api, L5Err = l5.NewDefaultApi()
-	if L5Err != nil {
-		log.Println("l5 init error", L5Err)
-		L5Api, L5Err = l5.NewDefaultApi()
-		if L5Err != nil {
-			os.Exit(-1)
-		}
-
-	}
-	log.Println("L5Api init suc")
-
-}
