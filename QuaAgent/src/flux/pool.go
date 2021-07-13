@@ -32,20 +32,9 @@ type GenericPool struct {
 
 var AFLConnPool *GenericPool
 
-func NewConnPool(modId int32, comId int32, maxOpen int) *GenericPool { //
+func NewConnPool(ip string, port string, maxOpen int) *GenericPool { //
 
 	var f factory = func() (net.Conn, error) {
-		Server, ServerErr := L5Api.GetServerBySid(modId, comId)
-		if ServerErr != nil {
-			Server, ServerErr = L5Api.GetServerBySid(modId, comId)
-
-			if ServerErr != nil {
-				return nil, ServerErr
-			}
-		}
-		ip := Server.Ip.String()
-		port := strconv.Itoa(int(Server.Port))
-
 		conn, err := net.DialTimeout("tcp", ip+":"+port, time.Second*3)
 		if err != nil {
 			fmt.Printf(" dial error: %s\n", err)
