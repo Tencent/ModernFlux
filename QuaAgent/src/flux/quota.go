@@ -15,7 +15,7 @@ func quotastart(index int) {
 	workerchan := workers[index]
 	quotachan := quotas[index]
 	rspchan := nets[index]
-	pool := NewConnPool(AQUOTA_MOD, AQUOTA_CMD, MaxOpenConn)
+	pool := NewConnPool(AQUOTA_IP, AQUOTA_PORT, MaxOpenConn)
 	defer pool.Shutdown()
 	for {
 		// process quota rsp from server
