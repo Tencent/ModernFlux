@@ -1,2 +1,2 @@
 #/bin/bash
-/data/home/scottzhu/golib/protobuf/bin/protoc --go_out=. *.proto
+/data/golang/src/gopb/proto/bin/protoc --go_out=. *.proto
