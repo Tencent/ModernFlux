@@ -56,7 +56,7 @@
 ![Image text](https://github.com/cherieyuan/img-folder/blob/master/FLux-Example3.png)
 
 ## 5:License
-BK-CI 是基于 BSD3 协议， 详细请参考 [LICENSE](LICENSE.txt)
+ModernFlux 是基于 BSD3 协议， 详细请参考 [LICENSE](LICENSE.txt)
 
 
 
