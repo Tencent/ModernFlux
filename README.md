@@ -42,6 +42,7 @@
 	
 ### 3.4	QuaAgent
 	小配额agent,针对于qps不高的活动进行负载均衡。
+    环境依赖：Linux x64 环境，建议CentOS 7.x；Golang 1.0及以上
 	编译：进入QuaAgent/src/flux,执行 sh huild.sh 即可。执行./qagent 
 
 ### 3.5	QuaServer
