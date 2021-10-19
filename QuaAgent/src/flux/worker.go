@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fluxpb"
+	"github.com/Tencent/ModernFlux/QuaAgent/src/fluxpb"
 
 	"fmt"
-	"gopb"
+	amsactcon "github.com/Tencent/ModernFlux/QuaAgent/src/gopb"
 	"net"
 	"sync/atomic"
 	"time"

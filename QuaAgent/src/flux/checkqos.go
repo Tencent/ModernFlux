@@ -108,8 +108,7 @@ func UpdateQos() int {
 		ttime := time.Now().Unix()
 		index := ttime % s_pasttime
 
-		if (0 == quawin.Item[index].tTime) || (ttime > quawin.Item[index].tTime
-			&& (ttime-quawin.Item[index].tTime) >= s_pasttime) {
+		if (0 == quawin.Item[index].tTime) || (ttime > quawin.Item[index].tTime && (ttime-quawin.Item[index].tTime) >= s_pasttime) {
 			quawin.Item[index].tTime = ttime
 			quawin.Item[index].suc = 0
 			quawin.Item[index].fail = 0

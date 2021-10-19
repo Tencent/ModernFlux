@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
+	_ "log"
 
 	"net"
-	"os"
+	_ "os"
 )
 
 var glnum int64 = 0

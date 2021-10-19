@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fluxpb"
+	"github.com/Tencent/ModernFlux/QuaAgent/src/fluxpb"
 
-	"gopb"
+	amsactcon "github.com/Tencent/ModernFlux/QuaAgent/src/gopb"
 	"log"
 	"time"
 
