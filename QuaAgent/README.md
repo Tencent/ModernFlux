@@ -11,6 +11,7 @@ git clone https://github.com/Tencent/ModernFlux/QuaAgent.git
 ```
 
 ### 编译
+```
 cd src/flux
 go build -o qagent
 ```
