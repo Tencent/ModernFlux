@@ -106,8 +106,8 @@ int FlowMsg::HandleProcess() {
                                              sizeof(net_length));
         resp.AppendToString(&rsp_packet);
 
-        blob.data = reinterpret_cast<char *>(rsp_packet.data());
-        blob.len  = static_cast<int>(rsp_packet.size());
+        blob.data = (char *)rsp_packet.data();
+        blob.len  = rsp_packet.size();
 
         this->SendToClient(blob);
 

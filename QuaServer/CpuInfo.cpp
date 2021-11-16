@@ -39,7 +39,7 @@ int CpuInfo::InitCpuInfo() {
     cpu_usage = 0;
 
     ret = GetMEMInfo(mem_data);
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         memory[i] = mem_data[i];
     }
     if (memory[0] > 0) {
@@ -73,7 +73,7 @@ int CpuInfo::GetCpuInfo() {
     GetMEMInfo(mem_data);
 
     if (mem_data[0] > 0 && mem_data[0] - mem_data[1] > 0) {
-        for (i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             memory[i] = mem_data[i];
         }
         mem_usage = ((memory[0] - memory[1] - memory[2] - memory[3]) * 100) / memory[0];

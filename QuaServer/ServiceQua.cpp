@@ -1777,8 +1777,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
 
         rsp.set_setsum(setdata.GetSetRealNum());
         SF_LOG(LOG_DEBUG,
-               "AVERSUM setname:%s, total:%d, procnum:%d, realnum:%d,
-               setvalid:%d, refuse:%d, setrefuse:%d, setquota:%d\n",
+               "AVERSUM setname:%s, total:%d, procnum:%d, realnum:%d,setvalid:%d, refuse:%d, setrefuse:%d, setquota:%d\n",
                setkey.c_str(), setdata.setnowsum, setdata.workernum,
                setrealnum, setdata.setvalid, actrefuse, setdata.setrefuse,
                setdata.setquota);
@@ -1797,8 +1796,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
             int32_t procquota = tmpqdata.GetProcQ(procq.procvalid);
             pq->set_procquota(procquota > 0 ? procquota : (tmpqdata.GetAverQ()));
             SF_LOG(LOG_DEBUG,
-                   "PROCSUM setname:%s, procnum:%d, procid:%s,
-                   procquota:%d, averq:%d, procvalid:%d, setvalid:%d, setquota:%d\n",
+                   "PROCSUM setname:%s, procnum:%d, procid:%s, procquota:%d, averq:%d, procvalid:%d, setvalid:%d, setquota:%d\n",
                    tmpsetkey.c_str(), tmpqdata.workernum, procq.procid.c_str(),
                    procquota, tmpqdata.GetAverQ(), procq.procvalid,
                    tmpqdata.setvalid, tmpqdata.setquota);

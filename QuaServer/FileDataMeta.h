@@ -50,7 +50,7 @@ bool TmlptActLoadFile(const std::string& file_path, F& tact, std::stringstream& 
         }
 
         char *pdata = s_file_buff + 4 + MD5_BIN_LEN;
-        uint32_t *tmp = static_cast<uint32_t *>(s_file_buff);
+        uint32_t *tmp = (uint32_t *)s_file_buff;
         uint32_t data_len = ntohl(*tmp);
         if (length != (4 + MD5_BIN_LEN + data_len)) {
             ss_err << file_path << " format error, file len:" <<
@@ -114,8 +114,8 @@ bool TmlptActLoadFile(const std::string& file_path, F& tact, std::stringstream& 
         }\
     } STUCTNAME;
 #define TMPLT_DECLARE_FUNC(funcname, keytype, datatype, arrtype)\
-    int funcname(string &filename, const keytype &keyname, datatype *&pdata, \
-                int &index, std::map<keytype, arrtype> &gmap, uint32_t &flag, int64_t &delta);\
+	int funcname(string &filename, const keytype &keyname, datatype *&pdata,\
+	int &index, std::map<keytype, arrtype> &gmap, uint32_t &flag, int64_t &delta);
 #define TMPLT_DEFINE_FUNC(funcname, keytype, datatype, arrtype)\
     int funcname(string &filename, const keytype &keyname, datatype *&pdata, \
                 int &index, std::map<keytype, arrtype> &gmap, uint32_t &flag, int64_t &delta)\
