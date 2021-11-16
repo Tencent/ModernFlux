@@ -27,6 +27,7 @@ string g_host;
 extern int g_proxy_port;
 static char pathbuff[ 1024 * 10] = {0};
 extern time_t g_uptime;
+int g_timeout = 5000;
 using namespace std;
 
 // Get First Port
