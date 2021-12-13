@@ -5,7 +5,7 @@ global:
   timeout: 60
 service:
   - id: 1
-    module: ./spp_module_test.so
+    module: ./aquota.so
     procnum: 4
     flog:
       level: 1

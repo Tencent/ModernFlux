@@ -13,6 +13,7 @@ LIB += -lrt \
 	../lib/tinyxml/libtinyxml.a \
 	../lib/l5/libqos_client.a \
 	../protocal/lib/libproto.a \
+	/usr/protobuf-2.4.1/lib/libprotobuf.a \
 	$(PROTOLIB) \
 	
 OBJ_DIR=./obj
