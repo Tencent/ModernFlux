@@ -35,7 +35,7 @@
 - [流控API C++版本库，API使用方法详见](docs/wiki/API-C%2B%2B.md)
 
 ### 3.2	phpFcApi
-- [流控API C++版本库，API使用方法详见](docs/wiki/API-php.md)
+- [流控API Php版本库，API使用方法详见](docs/wiki/API-php.md)
 	
 ### 3.3	protocal
 	Pb协议
