@@ -65,7 +65,7 @@ extern "C" int spp_handle_init(void *arg1, void *arg2) {
     g_groups_num = GetGroupsSum();
     g_spp_worker_pid = getpid();
 
-	CServerBase* base = (CServerBase*)arg2;
+    CServerBase* base = (CServerBase*)arg2;
     struct rlimit rLmt;
     rLmt.rlim_cur = 100000;
     rLmt.rlim_max = 200000;
@@ -84,7 +84,7 @@ extern "C" int spp_handle_init(void *arg1, void *arg2) {
        }
     }
     
-	SF_LOG(LOG_ERROR, "spp_worker_pid %d\n", g_spp_worker_pid);
+    SF_LOG(LOG_ERROR, "spp_worker_pid %d\n", g_spp_worker_pid);
 
     g_uptime = time(NULL);
     getcwd(pathbuff, sizeof(pathbuff) - 1);
