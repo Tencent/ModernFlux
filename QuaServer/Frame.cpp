@@ -21,6 +21,7 @@
 #include "ServiceQua.h"
 #include "tinyxml.h"
 
+const unsigned int MT_STACK_LEN = 128 * 1024;
 int g_groups_num = 1;
 int g_spp_worker_pid = 0;
 string g_host;
@@ -63,7 +64,27 @@ int GetFirstPort(const string& filepath) {
 extern "C" int spp_handle_init(void *arg1, void *arg2) {
     g_groups_num = GetGroupsSum();
     g_spp_worker_pid = getpid();
-    SF_LOG(LOG_ERROR, "spp_worker_pid %d\n", g_spp_worker_pid);
+
+	CServerBase* base = (CServerBase*)arg2;
+    struct rlimit rLmt;
+    rLmt.rlim_cur = 100000;
+    rLmt.rlim_max = 200000;
+    int iRet = setrlimit(RLIMIT_NOFILE, (const struct rlimit *)&rLmt);
+    if(iRet){
+        cout<<"setrlimit 100000/200000 failed! iRet:"<<iRet<<endl;
+        return -1;
+    }
+
+    if (base->servertype() == SERVER_TYPE_WORKER){
+        mt_set_stack_size(MT_STACK_LEN);
+        iRet = CSyncFrame::Instance()->InitFrame(base, 100000);
+        if (iRet < 0){
+           cout<<"Sync framework init failed, ret:"<<iRet<<endl;
+           return -1;
+       }
+    }
+    
+	SF_LOG(LOG_ERROR, "spp_worker_pid %d\n", g_spp_worker_pid);
 
     g_uptime = time(NULL);
     getcwd(pathbuff, sizeof(pathbuff) - 1);
