@@ -1,7 +1,7 @@
 include ../version_para
 
 INC += -I./ \
-	-I../protocal/ \
+	-I../protocol/ \
 	-I../lib/tinyxml \
 	-I../lib/spp/module/include/spp_incl/ \
 	-I../lib/spp/module/include/ \
@@ -12,8 +12,7 @@ INC += -I./ \
 LIB += -lrt \
 	../lib/tinyxml/libtinyxml.a \
 	../lib/l5/libqos_client.a \
-	../protocal/lib/libproto.a \
-	/usr/protobuf-2.4.1/lib/libprotobuf.a \
+	../protocol/lib/libproto.a \
 	$(PROTOLIB) \
 	
 OBJ_DIR=./obj

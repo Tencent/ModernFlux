@@ -1,7 +1,6 @@
 include ../version_para
 
 INC = -I./ -I$(PROTOINC)
-PROTOC = protoc
 PROTOCFLAG = --proto_path=./ --cpp_out=.  
 
 OBJDIR  =./obj

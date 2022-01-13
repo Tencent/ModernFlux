@@ -1,4 +1,5 @@
-package openappdesc;
+syntax = "proto2";
+package open_app_desc;
 enum BODY_TYPE
 {
     BODY_REQUEST = 1;
