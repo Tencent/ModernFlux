@@ -1,4 +1,4 @@
-include ../version_para
+include ../PreDefine
 
 INC += -I./ \
 	-I../Protocol/ \

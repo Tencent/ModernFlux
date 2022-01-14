@@ -384,7 +384,7 @@ vim Makefile
 将Makefile中的第15行指向之前根据自己系统情况设置的protoc-2.4.1的安装路径中的/lib/libprotobuf.a
 
 ~~~
-  1 include ../version_para
+  1 include ../PreDefine
   2 
   3 INC += -I./ \
   4         -I../Protocol/ \
