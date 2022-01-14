@@ -2,7 +2,7 @@
 
 ## 一、编译环境
 
-该项目需在gcc-4.6和protoc-2.4.1(-fPIC编译)的环境下编译运行，如需修改.proto文件并重新编译需要安装protobuf
+该项目需在gcc-4.6和protoc-3.5.1(-fPIC编译)的环境下编译运行，如需修改.proto文件并重新编译需要安装protobuf
 
 ### 1、gcc-4.6
 
@@ -179,7 +179,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
 
-### 2、protoc-2.4.1(-fPIC编译)
+### 2、protoc-3.5.1(-fPIC编译)
 
 查询gcc版本命令：
 
@@ -204,7 +204,7 @@ rm /usr/local/bin/protoc
 下载完整包：
 
 ~~~
-wget https://github.com/google/protobuf/releases/download/v2.4.1/protobuf-2.4.1.tar.gz
+wget https://github.com/protocolbuffers/protobuf/releases/download/v3.5.1/protobuf-all-3.5.1.tar.gz
 ~~~
 
 安装依赖：
@@ -216,13 +216,13 @@ yum -y install gcc-c++
 解压
 
 ~~~
-tar -zxvf protobuf-2.4.1.tar.gz
+tar -zxvf protobuf-all-3.5.1.tar.gz 
 ~~~
 
 编译/安装
 
 ~~~
-cd protobuf-2.4.1
+cd protobuf-3.5.1
 ~~~
 
 ~~~
@@ -232,7 +232,7 @@ cd protobuf-2.4.1
 根据自己系统情况设置安装路径，同时使用-fPIC选项编译出protobuf静态库libprotobuf.a
 
 ~~~
-./configure --prefix=/usr/protobuf-2.4.1 CFLAGS="-fPIC"  CXXFLAGS="-fPIC"
+./configure --prefix=/usr/protobuf-3.5.1 CFLAGS="-fPIC"  CXXFLAGS="-fPIC"
 ~~~
 
 ~~~
@@ -250,7 +250,7 @@ make成功，make install  成功。
 ~~~
 root@homestead:/usr# protoc --version
 
-libprotoc 2.4.1
+libprotoc 3.5.1
 ~~~
 
 根据自己系统情况,移动src/google/到usr/local/include:
@@ -309,23 +309,30 @@ sudo ldconfig
 
 pb协议，如需修改串行化的数据结构信息，请先编辑文件夹内的open_app_desc.proto，再重新编译
 
-open_app_desc.pb.cc和open_app_desc.pb.h，并将新的.cc和.h文件放入QuaServer文件夹内覆盖原有的。
+open_app_desc.pb.cc和open_app_desc.pb.h：
 
-编译命令例如：
+~~~linux
+cd /data/ModernFlux-master/protocol/
+make
+~~~
+
+并将新编译的.cc和.h文件放入QuaServer文件夹内覆盖原有的。
+
+如需搭配go语言使用，编译命令例如：
 
 ~~~ linux
-protoc -I=/data/ModernFlux-master/protocol/ --cpp_out=/data/ModernFlux-master/protocol/ /data/ModernFlux-master/protocol/open_app_desc.proto
+protoc -I=/data/ModernFlux-master/protocol/ --go_out=/data/ModernFlux-master/protocol/ /data/ModernFlux-master/protocol/open_app_desc.proto
 ~~~
 
 以上三个路径参数分别是：
 
 -I=“.proto文件存放的路径”
 
-　　　　-cpp_out= “输出的cpp文件存放的路径”
+　　　　-go_out= “输出的go文件存放的路径”
 
 　　　　　　　　“.proto的源码路径”
 
-
+如需编写client端与
 
 ## 三、QuaAgent
 
@@ -367,19 +374,13 @@ go mod verify
 
 配额计算Server,统计计算并分配各节点配额。
 
-编译：
-
-~~~
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpc/lib:/usr/local/gmp/lib:/usr/local/mpfr/lib/
-~~~
-
 进入QuaServer 
 
 ~~~
 vim Makefile
 ~~~
 
-将Makefile中的第15行指向之前根据自己系统情况设置的protoc-2.4.1的安装路径中的/lib/libprotobuf.a
+将Makefile中的第15行指向之前根据自己系统情况设置的protoc-3.5.1的安装路径中的/lib/libprotobuf.a
 
 ~~~
   1 include ../PreDefine
@@ -396,7 +397,7 @@ vim Makefile
  12 LIB += -lrt \
  13         ../lib/tinyxml/libtinyxml.a \
  14         ../lib/l5/libqos_client.a \
- 15         /usr/protobuf-2.4.1/lib/libprotobuf.a \
+ 15         /usr/protobuf-3.5.1/lib/libprotobuf.a \
  16         $(PROTOLIB) \
  17         
  18 OBJ_DIR=./obj
