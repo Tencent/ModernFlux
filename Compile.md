@@ -387,16 +387,16 @@ vim Makefile
   2 
   3 INC += -I./ \
   4         -I../Protocol/ \
-  5         -I../lib/tinyxml \
-  6         -I../lib/spp/module/include/spp_incl/ \
-  7         -I../lib/spp/module/include/ \
-  8         -I../lib/basiclib/inc/ \
-  9         -I../lib/l5/ \
+  5         -I../Lib/tinyxml \
+  6         -I../Lib/spp/module/include/spp_incl/ \
+  7         -I../Lib/spp/module/include/ \
+  8         -I../Lib/basiclib/inc/ \
+  9         -I../Lib/l5/ \
  10         -I$(PROTOINC) \
  11         
  12 LIB += -lrt \
- 13         ../lib/tinyxml/libtinyxml.a \
- 14         ../lib/l5/libqos_client.a \
+ 13         ../Lib/tinyxml/libtinyxml.a \
+ 14         ../Lib/l5/libqos_client.a \
  15         /usr/protobuf-3.5.1/lib/libprotobuf.a \
  16         $(PROTOLIB) \
  17         
