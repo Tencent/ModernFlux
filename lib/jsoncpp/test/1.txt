@@ -1,1 +1,0 @@
-{ "iRet":"0", "sMsg":"ok", "sReason":"", "iActivityId":"6577", "iRuleId":"14410", "iPackageId":"31444", "sPackageName":"¬Ãπ‚–°¬‹¿Ú£®7ÃÏ£©", "iPackageType":"2", "sPackageOtherInfo":"ATUYNAAAAasbSXYy", "dTimeNow":"2013-12-11 10:27:47", "sSerialNum":"AMS-QQGAME-1211102642-FutNFw-5617-43183" } 

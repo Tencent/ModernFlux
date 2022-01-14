@@ -1,18 +1,18 @@
 include ../version_para
 
 INC += -I./ \
-	-I../protocol/ \
-	-I../lib/tinyxml \
-	-I../lib/spp/module/include/spp_incl/ \
-	-I../lib/spp/module/include/ \
-	-I../lib/basiclib/inc/ \
-	-I../lib/l5/ \
+	-I../Protocol/ \
+	-I../Lib/tinyxml \
+	-I../Lib/spp/module/include/spp_incl/ \
+	-I../Lib/spp/module/include/ \
+	-I../Lib/basiclib/inc/ \
+	-I../Lib/l5/ \
 	-I$(PROTOINC) \
 	
 LIB += -lrt \
-	../lib/tinyxml/libtinyxml.a \
-	../lib/l5/libqos_client.a \
-	../protocol/lib/libproto.a \
+	../Lib/tinyxml/libtinyxml.a \
+	../Lib/l5/libqos_client.a \
+	../Protocol/lib/libproto.a \
 	$(PROTOLIB) \
 	
 OBJ_DIR=./obj
@@ -43,8 +43,8 @@ $(OBJ_DIR)/%$(OBJ_EXT): %$(CXXSRC_EXT)
 		$(CXX) $(CXXFLAGS) -c $< $(INC) -o $@
 
 PRE_DIR= \
-		../lib/jsoncpp \
-		../lib/tinyxml \
+		../Lib/jsoncpp \
+		../Lib/tinyxml \
 
 all:PREMAKE $(TARGET)
 

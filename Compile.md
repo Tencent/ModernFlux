@@ -305,7 +305,7 @@ sudo ldconfig
 
 
 
-## 二、protocal
+## 二、protocol
 
 pb协议，如需修改串行化的数据结构信息，请先编辑文件夹内的open_app_desc.proto，再重新编译
 
@@ -387,7 +387,7 @@ vim Makefile
   1 include ../version_para
   2 
   3 INC += -I./ \
-  4         -I../protocal/ \
+  4         -I../Protocol/ \
   5         -I../lib/tinyxml \
   6         -I../lib/spp/module/include/spp_incl/ \
   7         -I../lib/spp/module/include/ \
