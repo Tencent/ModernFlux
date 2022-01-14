@@ -369,10 +369,8 @@ go mod verify
 
 编译：
 
-在/ usr / lib或/ usr / lib64中找到libmpc.so.3或者同样的东西，用libmpc.so.2文件将其替换
-
 ~~~
-sudo ln -s libmpc.so.3.0.0 libmpc.so.2 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpc/lib:/usr/local/gmp/lib:/usr/local/mpfr/lib/
 ~~~
 
 进入QuaServer 
