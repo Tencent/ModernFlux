@@ -31,18 +31,18 @@ int32_t SppBinRoute(void *arg1) {
     blob_type *blob = reinterpret_cast<blob_type *>(arg1);
     uint32_t iPkgLen = ntohl(*(reinterpret_cast<uint32_t *>(blob->data)));
     if ((blob->len >= 5) && (pack.ParseFromArray(blob->data + 4, iPkgLen))) {
-        if (pack.has_type()) {
+        if (pack.type()>0) {
             type = pack.type();
         }
 
-        if (pack.has_cmd_id()) {
+        if (pack.cmd_id()>0) {
             cmd = pack.cmd_id();
         }
 
-        if ((QUOTA_QUERY_CMD == cmd) && (pack.has_body())) {
+        if ((QUOTA_QUERY_CMD == cmd) && (pack.body().size()>0)) {
             open_app_desc::QuotaReq req;
             if (true == req.ParseFromArray(pack.body().c_str(), pack.body().length())) {
-                if ((req.has_key()) && (req.key().size() > 0)) {
+                if (req.key().size() > 0) {
                     uint32_t num = 0;
                     for (size_t i = 0; i < req.key().size(); ++i) {
                         num += req.key()[i];

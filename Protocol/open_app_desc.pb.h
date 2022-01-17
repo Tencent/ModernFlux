@@ -147,11 +147,14 @@ extern SetQuotaRspDefaultTypeInternal _SetQuotaRsp_default_instance_;
 namespace open_app_desc {
 
 enum BODY_TYPE {
+  BODY_BEGIN = 0,
   BODY_REQUEST = 1,
-  BODY_RESPONSE = 2
+  BODY_RESPONSE = 2,
+  BODY_TYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  BODY_TYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool BODY_TYPE_IsValid(int value);
-const BODY_TYPE BODY_TYPE_MIN = BODY_REQUEST;
+const BODY_TYPE BODY_TYPE_MIN = BODY_BEGIN;
 const BODY_TYPE BODY_TYPE_MAX = BODY_RESPONSE;
 const int BODY_TYPE_ARRAYSIZE = BODY_TYPE_MAX + 1;
 
@@ -193,13 +196,6 @@ class CmdBase : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const CmdBase& default_instance();
 
@@ -256,8 +252,7 @@ class CmdBase : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // optional bytes body = 4;
-  bool has_body() const;
+  // bytes body = 4;
   void clear_body();
   static const int kBodyFieldNumber = 4;
   const ::std::string& body() const;
@@ -271,22 +266,19 @@ class CmdBase : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_body();
   void set_allocated_body(::std::string* body);
 
-  // optional int64 seq_id = 1;
-  bool has_seq_id() const;
+  // int64 seq_id = 1;
   void clear_seq_id();
   static const int kSeqIdFieldNumber = 1;
   ::google::protobuf::int64 seq_id() const;
   void set_seq_id(::google::protobuf::int64 value);
 
-  // optional int64 cmd_id = 2;
-  bool has_cmd_id() const;
+  // int64 cmd_id = 2;
   void clear_cmd_id();
   static const int kCmdIdFieldNumber = 2;
   ::google::protobuf::int64 cmd_id() const;
   void set_cmd_id(::google::protobuf::int64 value);
 
-  // optional int64 type = 3;
-  bool has_type() const;
+  // int64 type = 3;
   void clear_type();
   static const int kTypeFieldNumber = 3;
   ::google::protobuf::int64 type() const;
@@ -294,22 +286,13 @@ class CmdBase : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // @@protoc_insertion_point(class_scope:open_app_desc.CmdBase)
  private:
-  void set_has_seq_id();
-  void clear_has_seq_id();
-  void set_has_cmd_id();
-  void clear_has_cmd_id();
-  void set_has_type();
-  void clear_has_type();
-  void set_has_body();
-  void clear_has_body();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr body_;
   ::google::protobuf::int64 seq_id_;
   ::google::protobuf::int64 cmd_id_;
   ::google::protobuf::int64 type_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsCmdBaseImpl();
 };
@@ -341,13 +324,6 @@ class CmdBaseResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const CmdBaseResp& default_instance();
 
@@ -404,8 +380,7 @@ class CmdBaseResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // accessors -------------------------------------------------------
 
-  // optional bytes err_msg = 2;
-  bool has_err_msg() const;
+  // bytes err_msg = 2;
   void clear_err_msg();
   static const int kErrMsgFieldNumber = 2;
   const ::std::string& err_msg() const;
@@ -419,8 +394,7 @@ class CmdBaseResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::std::string* release_err_msg();
   void set_allocated_err_msg(::std::string* err_msg);
 
-  // optional bytes resp = 3;
-  bool has_resp() const;
+  // bytes resp = 3;
   void clear_resp();
   static const int kRespFieldNumber = 3;
   const ::std::string& resp() const;
@@ -434,8 +408,7 @@ class CmdBaseResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::std::string* release_resp();
   void set_allocated_resp(::std::string* resp);
 
-  // optional int64 ret = 1;
-  bool has_ret() const;
+  // int64 ret = 1;
   void clear_ret();
   static const int kRetFieldNumber = 1;
   ::google::protobuf::int64 ret() const;
@@ -443,19 +416,12 @@ class CmdBaseResp : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // @@protoc_insertion_point(class_scope:open_app_desc.CmdBaseResp)
  private:
-  void set_has_ret();
-  void clear_has_ret();
-  void set_has_err_msg();
-  void clear_has_err_msg();
-  void set_has_resp();
-  void clear_has_resp();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr err_msg_;
   ::google::protobuf::internal::ArenaStringPtr resp_;
   ::google::protobuf::int64 ret_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsCmdBaseRespImpl();
 };
@@ -487,13 +453,6 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const L5cfg& default_instance();
 
@@ -550,8 +509,7 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // accessors -------------------------------------------------------
 
-  // optional bytes modId = 1;
-  bool has_modid() const;
+  // bytes modId = 1;
   void clear_modid();
   static const int kModIdFieldNumber = 1;
   const ::std::string& modid() const;
@@ -565,8 +523,7 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_modid();
   void set_allocated_modid(::std::string* modid);
 
-  // optional bytes cmdId = 2;
-  bool has_cmdid() const;
+  // bytes cmdId = 2;
   void clear_cmdid();
   static const int kCmdIdFieldNumber = 2;
   const ::std::string& cmdid() const;
@@ -580,8 +537,7 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_cmdid();
   void set_allocated_cmdid(::std::string* cmdid);
 
-  // optional bytes defaultIp = 3;
-  bool has_defaultip() const;
+  // bytes defaultIp = 3;
   void clear_defaultip();
   static const int kDefaultIpFieldNumber = 3;
   const ::std::string& defaultip() const;
@@ -595,8 +551,7 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_defaultip();
   void set_allocated_defaultip(::std::string* defaultip);
 
-  // optional bytes globalDefaultIp = 5;
-  bool has_globaldefaultip() const;
+  // bytes globalDefaultIp = 5;
   void clear_globaldefaultip();
   static const int kGlobalDefaultIpFieldNumber = 5;
   const ::std::string& globaldefaultip() const;
@@ -610,15 +565,13 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_globaldefaultip();
   void set_allocated_globaldefaultip(::std::string* globaldefaultip);
 
-  // optional int64 defaultPort = 4;
-  bool has_defaultport() const;
+  // int64 defaultPort = 4;
   void clear_defaultport();
   static const int kDefaultPortFieldNumber = 4;
   ::google::protobuf::int64 defaultport() const;
   void set_defaultport(::google::protobuf::int64 value);
 
-  // optional int64 globalDefaultPort = 6;
-  bool has_globaldefaultport() const;
+  // int64 globalDefaultPort = 6;
   void clear_globaldefaultport();
   static const int kGlobalDefaultPortFieldNumber = 6;
   ::google::protobuf::int64 globaldefaultport() const;
@@ -626,28 +579,15 @@ class L5cfg : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // @@protoc_insertion_point(class_scope:open_app_desc.L5cfg)
  private:
-  void set_has_modid();
-  void clear_has_modid();
-  void set_has_cmdid();
-  void clear_has_cmdid();
-  void set_has_defaultip();
-  void clear_has_defaultip();
-  void set_has_defaultport();
-  void clear_has_defaultport();
-  void set_has_globaldefaultip();
-  void clear_has_globaldefaultip();
-  void set_has_globaldefaultport();
-  void clear_has_globaldefaultport();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr modid_;
   ::google::protobuf::internal::ArenaStringPtr cmdid_;
   ::google::protobuf::internal::ArenaStringPtr defaultip_;
   ::google::protobuf::internal::ArenaStringPtr globaldefaultip_;
   ::google::protobuf::int64 defaultport_;
   ::google::protobuf::int64 globaldefaultport_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsL5cfgImpl();
 };
@@ -679,13 +619,6 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const Flux& default_instance();
 
@@ -742,8 +675,7 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 
   // accessors -------------------------------------------------------
 
-  // optional bytes referkey = 9;
-  bool has_referkey() const;
+  // bytes referkey = 9;
   void clear_referkey();
   static const int kReferkeyFieldNumber = 9;
   const ::std::string& referkey() const;
@@ -757,7 +689,7 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::std::string* release_referkey();
   void set_allocated_referkey(::std::string* referkey);
 
-  // optional .open_app_desc.L5cfg normalenv = 18;
+  // .open_app_desc.L5cfg normalenv = 18;
   bool has_normalenv() const;
   void clear_normalenv();
   static const int kNormalenvFieldNumber = 18;
@@ -766,7 +698,7 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::open_app_desc::L5cfg* mutable_normalenv();
   void set_allocated_normalenv(::open_app_desc::L5cfg* normalenv);
 
-  // optional .open_app_desc.L5cfg testenv = 19;
+  // .open_app_desc.L5cfg testenv = 19;
   bool has_testenv() const;
   void clear_testenv();
   static const int kTestenvFieldNumber = 19;
@@ -775,120 +707,103 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::open_app_desc::L5cfg* mutable_testenv();
   void set_allocated_testenv(::open_app_desc::L5cfg* testenv);
 
-  // optional uint32 flowswitch = 1;
-  bool has_flowswitch() const;
+  // uint32 flowswitch = 1;
   void clear_flowswitch();
   static const int kFlowswitchFieldNumber = 1;
   ::google::protobuf::uint32 flowswitch() const;
   void set_flowswitch(::google::protobuf::uint32 value);
 
-  // optional uint32 queryrate = 2;
-  bool has_queryrate() const;
+  // uint32 queryrate = 2;
   void clear_queryrate();
   static const int kQueryrateFieldNumber = 2;
   ::google::protobuf::uint32 queryrate() const;
   void set_queryrate(::google::protobuf::uint32 value);
 
-  // optional uint32 attendrate = 3;
-  bool has_attendrate() const;
+  // uint32 attendrate = 3;
   void clear_attendrate();
   static const int kAttendrateFieldNumber = 3;
   ::google::protobuf::uint32 attendrate() const;
   void set_attendrate(::google::protobuf::uint32 value);
 
-  // optional uint32 queryid = 4;
-  bool has_queryid() const;
+  // uint32 queryid = 4;
   void clear_queryid();
   static const int kQueryidFieldNumber = 4;
   ::google::protobuf::uint32 queryid() const;
   void set_queryid(::google::protobuf::uint32 value);
 
-  // optional uint32 attendid = 5;
-  bool has_attendid() const;
+  // uint32 attendid = 5;
   void clear_attendid();
   static const int kAttendidFieldNumber = 5;
   ::google::protobuf::uint32 attendid() const;
   void set_attendid(::google::protobuf::uint32 value);
 
-  // optional uint32 totalflowid = 6;
-  bool has_totalflowid() const;
+  // uint32 totalflowid = 6;
   void clear_totalflowid();
   static const int kTotalflowidFieldNumber = 6;
   ::google::protobuf::uint32 totalflowid() const;
   void set_totalflowid(::google::protobuf::uint32 value);
 
-  // optional uint32 queryquota = 7;
-  bool has_queryquota() const;
+  // uint32 queryquota = 7;
   void clear_queryquota();
   static const int kQueryquotaFieldNumber = 7;
   ::google::protobuf::uint32 queryquota() const;
   void set_queryquota(::google::protobuf::uint32 value);
 
-  // optional uint32 attendquota = 8;
-  bool has_attendquota() const;
+  // uint32 attendquota = 8;
   void clear_attendquota();
   static const int kAttendquotaFieldNumber = 8;
   ::google::protobuf::uint32 attendquota() const;
   void set_attendquota(::google::protobuf::uint32 value);
 
-  // optional uint32 winlen = 10;
-  bool has_winlen() const;
+  // uint32 winlen = 10;
   void clear_winlen();
   static const int kWinlenFieldNumber = 10;
   ::google::protobuf::uint32 winlen() const;
   void set_winlen(::google::protobuf::uint32 value);
 
-  // optional uint32 errnum = 11;
-  bool has_errnum() const;
+  // uint32 errnum = 11;
   void clear_errnum();
   static const int kErrnumFieldNumber = 11;
   ::google::protobuf::uint32 errnum() const;
   void set_errnum(::google::protobuf::uint32 value);
 
-  // optional uint32 errnumrate = 12;
-  bool has_errnumrate() const;
+  // uint32 errnumrate = 12;
   void clear_errnumrate();
   static const int kErrnumrateFieldNumber = 12;
   ::google::protobuf::uint32 errnumrate() const;
   void set_errnumrate(::google::protobuf::uint32 value);
 
-  // optional uint32 cpurate = 13;
-  bool has_cpurate() const;
+  // uint32 cpurate = 13;
   void clear_cpurate();
   static const int kCpurateFieldNumber = 13;
   ::google::protobuf::uint32 cpurate() const;
   void set_cpurate(::google::protobuf::uint32 value);
 
-  // optional uint32 cpuinterval = 14;
-  bool has_cpuinterval() const;
+  // uint32 cpuinterval = 14;
   void clear_cpuinterval();
   static const int kCpuintervalFieldNumber = 14;
   ::google::protobuf::uint32 cpuinterval() const;
   void set_cpuinterval(::google::protobuf::uint32 value);
 
-  // optional uint32 memrate = 15;
-  bool has_memrate() const;
+  // uint32 memrate = 15;
   void clear_memrate();
   static const int kMemrateFieldNumber = 15;
   ::google::protobuf::uint32 memrate() const;
   void set_memrate(::google::protobuf::uint32 value);
 
-  // optional uint32 queryquovaryid = 16;
-  bool has_queryquovaryid() const;
+  // uint32 queryquovaryid = 16;
   void clear_queryquovaryid();
   static const int kQueryquovaryidFieldNumber = 16;
   ::google::protobuf::uint32 queryquovaryid() const;
   void set_queryquovaryid(::google::protobuf::uint32 value);
 
-  // optional uint32 attendquovaryid = 17;
-  bool has_attendquovaryid() const;
+  // uint32 attendquovaryid = 17;
   void clear_attendquovaryid();
   static const int kAttendquovaryidFieldNumber = 17;
   ::google::protobuf::uint32 attendquovaryid() const;
   void set_attendquovaryid(::google::protobuf::uint32 value);
 
-  // optional uint32 type = 20;
-  bool has_type() const;
+  // uint32 type = 20;
   void clear_type();
   static const int kTypeFieldNumber = 20;
   ::google::protobuf::uint32 type() const;
@@ -896,50 +811,8 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 
   // @@protoc_insertion_point(class_scope:open_app_desc.Flux)
  private:
-  void set_has_flowswitch();
-  void clear_has_flowswitch();
-  void set_has_queryrate();
-  void clear_has_queryrate();
-  void set_has_attendrate();
-  void clear_has_attendrate();
-  void set_has_queryid();
-  void clear_has_queryid();
-  void set_has_attendid();
-  void clear_has_attendid();
-  void set_has_totalflowid();
-  void clear_has_totalflowid();
-  void set_has_queryquota();
-  void clear_has_queryquota();
-  void set_has_attendquota();
-  void clear_has_attendquota();
-  void set_has_referkey();
-  void clear_has_referkey();
-  void set_has_winlen();
-  void clear_has_winlen();
-  void set_has_errnum();
-  void clear_has_errnum();
-  void set_has_errnumrate();
-  void clear_has_errnumrate();
-  void set_has_cpurate();
-  void clear_has_cpurate();
-  void set_has_cpuinterval();
-  void clear_has_cpuinterval();
-  void set_has_memrate();
-  void clear_has_memrate();
-  void set_has_queryquovaryid();
-  void clear_has_queryquovaryid();
-  void set_has_attendquovaryid();
-  void clear_has_attendquovaryid();
-  void set_has_normalenv();
-  void clear_has_normalenv();
-  void set_has_testenv();
-  void clear_has_testenv();
-  void set_has_type();
-  void clear_has_type();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr referkey_;
   ::open_app_desc::L5cfg* normalenv_;
   ::open_app_desc::L5cfg* testenv_;
@@ -960,6 +833,7 @@ class Flux : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::google::protobuf::uint32 queryquovaryid_;
   ::google::protobuf::uint32 attendquovaryid_;
   ::google::protobuf::uint32 type_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsFluxImpl();
 };
@@ -991,13 +865,6 @@ class ReportItem : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const ReportItem& default_instance();
 
@@ -1054,29 +921,25 @@ class ReportItem : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // optional int64 timekey = 1;
-  bool has_timekey() const;
+  // int64 timekey = 1;
   void clear_timekey();
   static const int kTimekeyFieldNumber = 1;
   ::google::protobuf::int64 timekey() const;
   void set_timekey(::google::protobuf::int64 value);
 
-  // optional int64 reportnum = 2;
-  bool has_reportnum() const;
+  // int64 reportnum = 2;
   void clear_reportnum();
   static const int kReportnumFieldNumber = 2;
   ::google::protobuf::int64 reportnum() const;
   void set_reportnum(::google::protobuf::int64 value);
 
-  // optional int64 refuse = 3;
-  bool has_refuse() const;
+  // int64 refuse = 3;
   void clear_refuse();
   static const int kRefuseFieldNumber = 3;
   ::google::protobuf::int64 refuse() const;
   void set_refuse(::google::protobuf::int64 value);
 
-  // optional int64 setrefuse = 4;
-  bool has_setrefuse() const;
+  // int64 setrefuse = 4;
   void clear_setrefuse();
   static const int kSetrefuseFieldNumber = 4;
   ::google::protobuf::int64 setrefuse() const;
@@ -1084,22 +947,13 @@ class ReportItem : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // @@protoc_insertion_point(class_scope:open_app_desc.ReportItem)
  private:
-  void set_has_timekey();
-  void clear_has_timekey();
-  void set_has_reportnum();
-  void clear_has_reportnum();
-  void set_has_refuse();
-  void clear_has_refuse();
-  void set_has_setrefuse();
-  void clear_has_setrefuse();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::int64 timekey_;
   ::google::protobuf::int64 reportnum_;
   ::google::protobuf::int64 refuse_;
   ::google::protobuf::int64 setrefuse_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsReportItemImpl();
 };
@@ -1131,13 +985,6 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const QuotaReq& default_instance();
 
@@ -1206,8 +1053,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   const ::google::protobuf::RepeatedPtrField< ::open_app_desc::ReportItem >&
       reportitem() const;
 
-  // optional bytes key = 1;
-  bool has_key() const;
+  // bytes key = 1;
   void clear_key();
   static const int kKeyFieldNumber = 1;
   const ::std::string& key() const;
@@ -1221,8 +1067,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_key();
   void set_allocated_key(::std::string* key);
 
-  // optional bytes referkey = 2;
-  bool has_referkey() const;
+  // bytes referkey = 2;
   void clear_referkey();
   static const int kReferkeyFieldNumber = 2;
   const ::std::string& referkey() const;
@@ -1236,8 +1081,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_referkey();
   void set_allocated_referkey(::std::string* referkey);
 
-  // optional bytes serial = 6;
-  bool has_serial() const;
+  // bytes serial = 6;
   void clear_serial();
   static const int kSerialFieldNumber = 6;
   const ::std::string& serial() const;
@@ -1251,8 +1095,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_serial();
   void set_allocated_serial(::std::string* serial);
 
-  // optional bytes openid = 8;
-  bool has_openid() const;
+  // bytes openid = 8;
   void clear_openid();
   static const int kOpenidFieldNumber = 8;
   const ::std::string& openid() const;
@@ -1266,8 +1109,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_openid();
   void set_allocated_openid(::std::string* openid);
 
-  // optional bytes setkey = 12;
-  bool has_setkey() const;
+  // bytes setkey = 12;
   void clear_setkey();
   static const int kSetkeyFieldNumber = 12;
   const ::std::string& setkey() const;
@@ -1281,8 +1123,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_setkey();
   void set_allocated_setkey(::std::string* setkey);
 
-  // optional bytes business = 13;
-  bool has_business() const;
+  // bytes business = 13;
   void clear_business();
   static const int kBusinessFieldNumber = 13;
   const ::std::string& business() const;
@@ -1296,8 +1137,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_business();
   void set_allocated_business(::std::string* business);
 
-  // optional bytes setenv = 14;
-  bool has_setenv() const;
+  // bytes setenv = 14;
   void clear_setenv();
   static const int kSetenvFieldNumber = 14;
   const ::std::string& setenv() const;
@@ -1311,43 +1151,37 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_setenv();
   void set_allocated_setenv(::std::string* setenv);
 
-  // optional int32 localquota = 4;
-  bool has_localquota() const;
+  // int32 localquota = 4;
   void clear_localquota();
   static const int kLocalquotaFieldNumber = 4;
   ::google::protobuf::int32 localquota() const;
   void set_localquota(::google::protobuf::int32 value);
 
-  // optional int32 id = 5;
-  bool has_id() const;
+  // int32 id = 5;
   void clear_id();
   static const int kIdFieldNumber = 5;
   ::google::protobuf::int32 id() const;
   void set_id(::google::protobuf::int32 value);
 
-  // optional int64 uin = 9;
-  bool has_uin() const;
+  // int64 uin = 9;
   void clear_uin();
   static const int kUinFieldNumber = 9;
   ::google::protobuf::int64 uin() const;
   void set_uin(::google::protobuf::int64 value);
 
-  // optional int64 nowsum = 10;
-  bool has_nowsum() const;
+  // int64 nowsum = 10;
   void clear_nowsum();
   static const int kNowsumFieldNumber = 10;
   ::google::protobuf::int64 nowsum() const;
   void set_nowsum(::google::protobuf::int64 value);
 
-  // optional int64 workernum = 11;
-  bool has_workernum() const;
+  // int64 workernum = 11;
   void clear_workernum();
   static const int kWorkernumFieldNumber = 11;
   ::google::protobuf::int64 workernum() const;
   void set_workernum(::google::protobuf::int64 value);
 
-  // optional int32 totalquota = 7;
-  bool has_totalquota() const;
+  // int32 totalquota = 7;
   void clear_totalquota();
   static const int kTotalquotaFieldNumber = 7;
   ::google::protobuf::int32 totalquota() const;
@@ -1355,36 +1189,8 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   // @@protoc_insertion_point(class_scope:open_app_desc.QuotaReq)
  private:
-  void set_has_key();
-  void clear_has_key();
-  void set_has_referkey();
-  void clear_has_referkey();
-  void set_has_localquota();
-  void clear_has_localquota();
-  void set_has_id();
-  void clear_has_id();
-  void set_has_serial();
-  void clear_has_serial();
-  void set_has_totalquota();
-  void clear_has_totalquota();
-  void set_has_openid();
-  void clear_has_openid();
-  void set_has_uin();
-  void clear_has_uin();
-  void set_has_nowsum();
-  void clear_has_nowsum();
-  void set_has_workernum();
-  void clear_has_workernum();
-  void set_has_setkey();
-  void clear_has_setkey();
-  void set_has_business();
-  void clear_has_business();
-  void set_has_setenv();
-  void clear_has_setenv();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::ReportItem > reportitem_;
   ::google::protobuf::internal::ArenaStringPtr key_;
   ::google::protobuf::internal::ArenaStringPtr referkey_;
@@ -1399,6 +1205,7 @@ class QuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::int64 nowsum_;
   ::google::protobuf::int64 workernum_;
   ::google::protobuf::int32 totalquota_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsQuotaReqImpl();
 };
@@ -1430,13 +1237,6 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const QuotaRsp& default_instance();
 
@@ -1493,8 +1293,7 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   // accessors -------------------------------------------------------
 
-  // optional bytes key = 1;
-  bool has_key() const;
+  // bytes key = 1;
   void clear_key();
   static const int kKeyFieldNumber = 1;
   const ::std::string& key() const;
@@ -1508,8 +1307,7 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_key();
   void set_allocated_key(::std::string* key);
 
-  // optional bytes serial = 5;
-  bool has_serial() const;
+  // bytes serial = 5;
   void clear_serial();
   static const int kSerialFieldNumber = 5;
   const ::std::string& serial() const;
@@ -1523,99 +1321,85 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_serial();
   void set_allocated_serial(::std::string* serial);
 
-  // optional int64 localq = 2;
-  bool has_localq() const;
+  // int64 localq = 2;
   void clear_localq();
   static const int kLocalqFieldNumber = 2;
   ::google::protobuf::int64 localq() const;
   void set_localq(::google::protobuf::int64 value);
 
-  // optional int64 totalq = 3;
-  bool has_totalq() const;
+  // int64 totalq = 3;
   void clear_totalq();
   static const int kTotalqFieldNumber = 3;
   ::google::protobuf::int64 totalq() const;
   void set_totalq(::google::protobuf::int64 value);
 
-  // optional int32 partnernum = 4;
-  bool has_partnernum() const;
+  // int32 partnernum = 4;
   void clear_partnernum();
   static const int kPartnernumFieldNumber = 4;
   ::google::protobuf::int32 partnernum() const;
   void set_partnernum(::google::protobuf::int32 value);
 
-  // optional int32 ipnum = 6;
-  bool has_ipnum() const;
+  // int32 ipnum = 6;
   void clear_ipnum();
   static const int kIpnumFieldNumber = 6;
   ::google::protobuf::int32 ipnum() const;
   void set_ipnum(::google::protobuf::int32 value);
 
-  // optional int32 alloctype = 7;
-  bool has_alloctype() const;
+  // int32 alloctype = 7;
   void clear_alloctype();
   static const int kAlloctypeFieldNumber = 7;
   ::google::protobuf::int32 alloctype() const;
   void set_alloctype(::google::protobuf::int32 value);
 
-  // optional int32 allocpartnum = 8;
-  bool has_allocpartnum() const;
+  // int32 allocpartnum = 8;
   void clear_allocpartnum();
   static const int kAllocpartnumFieldNumber = 8;
   ::google::protobuf::int32 allocpartnum() const;
   void set_allocpartnum(::google::protobuf::int32 value);
 
-  // optional int64 alloctime = 9;
-  bool has_alloctime() const;
+  // int64 alloctime = 9;
   void clear_alloctime();
   static const int kAlloctimeFieldNumber = 9;
   ::google::protobuf::int64 alloctime() const;
   void set_alloctime(::google::protobuf::int64 value);
 
-  // optional int64 self = 10;
-  bool has_self() const;
+  // int64 self = 10;
   void clear_self();
   static const int kSelfFieldNumber = 10;
   ::google::protobuf::int64 self() const;
   void set_self(::google::protobuf::int64 value);
 
-  // optional int64 total = 11;
-  bool has_total() const;
+  // int64 total = 11;
   void clear_total();
   static const int kTotalFieldNumber = 11;
   ::google::protobuf::int64 total() const;
   void set_total(::google::protobuf::int64 value);
 
-  // optional int64 nowsum = 12;
-  bool has_nowsum() const;
+  // int64 nowsum = 12;
   void clear_nowsum();
   static const int kNowsumFieldNumber = 12;
   ::google::protobuf::int64 nowsum() const;
   void set_nowsum(::google::protobuf::int64 value);
 
-  // optional int64 totalworkernum = 13;
-  bool has_totalworkernum() const;
+  // int64 totalworkernum = 13;
   void clear_totalworkernum();
   static const int kTotalworkernumFieldNumber = 13;
   ::google::protobuf::int64 totalworkernum() const;
   void set_totalworkernum(::google::protobuf::int64 value);
 
-  // optional int32 setquota = 14;
-  bool has_setquota() const;
+  // int32 setquota = 14;
   void clear_setquota();
   static const int kSetquotaFieldNumber = 14;
   ::google::protobuf::int32 setquota() const;
   void set_setquota(::google::protobuf::int32 value);
 
-  // optional int32 setsum = 15;
-  bool has_setsum() const;
+  // int32 setsum = 15;
   void clear_setsum();
   static const int kSetsumFieldNumber = 15;
   ::google::protobuf::int32 setsum() const;
   void set_setsum(::google::protobuf::int32 value);
 
-  // optional int32 procquota = 16;
-  bool has_procquota() const;
+  // int32 procquota = 16;
   void clear_procquota();
   static const int kProcquotaFieldNumber = 16;
   ::google::protobuf::int32 procquota() const;
@@ -1623,42 +1407,8 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
 
   // @@protoc_insertion_point(class_scope:open_app_desc.QuotaRsp)
  private:
-  void set_has_key();
-  void clear_has_key();
-  void set_has_localq();
-  void clear_has_localq();
-  void set_has_totalq();
-  void clear_has_totalq();
-  void set_has_partnernum();
-  void clear_has_partnernum();
-  void set_has_serial();
-  void clear_has_serial();
-  void set_has_ipnum();
-  void clear_has_ipnum();
-  void set_has_alloctype();
-  void clear_has_alloctype();
-  void set_has_allocpartnum();
-  void clear_has_allocpartnum();
-  void set_has_alloctime();
-  void clear_has_alloctime();
-  void set_has_self();
-  void clear_has_self();
-  void set_has_total();
-  void clear_has_total();
-  void set_has_nowsum();
-  void clear_has_nowsum();
-  void set_has_totalworkernum();
-  void clear_has_totalworkernum();
-  void set_has_setquota();
-  void clear_has_setquota();
-  void set_has_setsum();
-  void clear_has_setsum();
-  void set_has_procquota();
-  void clear_has_procquota();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr key_;
   ::google::protobuf::internal::ArenaStringPtr serial_;
   ::google::protobuf::int64 localq_;
@@ -1675,6 +1425,7 @@ class QuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::int32 setquota_;
   ::google::protobuf::int32 setsum_;
   ::google::protobuf::int32 procquota_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsQuotaRspImpl();
 };
@@ -1706,13 +1457,6 @@ class SetItem : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetItem& default_instance();
 
@@ -1791,8 +1535,7 @@ class SetItem : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   const ::google::protobuf::RepeatedPtrField< ::std::string>& iplist() const;
   ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_iplist();
 
-  // optional bytes setkey = 1;
-  bool has_setkey() const;
+  // bytes setkey = 1;
   void clear_setkey();
   static const int kSetkeyFieldNumber = 1;
   const ::std::string& setkey() const;
@@ -1806,36 +1549,31 @@ class SetItem : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_setkey();
   void set_allocated_setkey(::std::string* setkey);
 
-  // optional int32 setquota = 2;
-  bool has_setquota() const;
+  // int32 setquota = 2;
   void clear_setquota();
   static const int kSetquotaFieldNumber = 2;
   ::google::protobuf::int32 setquota() const;
   void set_setquota(::google::protobuf::int32 value);
 
-  // optional int32 feaid = 4;
-  bool has_feaid() const;
+  // int32 feaid = 4;
   void clear_feaid();
   static const int kFeaidFieldNumber = 4;
   ::google::protobuf::int32 feaid() const;
   void set_feaid(::google::protobuf::int32 value);
 
-  // optional int32 refuseid = 5;
-  bool has_refuseid() const;
+  // int32 refuseid = 5;
   void clear_refuseid();
   static const int kRefuseidFieldNumber = 5;
   ::google::protobuf::int32 refuseid() const;
   void set_refuseid(::google::protobuf::int32 value);
 
-  // optional int32 setrefuseid = 6;
-  bool has_setrefuseid() const;
+  // int32 setrefuseid = 6;
   void clear_setrefuseid();
   static const int kSetrefuseidFieldNumber = 6;
   ::google::protobuf::int32 setrefuseid() const;
   void set_setrefuseid(::google::protobuf::int32 value);
 
-  // optional int32 realid = 7;
-  bool has_realid() const;
+  // int32 realid = 7;
   void clear_realid();
   static const int kRealidFieldNumber = 7;
   ::google::protobuf::int32 realid() const;
@@ -1843,22 +1581,8 @@ class SetItem : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // @@protoc_insertion_point(class_scope:open_app_desc.SetItem)
  private:
-  void set_has_setkey();
-  void clear_has_setkey();
-  void set_has_setquota();
-  void clear_has_setquota();
-  void set_has_feaid();
-  void clear_has_feaid();
-  void set_has_refuseid();
-  void clear_has_refuseid();
-  void set_has_setrefuseid();
-  void clear_has_setrefuseid();
-  void set_has_realid();
-  void clear_has_realid();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::std::string> iplist_;
   ::google::protobuf::internal::ArenaStringPtr setkey_;
   ::google::protobuf::int32 setquota_;
@@ -1866,6 +1590,7 @@ class SetItem : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::int32 refuseid_;
   ::google::protobuf::int32 setrefuseid_;
   ::google::protobuf::int32 realid_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsSetItemImpl();
 };
@@ -1897,13 +1622,6 @@ class SetMacInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetMacInfo& default_instance();
 
@@ -1976,9 +1694,8 @@ class SetMacInfo : public ::google::protobuf::Message /* @@protoc_insertion_poin
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::SetItem > itemlist_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsSetMacInfoImpl();
 };
@@ -2010,13 +1727,6 @@ class SetFileInfo : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetFileInfo& default_instance();
 
@@ -2095,8 +1805,7 @@ class SetFileInfo : public ::google::protobuf::Message /* @@protoc_insertion_poi
   const ::google::protobuf::RepeatedPtrField< ::std::string>& fname() const;
   ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_fname();
 
-  // optional bytes fpath = 1;
-  bool has_fpath() const;
+  // bytes fpath = 1;
   void clear_fpath();
   static const int kFpathFieldNumber = 1;
   const ::std::string& fpath() const;
@@ -2112,14 +1821,11 @@ class SetFileInfo : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // @@protoc_insertion_point(class_scope:open_app_desc.SetFileInfo)
  private:
-  void set_has_fpath();
-  void clear_has_fpath();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::std::string> fname_;
   ::google::protobuf::internal::ArenaStringPtr fpath_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsSetFileInfoImpl();
 };
@@ -2151,13 +1857,6 @@ class ProcReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const ProcReport& default_instance();
 
@@ -2226,8 +1925,7 @@ class ProcReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
   const ::google::protobuf::RepeatedPtrField< ::open_app_desc::ReportItem >&
       proclist() const;
 
-  // optional bytes procid = 1;
-  bool has_procid() const;
+  // bytes procid = 1;
   void clear_procid();
   static const int kProcidFieldNumber = 1;
   const ::std::string& procid() const;
@@ -2241,8 +1939,7 @@ class ProcReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_procid();
   void set_allocated_procid(::std::string* procid);
 
-  // optional bytes setkey = 3;
-  bool has_setkey() const;
+  // bytes setkey = 3;
   void clear_setkey();
   static const int kSetkeyFieldNumber = 3;
   const ::std::string& setkey() const;
@@ -2258,17 +1955,12 @@ class ProcReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // @@protoc_insertion_point(class_scope:open_app_desc.ProcReport)
  private:
-  void set_has_procid();
-  void clear_has_procid();
-  void set_has_setkey();
-  void clear_has_setkey();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::ReportItem > proclist_;
   ::google::protobuf::internal::ArenaStringPtr procid_;
   ::google::protobuf::internal::ArenaStringPtr setkey_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsProcReportImpl();
 };
@@ -2300,13 +1992,6 @@ class SetQuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetQuotaReq& default_instance();
 
@@ -2387,8 +2072,7 @@ class SetQuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_poi
   const ::google::protobuf::RepeatedPtrField< ::open_app_desc::ProcReport >&
       procitem() const;
 
-  // optional bytes setkey = 1;
-  bool has_setkey() const;
+  // bytes setkey = 1;
   void clear_setkey();
   static const int kSetkeyFieldNumber = 1;
   const ::std::string& setkey() const;
@@ -2402,15 +2086,13 @@ class SetQuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::std::string* release_setkey();
   void set_allocated_setkey(::std::string* setkey);
 
-  // optional int32 workernum = 3;
-  bool has_workernum() const;
+  // int32 workernum = 3;
   void clear_workernum();
   static const int kWorkernumFieldNumber = 3;
   ::google::protobuf::int32 workernum() const;
   void set_workernum(::google::protobuf::int32 value);
 
-  // optional int32 id = 4;
-  bool has_id() const;
+  // int32 id = 4;
   void clear_id();
   static const int kIdFieldNumber = 4;
   ::google::protobuf::int32 id() const;
@@ -2418,21 +2100,14 @@ class SetQuotaReq : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // @@protoc_insertion_point(class_scope:open_app_desc.SetQuotaReq)
  private:
-  void set_has_setkey();
-  void clear_has_setkey();
-  void set_has_workernum();
-  void clear_has_workernum();
-  void set_has_id();
-  void clear_has_id();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::ReportItem > itemlist_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::ProcReport > procitem_;
   ::google::protobuf::internal::ArenaStringPtr setkey_;
   ::google::protobuf::int32 workernum_;
   ::google::protobuf::int32 id_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsSetQuotaReqImpl();
 };
@@ -2464,13 +2139,6 @@ class ProcQ : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const ProcQ& default_instance();
 
@@ -2527,8 +2195,7 @@ class ProcQ : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // accessors -------------------------------------------------------
 
-  // optional bytes procid = 1;
-  bool has_procid() const;
+  // bytes procid = 1;
   void clear_procid();
   static const int kProcidFieldNumber = 1;
   const ::std::string& procid() const;
@@ -2542,8 +2209,7 @@ class ProcQ : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_procid();
   void set_allocated_procid(::std::string* procid);
 
-  // optional int32 procquota = 2;
-  bool has_procquota() const;
+  // int32 procquota = 2;
   void clear_procquota();
   static const int kProcquotaFieldNumber = 2;
   ::google::protobuf::int32 procquota() const;
@@ -2551,16 +2217,11 @@ class ProcQ : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // @@protoc_insertion_point(class_scope:open_app_desc.ProcQ)
  private:
-  void set_has_procid();
-  void clear_has_procid();
-  void set_has_procquota();
-  void clear_has_procquota();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr procid_;
   ::google::protobuf::int32 procquota_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsProcQImpl();
 };
@@ -2592,13 +2253,6 @@ class SetQuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const SetQuotaRsp& default_instance();
 
@@ -2667,8 +2321,7 @@ class SetQuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_poi
   const ::google::protobuf::RepeatedPtrField< ::open_app_desc::ProcQ >&
       procq() const;
 
-  // optional bytes setkey = 1;
-  bool has_setkey() const;
+  // bytes setkey = 1;
   void clear_setkey();
   static const int kSetkeyFieldNumber = 1;
   const ::std::string& setkey() const;
@@ -2682,8 +2335,7 @@ class SetQuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::std::string* release_setkey();
   void set_allocated_setkey(::std::string* setkey);
 
-  // optional int32 setsum = 2;
-  bool has_setsum() const;
+  // int32 setsum = 2;
   void clear_setsum();
   static const int kSetsumFieldNumber = 2;
   ::google::protobuf::int32 setsum() const;
@@ -2691,17 +2343,12 @@ class SetQuotaRsp : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   // @@protoc_insertion_point(class_scope:open_app_desc.SetQuotaRsp)
  private:
-  void set_has_setkey();
-  void clear_has_setkey();
-  void set_has_setsum();
-  void clear_has_setsum();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::open_app_desc::ProcQ > procq_;
   ::google::protobuf::internal::ArenaStringPtr setkey_;
   ::google::protobuf::int32 setsum_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsSetQuotaRspImpl();
 };
@@ -2733,13 +2380,6 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const RealReport& default_instance();
 
@@ -2796,8 +2436,7 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // optional bytes keyname = 2;
-  bool has_keyname() const;
+  // bytes keyname = 2;
   void clear_keyname();
   static const int kKeynameFieldNumber = 2;
   const ::std::string& keyname() const;
@@ -2811,8 +2450,7 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_keyname();
   void set_allocated_keyname(::std::string* keyname);
 
-  // optional bytes setname = 4;
-  bool has_setname() const;
+  // bytes setname = 4;
   void clear_setname();
   static const int kSetnameFieldNumber = 4;
   const ::std::string& setname() const;
@@ -2826,50 +2464,43 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_setname();
   void set_allocated_setname(::std::string* setname);
 
-  // optional int64 timekey = 3;
-  bool has_timekey() const;
+  // int64 timekey = 3;
   void clear_timekey();
   static const int kTimekeyFieldNumber = 3;
   ::google::protobuf::int64 timekey() const;
   void set_timekey(::google::protobuf::int64 value);
 
-  // optional int32 keytype = 1;
-  bool has_keytype() const;
+  // int32 keytype = 1;
   void clear_keytype();
   static const int kKeytypeFieldNumber = 1;
   ::google::protobuf::int32 keytype() const;
   void set_keytype(::google::protobuf::int32 value);
 
-  // optional int32 total = 5;
-  bool has_total() const;
+  // int32 total = 5;
   void clear_total();
   static const int kTotalFieldNumber = 5;
   ::google::protobuf::int32 total() const;
   void set_total(::google::protobuf::int32 value);
 
-  // optional int32 refuse = 6;
-  bool has_refuse() const;
+  // int32 refuse = 6;
   void clear_refuse();
   static const int kRefuseFieldNumber = 6;
   ::google::protobuf::int32 refuse() const;
   void set_refuse(::google::protobuf::int32 value);
 
-  // optional int32 setrefuse = 7;
-  bool has_setrefuse() const;
+  // int32 setrefuse = 7;
   void clear_setrefuse();
   static const int kSetrefuseFieldNumber = 7;
   ::google::protobuf::int32 setrefuse() const;
   void set_setrefuse(::google::protobuf::int32 value);
 
-  // optional int32 real = 8;
-  bool has_real() const;
+  // int32 real = 8;
   void clear_real();
   static const int kRealFieldNumber = 8;
   ::google::protobuf::int32 real() const;
   void set_real(::google::protobuf::int32 value);
 
-  // optional int32 quota = 9;
-  bool has_quota() const;
+  // int32 quota = 9;
   void clear_quota();
   static const int kQuotaFieldNumber = 9;
   ::google::protobuf::int32 quota() const;
@@ -2877,28 +2508,8 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // @@protoc_insertion_point(class_scope:open_app_desc.RealReport)
  private:
-  void set_has_keytype();
-  void clear_has_keytype();
-  void set_has_keyname();
-  void clear_has_keyname();
-  void set_has_timekey();
-  void clear_has_timekey();
-  void set_has_setname();
-  void clear_has_setname();
-  void set_has_total();
-  void clear_has_total();
-  void set_has_refuse();
-  void clear_has_refuse();
-  void set_has_setrefuse();
-  void clear_has_setrefuse();
-  void set_has_real();
-  void clear_has_real();
-  void set_has_quota();
-  void clear_has_quota();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr keyname_;
   ::google::protobuf::internal::ArenaStringPtr setname_;
   ::google::protobuf::int64 timekey_;
@@ -2908,6 +2519,7 @@ class RealReport : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::google::protobuf::int32 setrefuse_;
   ::google::protobuf::int32 real_;
   ::google::protobuf::int32 quota_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsRealReportImpl();
 };
@@ -2939,13 +2551,6 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const QReport& default_instance();
 
@@ -3002,8 +2607,7 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // optional bytes actid = 1;
-  bool has_actid() const;
+  // bytes actid = 1;
   void clear_actid();
   static const int kActidFieldNumber = 1;
   const ::std::string& actid() const;
@@ -3017,8 +2621,7 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_actid();
   void set_allocated_actid(::std::string* actid);
 
-  // optional bytes ip = 2;
-  bool has_ip() const;
+  // bytes ip = 2;
   void clear_ip();
   static const int kIpFieldNumber = 2;
   const ::std::string& ip() const;
@@ -3032,8 +2635,7 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_ip();
   void set_allocated_ip(::std::string* ip);
 
-  // optional bytes setname = 5;
-  bool has_setname() const;
+  // bytes setname = 5;
   void clear_setname();
   static const int kSetnameFieldNumber = 5;
   const ::std::string& setname() const;
@@ -3047,57 +2649,49 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_setname();
   void set_allocated_setname(::std::string* setname);
 
-  // optional int64 timekey = 4;
-  bool has_timekey() const;
+  // int64 timekey = 4;
   void clear_timekey();
   static const int kTimekeyFieldNumber = 4;
   ::google::protobuf::int64 timekey() const;
   void set_timekey(::google::protobuf::int64 value);
 
-  // optional int32 procid = 3;
-  bool has_procid() const;
+  // int32 procid = 3;
   void clear_procid();
   static const int kProcidFieldNumber = 3;
   ::google::protobuf::int32 procid() const;
   void set_procid(::google::protobuf::int32 value);
 
-  // optional int32 actquota = 6;
-  bool has_actquota() const;
+  // int32 actquota = 6;
   void clear_actquota();
   static const int kActquotaFieldNumber = 6;
   ::google::protobuf::int32 actquota() const;
   void set_actquota(::google::protobuf::int32 value);
 
-  // optional int32 setquota = 7;
-  bool has_setquota() const;
+  // int32 setquota = 7;
   void clear_setquota();
   static const int kSetquotaFieldNumber = 7;
   ::google::protobuf::int32 setquota() const;
   void set_setquota(::google::protobuf::int32 value);
 
-  // optional int32 total = 8;
-  bool has_total() const;
+  // int32 total = 8;
   void clear_total();
   static const int kTotalFieldNumber = 8;
   ::google::protobuf::int32 total() const;
   void set_total(::google::protobuf::int32 value);
 
-  // optional int32 refuse = 9;
-  bool has_refuse() const;
+  // int32 refuse = 9;
   void clear_refuse();
   static const int kRefuseFieldNumber = 9;
   ::google::protobuf::int32 refuse() const;
   void set_refuse(::google::protobuf::int32 value);
 
-  // optional int32 setrefuse = 10;
-  bool has_setrefuse() const;
+  // int32 setrefuse = 10;
   void clear_setrefuse();
   static const int kSetrefuseFieldNumber = 10;
   ::google::protobuf::int32 setrefuse() const;
   void set_setrefuse(::google::protobuf::int32 value);
 
-  // optional int32 real = 11;
-  bool has_real() const;
+  // int32 real = 11;
   void clear_real();
   static const int kRealFieldNumber = 11;
   ::google::protobuf::int32 real() const;
@@ -3105,32 +2699,8 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // @@protoc_insertion_point(class_scope:open_app_desc.QReport)
  private:
-  void set_has_actid();
-  void clear_has_actid();
-  void set_has_ip();
-  void clear_has_ip();
-  void set_has_procid();
-  void clear_has_procid();
-  void set_has_timekey();
-  void clear_has_timekey();
-  void set_has_setname();
-  void clear_has_setname();
-  void set_has_actquota();
-  void clear_has_actquota();
-  void set_has_setquota();
-  void clear_has_setquota();
-  void set_has_total();
-  void clear_has_total();
-  void set_has_refuse();
-  void clear_has_refuse();
-  void set_has_setrefuse();
-  void clear_has_setrefuse();
-  void set_has_real();
-  void clear_has_real();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr actid_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::internal::ArenaStringPtr setname_;
@@ -3142,6 +2712,7 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::int32 refuse_;
   ::google::protobuf::int32 setrefuse_;
   ::google::protobuf::int32 real_;
+  mutable int _cached_size_;
   friend struct ::protobuf_open_5fapp_5fdesc_2eproto::TableStruct;
   friend void ::protobuf_open_5fapp_5fdesc_2eproto::InitDefaultsQReportImpl();
 };
@@ -3156,104 +2727,64 @@ class QReport : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 #endif  // __GNUC__
 // CmdBase
 
-// optional int64 seq_id = 1;
-inline bool CmdBase::has_seq_id() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void CmdBase::set_has_seq_id() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void CmdBase::clear_has_seq_id() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int64 seq_id = 1;
 inline void CmdBase::clear_seq_id() {
   seq_id_ = GOOGLE_LONGLONG(0);
-  clear_has_seq_id();
 }
 inline ::google::protobuf::int64 CmdBase::seq_id() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBase.seq_id)
   return seq_id_;
 }
 inline void CmdBase::set_seq_id(::google::protobuf::int64 value) {
-  set_has_seq_id();
+  
   seq_id_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBase.seq_id)
 }
 
-// optional int64 cmd_id = 2;
-inline bool CmdBase::has_cmd_id() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void CmdBase::set_has_cmd_id() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void CmdBase::clear_has_cmd_id() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int64 cmd_id = 2;
 inline void CmdBase::clear_cmd_id() {
   cmd_id_ = GOOGLE_LONGLONG(0);
-  clear_has_cmd_id();
 }
 inline ::google::protobuf::int64 CmdBase::cmd_id() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBase.cmd_id)
   return cmd_id_;
 }
 inline void CmdBase::set_cmd_id(::google::protobuf::int64 value) {
-  set_has_cmd_id();
+  
   cmd_id_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBase.cmd_id)
 }
 
-// optional int64 type = 3;
-inline bool CmdBase::has_type() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void CmdBase::set_has_type() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void CmdBase::clear_has_type() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int64 type = 3;
 inline void CmdBase::clear_type() {
   type_ = GOOGLE_LONGLONG(0);
-  clear_has_type();
 }
 inline ::google::protobuf::int64 CmdBase::type() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBase.type)
   return type_;
 }
 inline void CmdBase::set_type(::google::protobuf::int64 value) {
-  set_has_type();
+  
   type_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBase.type)
 }
 
-// optional bytes body = 4;
-inline bool CmdBase::has_body() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void CmdBase::set_has_body() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void CmdBase::clear_has_body() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes body = 4;
 inline void CmdBase::clear_body() {
   body_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_body();
 }
 inline const ::std::string& CmdBase::body() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBase.body)
   return body_.GetNoArena();
 }
 inline void CmdBase::set_body(const ::std::string& value) {
-  set_has_body();
+  
   body_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBase.body)
 }
 #if LANG_CXX11
 inline void CmdBase::set_body(::std::string&& value) {
-  set_has_body();
+  
   body_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.CmdBase.body)
@@ -3261,31 +2792,31 @@ inline void CmdBase::set_body(::std::string&& value) {
 #endif
 inline void CmdBase::set_body(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_body();
+  
   body_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.CmdBase.body)
 }
 inline void CmdBase::set_body(const void* value, size_t size) {
-  set_has_body();
+  
   body_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.CmdBase.body)
 }
 inline ::std::string* CmdBase::mutable_body() {
-  set_has_body();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.CmdBase.body)
   return body_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CmdBase::release_body() {
   // @@protoc_insertion_point(field_release:open_app_desc.CmdBase.body)
-  clear_has_body();
+  
   return body_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CmdBase::set_allocated_body(::std::string* body) {
   if (body != NULL) {
-    set_has_body();
+    
   } else {
-    clear_has_body();
+    
   }
   body_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), body);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.CmdBase.body)
@@ -3295,56 +2826,36 @@ inline void CmdBase::set_allocated_body(::std::string* body) {
 
 // CmdBaseResp
 
-// optional int64 ret = 1;
-inline bool CmdBaseResp::has_ret() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void CmdBaseResp::set_has_ret() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void CmdBaseResp::clear_has_ret() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int64 ret = 1;
 inline void CmdBaseResp::clear_ret() {
   ret_ = GOOGLE_LONGLONG(0);
-  clear_has_ret();
 }
 inline ::google::protobuf::int64 CmdBaseResp::ret() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBaseResp.ret)
   return ret_;
 }
 inline void CmdBaseResp::set_ret(::google::protobuf::int64 value) {
-  set_has_ret();
+  
   ret_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBaseResp.ret)
 }
 
-// optional bytes err_msg = 2;
-inline bool CmdBaseResp::has_err_msg() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void CmdBaseResp::set_has_err_msg() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void CmdBaseResp::clear_has_err_msg() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes err_msg = 2;
 inline void CmdBaseResp::clear_err_msg() {
   err_msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_err_msg();
 }
 inline const ::std::string& CmdBaseResp::err_msg() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBaseResp.err_msg)
   return err_msg_.GetNoArena();
 }
 inline void CmdBaseResp::set_err_msg(const ::std::string& value) {
-  set_has_err_msg();
+  
   err_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBaseResp.err_msg)
 }
 #if LANG_CXX11
 inline void CmdBaseResp::set_err_msg(::std::string&& value) {
-  set_has_err_msg();
+  
   err_msg_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.CmdBaseResp.err_msg)
@@ -3352,62 +2863,52 @@ inline void CmdBaseResp::set_err_msg(::std::string&& value) {
 #endif
 inline void CmdBaseResp::set_err_msg(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_err_msg();
+  
   err_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.CmdBaseResp.err_msg)
 }
 inline void CmdBaseResp::set_err_msg(const void* value, size_t size) {
-  set_has_err_msg();
+  
   err_msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.CmdBaseResp.err_msg)
 }
 inline ::std::string* CmdBaseResp::mutable_err_msg() {
-  set_has_err_msg();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.CmdBaseResp.err_msg)
   return err_msg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CmdBaseResp::release_err_msg() {
   // @@protoc_insertion_point(field_release:open_app_desc.CmdBaseResp.err_msg)
-  clear_has_err_msg();
+  
   return err_msg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CmdBaseResp::set_allocated_err_msg(::std::string* err_msg) {
   if (err_msg != NULL) {
-    set_has_err_msg();
+    
   } else {
-    clear_has_err_msg();
+    
   }
   err_msg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), err_msg);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.CmdBaseResp.err_msg)
 }
 
-// optional bytes resp = 3;
-inline bool CmdBaseResp::has_resp() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void CmdBaseResp::set_has_resp() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void CmdBaseResp::clear_has_resp() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes resp = 3;
 inline void CmdBaseResp::clear_resp() {
   resp_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_resp();
 }
 inline const ::std::string& CmdBaseResp::resp() const {
   // @@protoc_insertion_point(field_get:open_app_desc.CmdBaseResp.resp)
   return resp_.GetNoArena();
 }
 inline void CmdBaseResp::set_resp(const ::std::string& value) {
-  set_has_resp();
+  
   resp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.CmdBaseResp.resp)
 }
 #if LANG_CXX11
 inline void CmdBaseResp::set_resp(::std::string&& value) {
-  set_has_resp();
+  
   resp_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.CmdBaseResp.resp)
@@ -3415,31 +2916,31 @@ inline void CmdBaseResp::set_resp(::std::string&& value) {
 #endif
 inline void CmdBaseResp::set_resp(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_resp();
+  
   resp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.CmdBaseResp.resp)
 }
 inline void CmdBaseResp::set_resp(const void* value, size_t size) {
-  set_has_resp();
+  
   resp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.CmdBaseResp.resp)
 }
 inline ::std::string* CmdBaseResp::mutable_resp() {
-  set_has_resp();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.CmdBaseResp.resp)
   return resp_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CmdBaseResp::release_resp() {
   // @@protoc_insertion_point(field_release:open_app_desc.CmdBaseResp.resp)
-  clear_has_resp();
+  
   return resp_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CmdBaseResp::set_allocated_resp(::std::string* resp) {
   if (resp != NULL) {
-    set_has_resp();
+    
   } else {
-    clear_has_resp();
+    
   }
   resp_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), resp);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.CmdBaseResp.resp)
@@ -3449,32 +2950,22 @@ inline void CmdBaseResp::set_allocated_resp(::std::string* resp) {
 
 // L5cfg
 
-// optional bytes modId = 1;
-inline bool L5cfg::has_modid() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void L5cfg::set_has_modid() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void L5cfg::clear_has_modid() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes modId = 1;
 inline void L5cfg::clear_modid() {
   modid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_modid();
 }
 inline const ::std::string& L5cfg::modid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.modId)
   return modid_.GetNoArena();
 }
 inline void L5cfg::set_modid(const ::std::string& value) {
-  set_has_modid();
+  
   modid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.modId)
 }
 #if LANG_CXX11
 inline void L5cfg::set_modid(::std::string&& value) {
-  set_has_modid();
+  
   modid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.L5cfg.modId)
@@ -3482,62 +2973,52 @@ inline void L5cfg::set_modid(::std::string&& value) {
 #endif
 inline void L5cfg::set_modid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_modid();
+  
   modid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.L5cfg.modId)
 }
 inline void L5cfg::set_modid(const void* value, size_t size) {
-  set_has_modid();
+  
   modid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.L5cfg.modId)
 }
 inline ::std::string* L5cfg::mutable_modid() {
-  set_has_modid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.L5cfg.modId)
   return modid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* L5cfg::release_modid() {
   // @@protoc_insertion_point(field_release:open_app_desc.L5cfg.modId)
-  clear_has_modid();
+  
   return modid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void L5cfg::set_allocated_modid(::std::string* modid) {
   if (modid != NULL) {
-    set_has_modid();
+    
   } else {
-    clear_has_modid();
+    
   }
   modid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), modid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.L5cfg.modId)
 }
 
-// optional bytes cmdId = 2;
-inline bool L5cfg::has_cmdid() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void L5cfg::set_has_cmdid() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void L5cfg::clear_has_cmdid() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes cmdId = 2;
 inline void L5cfg::clear_cmdid() {
   cmdid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_cmdid();
 }
 inline const ::std::string& L5cfg::cmdid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.cmdId)
   return cmdid_.GetNoArena();
 }
 inline void L5cfg::set_cmdid(const ::std::string& value) {
-  set_has_cmdid();
+  
   cmdid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.cmdId)
 }
 #if LANG_CXX11
 inline void L5cfg::set_cmdid(::std::string&& value) {
-  set_has_cmdid();
+  
   cmdid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.L5cfg.cmdId)
@@ -3545,62 +3026,52 @@ inline void L5cfg::set_cmdid(::std::string&& value) {
 #endif
 inline void L5cfg::set_cmdid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_cmdid();
+  
   cmdid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.L5cfg.cmdId)
 }
 inline void L5cfg::set_cmdid(const void* value, size_t size) {
-  set_has_cmdid();
+  
   cmdid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.L5cfg.cmdId)
 }
 inline ::std::string* L5cfg::mutable_cmdid() {
-  set_has_cmdid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.L5cfg.cmdId)
   return cmdid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* L5cfg::release_cmdid() {
   // @@protoc_insertion_point(field_release:open_app_desc.L5cfg.cmdId)
-  clear_has_cmdid();
+  
   return cmdid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void L5cfg::set_allocated_cmdid(::std::string* cmdid) {
   if (cmdid != NULL) {
-    set_has_cmdid();
+    
   } else {
-    clear_has_cmdid();
+    
   }
   cmdid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), cmdid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.L5cfg.cmdId)
 }
 
-// optional bytes defaultIp = 3;
-inline bool L5cfg::has_defaultip() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void L5cfg::set_has_defaultip() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void L5cfg::clear_has_defaultip() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// bytes defaultIp = 3;
 inline void L5cfg::clear_defaultip() {
   defaultip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_defaultip();
 }
 inline const ::std::string& L5cfg::defaultip() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.defaultIp)
   return defaultip_.GetNoArena();
 }
 inline void L5cfg::set_defaultip(const ::std::string& value) {
-  set_has_defaultip();
+  
   defaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.defaultIp)
 }
 #if LANG_CXX11
 inline void L5cfg::set_defaultip(::std::string&& value) {
-  set_has_defaultip();
+  
   defaultip_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.L5cfg.defaultIp)
@@ -3608,86 +3079,66 @@ inline void L5cfg::set_defaultip(::std::string&& value) {
 #endif
 inline void L5cfg::set_defaultip(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_defaultip();
+  
   defaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.L5cfg.defaultIp)
 }
 inline void L5cfg::set_defaultip(const void* value, size_t size) {
-  set_has_defaultip();
+  
   defaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.L5cfg.defaultIp)
 }
 inline ::std::string* L5cfg::mutable_defaultip() {
-  set_has_defaultip();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.L5cfg.defaultIp)
   return defaultip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* L5cfg::release_defaultip() {
   // @@protoc_insertion_point(field_release:open_app_desc.L5cfg.defaultIp)
-  clear_has_defaultip();
+  
   return defaultip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void L5cfg::set_allocated_defaultip(::std::string* defaultip) {
   if (defaultip != NULL) {
-    set_has_defaultip();
+    
   } else {
-    clear_has_defaultip();
+    
   }
   defaultip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), defaultip);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.L5cfg.defaultIp)
 }
 
-// optional int64 defaultPort = 4;
-inline bool L5cfg::has_defaultport() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void L5cfg::set_has_defaultport() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void L5cfg::clear_has_defaultport() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// int64 defaultPort = 4;
 inline void L5cfg::clear_defaultport() {
   defaultport_ = GOOGLE_LONGLONG(0);
-  clear_has_defaultport();
 }
 inline ::google::protobuf::int64 L5cfg::defaultport() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.defaultPort)
   return defaultport_;
 }
 inline void L5cfg::set_defaultport(::google::protobuf::int64 value) {
-  set_has_defaultport();
+  
   defaultport_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.defaultPort)
 }
 
-// optional bytes globalDefaultIp = 5;
-inline bool L5cfg::has_globaldefaultip() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void L5cfg::set_has_globaldefaultip() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void L5cfg::clear_has_globaldefaultip() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// bytes globalDefaultIp = 5;
 inline void L5cfg::clear_globaldefaultip() {
   globaldefaultip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_globaldefaultip();
 }
 inline const ::std::string& L5cfg::globaldefaultip() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.globalDefaultIp)
   return globaldefaultip_.GetNoArena();
 }
 inline void L5cfg::set_globaldefaultip(const ::std::string& value) {
-  set_has_globaldefaultip();
+  
   globaldefaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.globalDefaultIp)
 }
 #if LANG_CXX11
 inline void L5cfg::set_globaldefaultip(::std::string&& value) {
-  set_has_globaldefaultip();
+  
   globaldefaultip_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.L5cfg.globalDefaultIp)
@@ -3695,56 +3146,46 @@ inline void L5cfg::set_globaldefaultip(::std::string&& value) {
 #endif
 inline void L5cfg::set_globaldefaultip(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_globaldefaultip();
+  
   globaldefaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.L5cfg.globalDefaultIp)
 }
 inline void L5cfg::set_globaldefaultip(const void* value, size_t size) {
-  set_has_globaldefaultip();
+  
   globaldefaultip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.L5cfg.globalDefaultIp)
 }
 inline ::std::string* L5cfg::mutable_globaldefaultip() {
-  set_has_globaldefaultip();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.L5cfg.globalDefaultIp)
   return globaldefaultip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* L5cfg::release_globaldefaultip() {
   // @@protoc_insertion_point(field_release:open_app_desc.L5cfg.globalDefaultIp)
-  clear_has_globaldefaultip();
+  
   return globaldefaultip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void L5cfg::set_allocated_globaldefaultip(::std::string* globaldefaultip) {
   if (globaldefaultip != NULL) {
-    set_has_globaldefaultip();
+    
   } else {
-    clear_has_globaldefaultip();
+    
   }
   globaldefaultip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), globaldefaultip);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.L5cfg.globalDefaultIp)
 }
 
-// optional int64 globalDefaultPort = 6;
-inline bool L5cfg::has_globaldefaultport() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void L5cfg::set_has_globaldefaultport() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void L5cfg::clear_has_globaldefaultport() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// int64 globalDefaultPort = 6;
 inline void L5cfg::clear_globaldefaultport() {
   globaldefaultport_ = GOOGLE_LONGLONG(0);
-  clear_has_globaldefaultport();
 }
 inline ::google::protobuf::int64 L5cfg::globaldefaultport() const {
   // @@protoc_insertion_point(field_get:open_app_desc.L5cfg.globalDefaultPort)
   return globaldefaultport_;
 }
 inline void L5cfg::set_globaldefaultport(::google::protobuf::int64 value) {
-  set_has_globaldefaultport();
+  
   globaldefaultport_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.L5cfg.globalDefaultPort)
 }
@@ -3753,224 +3194,134 @@ inline void L5cfg::set_globaldefaultport(::google::protobuf::int64 value) {
 
 // Flux
 
-// optional uint32 flowswitch = 1;
-inline bool Flux::has_flowswitch() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void Flux::set_has_flowswitch() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void Flux::clear_has_flowswitch() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// uint32 flowswitch = 1;
 inline void Flux::clear_flowswitch() {
   flowswitch_ = 0u;
-  clear_has_flowswitch();
 }
 inline ::google::protobuf::uint32 Flux::flowswitch() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.flowswitch)
   return flowswitch_;
 }
 inline void Flux::set_flowswitch(::google::protobuf::uint32 value) {
-  set_has_flowswitch();
+  
   flowswitch_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.flowswitch)
 }
 
-// optional uint32 queryrate = 2;
-inline bool Flux::has_queryrate() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void Flux::set_has_queryrate() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void Flux::clear_has_queryrate() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// uint32 queryrate = 2;
 inline void Flux::clear_queryrate() {
   queryrate_ = 0u;
-  clear_has_queryrate();
 }
 inline ::google::protobuf::uint32 Flux::queryrate() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.queryrate)
   return queryrate_;
 }
 inline void Flux::set_queryrate(::google::protobuf::uint32 value) {
-  set_has_queryrate();
+  
   queryrate_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.queryrate)
 }
 
-// optional uint32 attendrate = 3;
-inline bool Flux::has_attendrate() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void Flux::set_has_attendrate() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void Flux::clear_has_attendrate() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// uint32 attendrate = 3;
 inline void Flux::clear_attendrate() {
   attendrate_ = 0u;
-  clear_has_attendrate();
 }
 inline ::google::protobuf::uint32 Flux::attendrate() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.attendrate)
   return attendrate_;
 }
 inline void Flux::set_attendrate(::google::protobuf::uint32 value) {
-  set_has_attendrate();
+  
   attendrate_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.attendrate)
 }
 
-// optional uint32 queryid = 4;
-inline bool Flux::has_queryid() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void Flux::set_has_queryid() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void Flux::clear_has_queryid() {
-  _has_bits_[0] &= ~0x00000040u;
-}
+// uint32 queryid = 4;
 inline void Flux::clear_queryid() {
   queryid_ = 0u;
-  clear_has_queryid();
 }
 inline ::google::protobuf::uint32 Flux::queryid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.queryid)
   return queryid_;
 }
 inline void Flux::set_queryid(::google::protobuf::uint32 value) {
-  set_has_queryid();
+  
   queryid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.queryid)
 }
 
-// optional uint32 attendid = 5;
-inline bool Flux::has_attendid() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void Flux::set_has_attendid() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void Flux::clear_has_attendid() {
-  _has_bits_[0] &= ~0x00000080u;
-}
+// uint32 attendid = 5;
 inline void Flux::clear_attendid() {
   attendid_ = 0u;
-  clear_has_attendid();
 }
 inline ::google::protobuf::uint32 Flux::attendid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.attendid)
   return attendid_;
 }
 inline void Flux::set_attendid(::google::protobuf::uint32 value) {
-  set_has_attendid();
+  
   attendid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.attendid)
 }
 
-// optional uint32 totalflowid = 6;
-inline bool Flux::has_totalflowid() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
-}
-inline void Flux::set_has_totalflowid() {
-  _has_bits_[0] |= 0x00000100u;
-}
-inline void Flux::clear_has_totalflowid() {
-  _has_bits_[0] &= ~0x00000100u;
-}
+// uint32 totalflowid = 6;
 inline void Flux::clear_totalflowid() {
   totalflowid_ = 0u;
-  clear_has_totalflowid();
 }
 inline ::google::protobuf::uint32 Flux::totalflowid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.totalflowid)
   return totalflowid_;
 }
 inline void Flux::set_totalflowid(::google::protobuf::uint32 value) {
-  set_has_totalflowid();
+  
   totalflowid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.totalflowid)
 }
 
-// optional uint32 queryquota = 7;
-inline bool Flux::has_queryquota() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
-}
-inline void Flux::set_has_queryquota() {
-  _has_bits_[0] |= 0x00000200u;
-}
-inline void Flux::clear_has_queryquota() {
-  _has_bits_[0] &= ~0x00000200u;
-}
+// uint32 queryquota = 7;
 inline void Flux::clear_queryquota() {
   queryquota_ = 0u;
-  clear_has_queryquota();
 }
 inline ::google::protobuf::uint32 Flux::queryquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.queryquota)
   return queryquota_;
 }
 inline void Flux::set_queryquota(::google::protobuf::uint32 value) {
-  set_has_queryquota();
+  
   queryquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.queryquota)
 }
 
-// optional uint32 attendquota = 8;
-inline bool Flux::has_attendquota() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
-}
-inline void Flux::set_has_attendquota() {
-  _has_bits_[0] |= 0x00000400u;
-}
-inline void Flux::clear_has_attendquota() {
-  _has_bits_[0] &= ~0x00000400u;
-}
+// uint32 attendquota = 8;
 inline void Flux::clear_attendquota() {
   attendquota_ = 0u;
-  clear_has_attendquota();
 }
 inline ::google::protobuf::uint32 Flux::attendquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.attendquota)
   return attendquota_;
 }
 inline void Flux::set_attendquota(::google::protobuf::uint32 value) {
-  set_has_attendquota();
+  
   attendquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.attendquota)
 }
 
-// optional bytes referkey = 9;
-inline bool Flux::has_referkey() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void Flux::set_has_referkey() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void Flux::clear_has_referkey() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes referkey = 9;
 inline void Flux::clear_referkey() {
   referkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_referkey();
 }
 inline const ::std::string& Flux::referkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.referkey)
   return referkey_.GetNoArena();
 }
 inline void Flux::set_referkey(const ::std::string& value) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.referkey)
 }
 #if LANG_CXX11
 inline void Flux::set_referkey(::std::string&& value) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.Flux.referkey)
@@ -3978,241 +3329,157 @@ inline void Flux::set_referkey(::std::string&& value) {
 #endif
 inline void Flux::set_referkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.Flux.referkey)
 }
 inline void Flux::set_referkey(const void* value, size_t size) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.Flux.referkey)
 }
 inline ::std::string* Flux::mutable_referkey() {
-  set_has_referkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.Flux.referkey)
   return referkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Flux::release_referkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.Flux.referkey)
-  clear_has_referkey();
+  
   return referkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Flux::set_allocated_referkey(::std::string* referkey) {
   if (referkey != NULL) {
-    set_has_referkey();
+    
   } else {
-    clear_has_referkey();
+    
   }
   referkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), referkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.Flux.referkey)
 }
 
-// optional uint32 winlen = 10;
-inline bool Flux::has_winlen() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
-}
-inline void Flux::set_has_winlen() {
-  _has_bits_[0] |= 0x00000800u;
-}
-inline void Flux::clear_has_winlen() {
-  _has_bits_[0] &= ~0x00000800u;
-}
+// uint32 winlen = 10;
 inline void Flux::clear_winlen() {
   winlen_ = 0u;
-  clear_has_winlen();
 }
 inline ::google::protobuf::uint32 Flux::winlen() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.winlen)
   return winlen_;
 }
 inline void Flux::set_winlen(::google::protobuf::uint32 value) {
-  set_has_winlen();
+  
   winlen_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.winlen)
 }
 
-// optional uint32 errnum = 11;
-inline bool Flux::has_errnum() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
-}
-inline void Flux::set_has_errnum() {
-  _has_bits_[0] |= 0x00001000u;
-}
-inline void Flux::clear_has_errnum() {
-  _has_bits_[0] &= ~0x00001000u;
-}
+// uint32 errnum = 11;
 inline void Flux::clear_errnum() {
   errnum_ = 0u;
-  clear_has_errnum();
 }
 inline ::google::protobuf::uint32 Flux::errnum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.errnum)
   return errnum_;
 }
 inline void Flux::set_errnum(::google::protobuf::uint32 value) {
-  set_has_errnum();
+  
   errnum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.errnum)
 }
 
-// optional uint32 errnumrate = 12;
-inline bool Flux::has_errnumrate() const {
-  return (_has_bits_[0] & 0x00002000u) != 0;
-}
-inline void Flux::set_has_errnumrate() {
-  _has_bits_[0] |= 0x00002000u;
-}
-inline void Flux::clear_has_errnumrate() {
-  _has_bits_[0] &= ~0x00002000u;
-}
+// uint32 errnumrate = 12;
 inline void Flux::clear_errnumrate() {
   errnumrate_ = 0u;
-  clear_has_errnumrate();
 }
 inline ::google::protobuf::uint32 Flux::errnumrate() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.errnumrate)
   return errnumrate_;
 }
 inline void Flux::set_errnumrate(::google::protobuf::uint32 value) {
-  set_has_errnumrate();
+  
   errnumrate_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.errnumrate)
 }
 
-// optional uint32 cpurate = 13;
-inline bool Flux::has_cpurate() const {
-  return (_has_bits_[0] & 0x00004000u) != 0;
-}
-inline void Flux::set_has_cpurate() {
-  _has_bits_[0] |= 0x00004000u;
-}
-inline void Flux::clear_has_cpurate() {
-  _has_bits_[0] &= ~0x00004000u;
-}
+// uint32 cpurate = 13;
 inline void Flux::clear_cpurate() {
   cpurate_ = 0u;
-  clear_has_cpurate();
 }
 inline ::google::protobuf::uint32 Flux::cpurate() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.cpurate)
   return cpurate_;
 }
 inline void Flux::set_cpurate(::google::protobuf::uint32 value) {
-  set_has_cpurate();
+  
   cpurate_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.cpurate)
 }
 
-// optional uint32 cpuinterval = 14;
-inline bool Flux::has_cpuinterval() const {
-  return (_has_bits_[0] & 0x00008000u) != 0;
-}
-inline void Flux::set_has_cpuinterval() {
-  _has_bits_[0] |= 0x00008000u;
-}
-inline void Flux::clear_has_cpuinterval() {
-  _has_bits_[0] &= ~0x00008000u;
-}
+// uint32 cpuinterval = 14;
 inline void Flux::clear_cpuinterval() {
   cpuinterval_ = 0u;
-  clear_has_cpuinterval();
 }
 inline ::google::protobuf::uint32 Flux::cpuinterval() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.cpuinterval)
   return cpuinterval_;
 }
 inline void Flux::set_cpuinterval(::google::protobuf::uint32 value) {
-  set_has_cpuinterval();
+  
   cpuinterval_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.cpuinterval)
 }
 
-// optional uint32 memrate = 15;
-inline bool Flux::has_memrate() const {
-  return (_has_bits_[0] & 0x00010000u) != 0;
-}
-inline void Flux::set_has_memrate() {
-  _has_bits_[0] |= 0x00010000u;
-}
-inline void Flux::clear_has_memrate() {
-  _has_bits_[0] &= ~0x00010000u;
-}
+// uint32 memrate = 15;
 inline void Flux::clear_memrate() {
   memrate_ = 0u;
-  clear_has_memrate();
 }
 inline ::google::protobuf::uint32 Flux::memrate() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.memrate)
   return memrate_;
 }
 inline void Flux::set_memrate(::google::protobuf::uint32 value) {
-  set_has_memrate();
+  
   memrate_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.memrate)
 }
 
-// optional uint32 queryquovaryid = 16;
-inline bool Flux::has_queryquovaryid() const {
-  return (_has_bits_[0] & 0x00020000u) != 0;
-}
-inline void Flux::set_has_queryquovaryid() {
-  _has_bits_[0] |= 0x00020000u;
-}
-inline void Flux::clear_has_queryquovaryid() {
-  _has_bits_[0] &= ~0x00020000u;
-}
+// uint32 queryquovaryid = 16;
 inline void Flux::clear_queryquovaryid() {
   queryquovaryid_ = 0u;
-  clear_has_queryquovaryid();
 }
 inline ::google::protobuf::uint32 Flux::queryquovaryid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.queryquovaryid)
   return queryquovaryid_;
 }
 inline void Flux::set_queryquovaryid(::google::protobuf::uint32 value) {
-  set_has_queryquovaryid();
+  
   queryquovaryid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.queryquovaryid)
 }
 
-// optional uint32 attendquovaryid = 17;
-inline bool Flux::has_attendquovaryid() const {
-  return (_has_bits_[0] & 0x00040000u) != 0;
-}
-inline void Flux::set_has_attendquovaryid() {
-  _has_bits_[0] |= 0x00040000u;
-}
-inline void Flux::clear_has_attendquovaryid() {
-  _has_bits_[0] &= ~0x00040000u;
-}
+// uint32 attendquovaryid = 17;
 inline void Flux::clear_attendquovaryid() {
   attendquovaryid_ = 0u;
-  clear_has_attendquovaryid();
 }
 inline ::google::protobuf::uint32 Flux::attendquovaryid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.attendquovaryid)
   return attendquovaryid_;
 }
 inline void Flux::set_attendquovaryid(::google::protobuf::uint32 value) {
-  set_has_attendquovaryid();
+  
   attendquovaryid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.attendquovaryid)
 }
 
-// optional .open_app_desc.L5cfg normalenv = 18;
+// .open_app_desc.L5cfg normalenv = 18;
 inline bool Flux::has_normalenv() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void Flux::set_has_normalenv() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void Flux::clear_has_normalenv() {
-  _has_bits_[0] &= ~0x00000002u;
+  return this != internal_default_instance() && normalenv_ != NULL;
 }
 inline void Flux::clear_normalenv() {
-  if (normalenv_ != NULL) normalenv_->Clear();
-  clear_has_normalenv();
+  if (GetArenaNoVirtual() == NULL && normalenv_ != NULL) {
+    delete normalenv_;
+  }
+  normalenv_ = NULL;
 }
 inline const ::open_app_desc::L5cfg& Flux::normalenv() const {
   const ::open_app_desc::L5cfg* p = normalenv_;
@@ -4222,13 +3489,13 @@ inline const ::open_app_desc::L5cfg& Flux::normalenv() const {
 }
 inline ::open_app_desc::L5cfg* Flux::release_normalenv() {
   // @@protoc_insertion_point(field_release:open_app_desc.Flux.normalenv)
-  clear_has_normalenv();
+  
   ::open_app_desc::L5cfg* temp = normalenv_;
   normalenv_ = NULL;
   return temp;
 }
 inline ::open_app_desc::L5cfg* Flux::mutable_normalenv() {
-  set_has_normalenv();
+  
   if (normalenv_ == NULL) {
     normalenv_ = new ::open_app_desc::L5cfg;
   }
@@ -4246,27 +3513,23 @@ inline void Flux::set_allocated_normalenv(::open_app_desc::L5cfg* normalenv) {
       normalenv = ::google::protobuf::internal::GetOwnedMessage(
           message_arena, normalenv, submessage_arena);
     }
-    set_has_normalenv();
+    
   } else {
-    clear_has_normalenv();
+    
   }
   normalenv_ = normalenv;
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.Flux.normalenv)
 }
 
-// optional .open_app_desc.L5cfg testenv = 19;
+// .open_app_desc.L5cfg testenv = 19;
 inline bool Flux::has_testenv() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void Flux::set_has_testenv() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void Flux::clear_has_testenv() {
-  _has_bits_[0] &= ~0x00000004u;
+  return this != internal_default_instance() && testenv_ != NULL;
 }
 inline void Flux::clear_testenv() {
-  if (testenv_ != NULL) testenv_->Clear();
-  clear_has_testenv();
+  if (GetArenaNoVirtual() == NULL && testenv_ != NULL) {
+    delete testenv_;
+  }
+  testenv_ = NULL;
 }
 inline const ::open_app_desc::L5cfg& Flux::testenv() const {
   const ::open_app_desc::L5cfg* p = testenv_;
@@ -4276,13 +3539,13 @@ inline const ::open_app_desc::L5cfg& Flux::testenv() const {
 }
 inline ::open_app_desc::L5cfg* Flux::release_testenv() {
   // @@protoc_insertion_point(field_release:open_app_desc.Flux.testenv)
-  clear_has_testenv();
+  
   ::open_app_desc::L5cfg* temp = testenv_;
   testenv_ = NULL;
   return temp;
 }
 inline ::open_app_desc::L5cfg* Flux::mutable_testenv() {
-  set_has_testenv();
+  
   if (testenv_ == NULL) {
     testenv_ = new ::open_app_desc::L5cfg;
   }
@@ -4300,34 +3563,24 @@ inline void Flux::set_allocated_testenv(::open_app_desc::L5cfg* testenv) {
       testenv = ::google::protobuf::internal::GetOwnedMessage(
           message_arena, testenv, submessage_arena);
     }
-    set_has_testenv();
+    
   } else {
-    clear_has_testenv();
+    
   }
   testenv_ = testenv;
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.Flux.testenv)
 }
 
-// optional uint32 type = 20;
-inline bool Flux::has_type() const {
-  return (_has_bits_[0] & 0x00080000u) != 0;
-}
-inline void Flux::set_has_type() {
-  _has_bits_[0] |= 0x00080000u;
-}
-inline void Flux::clear_has_type() {
-  _has_bits_[0] &= ~0x00080000u;
-}
+// uint32 type = 20;
 inline void Flux::clear_type() {
   type_ = 0u;
-  clear_has_type();
 }
 inline ::google::protobuf::uint32 Flux::type() const {
   // @@protoc_insertion_point(field_get:open_app_desc.Flux.type)
   return type_;
 }
 inline void Flux::set_type(::google::protobuf::uint32 value) {
-  set_has_type();
+  
   type_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.Flux.type)
 }
@@ -4336,98 +3589,58 @@ inline void Flux::set_type(::google::protobuf::uint32 value) {
 
 // ReportItem
 
-// optional int64 timekey = 1;
-inline bool ReportItem::has_timekey() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void ReportItem::set_has_timekey() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void ReportItem::clear_has_timekey() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// int64 timekey = 1;
 inline void ReportItem::clear_timekey() {
   timekey_ = GOOGLE_LONGLONG(0);
-  clear_has_timekey();
 }
 inline ::google::protobuf::int64 ReportItem::timekey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ReportItem.timekey)
   return timekey_;
 }
 inline void ReportItem::set_timekey(::google::protobuf::int64 value) {
-  set_has_timekey();
+  
   timekey_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.ReportItem.timekey)
 }
 
-// optional int64 reportnum = 2;
-inline bool ReportItem::has_reportnum() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void ReportItem::set_has_reportnum() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void ReportItem::clear_has_reportnum() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int64 reportnum = 2;
 inline void ReportItem::clear_reportnum() {
   reportnum_ = GOOGLE_LONGLONG(0);
-  clear_has_reportnum();
 }
 inline ::google::protobuf::int64 ReportItem::reportnum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ReportItem.reportnum)
   return reportnum_;
 }
 inline void ReportItem::set_reportnum(::google::protobuf::int64 value) {
-  set_has_reportnum();
+  
   reportnum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.ReportItem.reportnum)
 }
 
-// optional int64 refuse = 3;
-inline bool ReportItem::has_refuse() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void ReportItem::set_has_refuse() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void ReportItem::clear_has_refuse() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int64 refuse = 3;
 inline void ReportItem::clear_refuse() {
   refuse_ = GOOGLE_LONGLONG(0);
-  clear_has_refuse();
 }
 inline ::google::protobuf::int64 ReportItem::refuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ReportItem.refuse)
   return refuse_;
 }
 inline void ReportItem::set_refuse(::google::protobuf::int64 value) {
-  set_has_refuse();
+  
   refuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.ReportItem.refuse)
 }
 
-// optional int64 setrefuse = 4;
-inline bool ReportItem::has_setrefuse() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void ReportItem::set_has_setrefuse() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void ReportItem::clear_has_setrefuse() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int64 setrefuse = 4;
 inline void ReportItem::clear_setrefuse() {
   setrefuse_ = GOOGLE_LONGLONG(0);
-  clear_has_setrefuse();
 }
 inline ::google::protobuf::int64 ReportItem::setrefuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ReportItem.setrefuse)
   return setrefuse_;
 }
 inline void ReportItem::set_setrefuse(::google::protobuf::int64 value) {
-  set_has_setrefuse();
+  
   setrefuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.ReportItem.setrefuse)
 }
@@ -4436,32 +3649,22 @@ inline void ReportItem::set_setrefuse(::google::protobuf::int64 value) {
 
 // QuotaReq
 
-// optional bytes key = 1;
-inline bool QuotaReq::has_key() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void QuotaReq::set_has_key() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void QuotaReq::clear_has_key() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes key = 1;
 inline void QuotaReq::clear_key() {
   key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_key();
 }
 inline const ::std::string& QuotaReq::key() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.key)
   return key_.GetNoArena();
 }
 inline void QuotaReq::set_key(const ::std::string& value) {
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.key)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_key(::std::string&& value) {
-  set_has_key();
+  
   key_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.key)
@@ -4469,62 +3672,52 @@ inline void QuotaReq::set_key(::std::string&& value) {
 #endif
 inline void QuotaReq::set_key(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.key)
 }
 inline void QuotaReq::set_key(const void* value, size_t size) {
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.key)
 }
 inline ::std::string* QuotaReq::mutable_key() {
-  set_has_key();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.key)
   return key_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_key() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.key)
-  clear_has_key();
+  
   return key_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_key(::std::string* key) {
   if (key != NULL) {
-    set_has_key();
+    
   } else {
-    clear_has_key();
+    
   }
   key_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), key);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.key)
 }
 
-// optional bytes referkey = 2;
-inline bool QuotaReq::has_referkey() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void QuotaReq::set_has_referkey() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void QuotaReq::clear_has_referkey() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes referkey = 2;
 inline void QuotaReq::clear_referkey() {
   referkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_referkey();
 }
 inline const ::std::string& QuotaReq::referkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.referkey)
   return referkey_.GetNoArena();
 }
 inline void QuotaReq::set_referkey(const ::std::string& value) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.referkey)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_referkey(::std::string&& value) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.referkey)
@@ -4532,31 +3725,31 @@ inline void QuotaReq::set_referkey(::std::string&& value) {
 #endif
 inline void QuotaReq::set_referkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.referkey)
 }
 inline void QuotaReq::set_referkey(const void* value, size_t size) {
-  set_has_referkey();
+  
   referkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.referkey)
 }
 inline ::std::string* QuotaReq::mutable_referkey() {
-  set_has_referkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.referkey)
   return referkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_referkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.referkey)
-  clear_has_referkey();
+  
   return referkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_referkey(::std::string* referkey) {
   if (referkey != NULL) {
-    set_has_referkey();
+    
   } else {
-    clear_has_referkey();
+    
   }
   referkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), referkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.referkey)
@@ -4592,80 +3785,50 @@ QuotaReq::reportitem() const {
   return reportitem_;
 }
 
-// optional int32 localquota = 4;
-inline bool QuotaReq::has_localquota() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void QuotaReq::set_has_localquota() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void QuotaReq::clear_has_localquota() {
-  _has_bits_[0] &= ~0x00000080u;
-}
+// int32 localquota = 4;
 inline void QuotaReq::clear_localquota() {
   localquota_ = 0;
-  clear_has_localquota();
 }
 inline ::google::protobuf::int32 QuotaReq::localquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.localquota)
   return localquota_;
 }
 inline void QuotaReq::set_localquota(::google::protobuf::int32 value) {
-  set_has_localquota();
+  
   localquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.localquota)
 }
 
-// optional int32 id = 5;
-inline bool QuotaReq::has_id() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
-}
-inline void QuotaReq::set_has_id() {
-  _has_bits_[0] |= 0x00000100u;
-}
-inline void QuotaReq::clear_has_id() {
-  _has_bits_[0] &= ~0x00000100u;
-}
+// int32 id = 5;
 inline void QuotaReq::clear_id() {
   id_ = 0;
-  clear_has_id();
 }
 inline ::google::protobuf::int32 QuotaReq::id() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.id)
   return id_;
 }
 inline void QuotaReq::set_id(::google::protobuf::int32 value) {
-  set_has_id();
+  
   id_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.id)
 }
 
-// optional bytes serial = 6;
-inline bool QuotaReq::has_serial() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void QuotaReq::set_has_serial() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void QuotaReq::clear_has_serial() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// bytes serial = 6;
 inline void QuotaReq::clear_serial() {
   serial_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_serial();
 }
 inline const ::std::string& QuotaReq::serial() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.serial)
   return serial_.GetNoArena();
 }
 inline void QuotaReq::set_serial(const ::std::string& value) {
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.serial)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_serial(::std::string&& value) {
-  set_has_serial();
+  
   serial_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.serial)
@@ -4673,86 +3836,66 @@ inline void QuotaReq::set_serial(::std::string&& value) {
 #endif
 inline void QuotaReq::set_serial(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.serial)
 }
 inline void QuotaReq::set_serial(const void* value, size_t size) {
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.serial)
 }
 inline ::std::string* QuotaReq::mutable_serial() {
-  set_has_serial();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.serial)
   return serial_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_serial() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.serial)
-  clear_has_serial();
+  
   return serial_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_serial(::std::string* serial) {
   if (serial != NULL) {
-    set_has_serial();
+    
   } else {
-    clear_has_serial();
+    
   }
   serial_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), serial);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.serial)
 }
 
-// optional int32 totalquota = 7;
-inline bool QuotaReq::has_totalquota() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
-}
-inline void QuotaReq::set_has_totalquota() {
-  _has_bits_[0] |= 0x00001000u;
-}
-inline void QuotaReq::clear_has_totalquota() {
-  _has_bits_[0] &= ~0x00001000u;
-}
+// int32 totalquota = 7;
 inline void QuotaReq::clear_totalquota() {
   totalquota_ = 0;
-  clear_has_totalquota();
 }
 inline ::google::protobuf::int32 QuotaReq::totalquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.totalquota)
   return totalquota_;
 }
 inline void QuotaReq::set_totalquota(::google::protobuf::int32 value) {
-  set_has_totalquota();
+  
   totalquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.totalquota)
 }
 
-// optional bytes openid = 8;
-inline bool QuotaReq::has_openid() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void QuotaReq::set_has_openid() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void QuotaReq::clear_has_openid() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// bytes openid = 8;
 inline void QuotaReq::clear_openid() {
   openid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_openid();
 }
 inline const ::std::string& QuotaReq::openid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.openid)
   return openid_.GetNoArena();
 }
 inline void QuotaReq::set_openid(const ::std::string& value) {
-  set_has_openid();
+  
   openid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.openid)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_openid(::std::string&& value) {
-  set_has_openid();
+  
   openid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.openid)
@@ -4760,134 +3903,94 @@ inline void QuotaReq::set_openid(::std::string&& value) {
 #endif
 inline void QuotaReq::set_openid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_openid();
+  
   openid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.openid)
 }
 inline void QuotaReq::set_openid(const void* value, size_t size) {
-  set_has_openid();
+  
   openid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.openid)
 }
 inline ::std::string* QuotaReq::mutable_openid() {
-  set_has_openid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.openid)
   return openid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_openid() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.openid)
-  clear_has_openid();
+  
   return openid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_openid(::std::string* openid) {
   if (openid != NULL) {
-    set_has_openid();
+    
   } else {
-    clear_has_openid();
+    
   }
   openid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), openid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.openid)
 }
 
-// optional int64 uin = 9;
-inline bool QuotaReq::has_uin() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
-}
-inline void QuotaReq::set_has_uin() {
-  _has_bits_[0] |= 0x00000200u;
-}
-inline void QuotaReq::clear_has_uin() {
-  _has_bits_[0] &= ~0x00000200u;
-}
+// int64 uin = 9;
 inline void QuotaReq::clear_uin() {
   uin_ = GOOGLE_LONGLONG(0);
-  clear_has_uin();
 }
 inline ::google::protobuf::int64 QuotaReq::uin() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.uin)
   return uin_;
 }
 inline void QuotaReq::set_uin(::google::protobuf::int64 value) {
-  set_has_uin();
+  
   uin_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.uin)
 }
 
-// optional int64 nowsum = 10;
-inline bool QuotaReq::has_nowsum() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
-}
-inline void QuotaReq::set_has_nowsum() {
-  _has_bits_[0] |= 0x00000400u;
-}
-inline void QuotaReq::clear_has_nowsum() {
-  _has_bits_[0] &= ~0x00000400u;
-}
+// int64 nowsum = 10;
 inline void QuotaReq::clear_nowsum() {
   nowsum_ = GOOGLE_LONGLONG(0);
-  clear_has_nowsum();
 }
 inline ::google::protobuf::int64 QuotaReq::nowsum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.nowsum)
   return nowsum_;
 }
 inline void QuotaReq::set_nowsum(::google::protobuf::int64 value) {
-  set_has_nowsum();
+  
   nowsum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.nowsum)
 }
 
-// optional int64 workernum = 11;
-inline bool QuotaReq::has_workernum() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
-}
-inline void QuotaReq::set_has_workernum() {
-  _has_bits_[0] |= 0x00000800u;
-}
-inline void QuotaReq::clear_has_workernum() {
-  _has_bits_[0] &= ~0x00000800u;
-}
+// int64 workernum = 11;
 inline void QuotaReq::clear_workernum() {
   workernum_ = GOOGLE_LONGLONG(0);
-  clear_has_workernum();
 }
 inline ::google::protobuf::int64 QuotaReq::workernum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.workernum)
   return workernum_;
 }
 inline void QuotaReq::set_workernum(::google::protobuf::int64 value) {
-  set_has_workernum();
+  
   workernum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.workernum)
 }
 
-// optional bytes setkey = 12;
-inline bool QuotaReq::has_setkey() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void QuotaReq::set_has_setkey() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void QuotaReq::clear_has_setkey() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// bytes setkey = 12;
 inline void QuotaReq::clear_setkey() {
   setkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setkey();
 }
 inline const ::std::string& QuotaReq::setkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.setkey)
   return setkey_.GetNoArena();
 }
 inline void QuotaReq::set_setkey(const ::std::string& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.setkey)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_setkey(::std::string&& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.setkey)
@@ -4895,62 +3998,52 @@ inline void QuotaReq::set_setkey(::std::string&& value) {
 #endif
 inline void QuotaReq::set_setkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.setkey)
 }
 inline void QuotaReq::set_setkey(const void* value, size_t size) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.setkey)
 }
 inline ::std::string* QuotaReq::mutable_setkey() {
-  set_has_setkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.setkey)
   return setkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_setkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.setkey)
-  clear_has_setkey();
+  
   return setkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_setkey(::std::string* setkey) {
   if (setkey != NULL) {
-    set_has_setkey();
+    
   } else {
-    clear_has_setkey();
+    
   }
   setkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.setkey)
 }
 
-// optional bytes business = 13;
-inline bool QuotaReq::has_business() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void QuotaReq::set_has_business() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void QuotaReq::clear_has_business() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// bytes business = 13;
 inline void QuotaReq::clear_business() {
   business_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_business();
 }
 inline const ::std::string& QuotaReq::business() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.business)
   return business_.GetNoArena();
 }
 inline void QuotaReq::set_business(const ::std::string& value) {
-  set_has_business();
+  
   business_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.business)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_business(::std::string&& value) {
-  set_has_business();
+  
   business_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.business)
@@ -4958,62 +4051,52 @@ inline void QuotaReq::set_business(::std::string&& value) {
 #endif
 inline void QuotaReq::set_business(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_business();
+  
   business_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.business)
 }
 inline void QuotaReq::set_business(const void* value, size_t size) {
-  set_has_business();
+  
   business_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.business)
 }
 inline ::std::string* QuotaReq::mutable_business() {
-  set_has_business();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.business)
   return business_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_business() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.business)
-  clear_has_business();
+  
   return business_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_business(::std::string* business) {
   if (business != NULL) {
-    set_has_business();
+    
   } else {
-    clear_has_business();
+    
   }
   business_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), business);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.business)
 }
 
-// optional bytes setenv = 14;
-inline bool QuotaReq::has_setenv() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void QuotaReq::set_has_setenv() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void QuotaReq::clear_has_setenv() {
-  _has_bits_[0] &= ~0x00000040u;
-}
+// bytes setenv = 14;
 inline void QuotaReq::clear_setenv() {
   setenv_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setenv();
 }
 inline const ::std::string& QuotaReq::setenv() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaReq.setenv)
   return setenv_.GetNoArena();
 }
 inline void QuotaReq::set_setenv(const ::std::string& value) {
-  set_has_setenv();
+  
   setenv_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaReq.setenv)
 }
 #if LANG_CXX11
 inline void QuotaReq::set_setenv(::std::string&& value) {
-  set_has_setenv();
+  
   setenv_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaReq.setenv)
@@ -5021,31 +4104,31 @@ inline void QuotaReq::set_setenv(::std::string&& value) {
 #endif
 inline void QuotaReq::set_setenv(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setenv();
+  
   setenv_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaReq.setenv)
 }
 inline void QuotaReq::set_setenv(const void* value, size_t size) {
-  set_has_setenv();
+  
   setenv_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaReq.setenv)
 }
 inline ::std::string* QuotaReq::mutable_setenv() {
-  set_has_setenv();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaReq.setenv)
   return setenv_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaReq::release_setenv() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaReq.setenv)
-  clear_has_setenv();
+  
   return setenv_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaReq::set_allocated_setenv(::std::string* setenv) {
   if (setenv != NULL) {
-    set_has_setenv();
+    
   } else {
-    clear_has_setenv();
+    
   }
   setenv_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setenv);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaReq.setenv)
@@ -5055,32 +4138,22 @@ inline void QuotaReq::set_allocated_setenv(::std::string* setenv) {
 
 // QuotaRsp
 
-// optional bytes key = 1;
-inline bool QuotaRsp::has_key() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void QuotaRsp::set_has_key() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void QuotaRsp::clear_has_key() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes key = 1;
 inline void QuotaRsp::clear_key() {
   key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_key();
 }
 inline const ::std::string& QuotaRsp::key() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.key)
   return key_.GetNoArena();
 }
 inline void QuotaRsp::set_key(const ::std::string& value) {
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.key)
 }
 #if LANG_CXX11
 inline void QuotaRsp::set_key(::std::string&& value) {
-  set_has_key();
+  
   key_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaRsp.key)
@@ -5088,134 +4161,94 @@ inline void QuotaRsp::set_key(::std::string&& value) {
 #endif
 inline void QuotaRsp::set_key(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaRsp.key)
 }
 inline void QuotaRsp::set_key(const void* value, size_t size) {
-  set_has_key();
+  
   key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaRsp.key)
 }
 inline ::std::string* QuotaRsp::mutable_key() {
-  set_has_key();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaRsp.key)
   return key_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaRsp::release_key() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaRsp.key)
-  clear_has_key();
+  
   return key_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaRsp::set_allocated_key(::std::string* key) {
   if (key != NULL) {
-    set_has_key();
+    
   } else {
-    clear_has_key();
+    
   }
   key_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), key);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaRsp.key)
 }
 
-// optional int64 localq = 2;
-inline bool QuotaRsp::has_localq() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void QuotaRsp::set_has_localq() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void QuotaRsp::clear_has_localq() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int64 localq = 2;
 inline void QuotaRsp::clear_localq() {
   localq_ = GOOGLE_LONGLONG(0);
-  clear_has_localq();
 }
 inline ::google::protobuf::int64 QuotaRsp::localq() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.localq)
   return localq_;
 }
 inline void QuotaRsp::set_localq(::google::protobuf::int64 value) {
-  set_has_localq();
+  
   localq_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.localq)
 }
 
-// optional int64 totalq = 3;
-inline bool QuotaRsp::has_totalq() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void QuotaRsp::set_has_totalq() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void QuotaRsp::clear_has_totalq() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int64 totalq = 3;
 inline void QuotaRsp::clear_totalq() {
   totalq_ = GOOGLE_LONGLONG(0);
-  clear_has_totalq();
 }
 inline ::google::protobuf::int64 QuotaRsp::totalq() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.totalq)
   return totalq_;
 }
 inline void QuotaRsp::set_totalq(::google::protobuf::int64 value) {
-  set_has_totalq();
+  
   totalq_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.totalq)
 }
 
-// optional int32 partnernum = 4;
-inline bool QuotaRsp::has_partnernum() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void QuotaRsp::set_has_partnernum() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void QuotaRsp::clear_has_partnernum() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// int32 partnernum = 4;
 inline void QuotaRsp::clear_partnernum() {
   partnernum_ = 0;
-  clear_has_partnernum();
 }
 inline ::google::protobuf::int32 QuotaRsp::partnernum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.partnernum)
   return partnernum_;
 }
 inline void QuotaRsp::set_partnernum(::google::protobuf::int32 value) {
-  set_has_partnernum();
+  
   partnernum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.partnernum)
 }
 
-// optional bytes serial = 5;
-inline bool QuotaRsp::has_serial() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void QuotaRsp::set_has_serial() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void QuotaRsp::clear_has_serial() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes serial = 5;
 inline void QuotaRsp::clear_serial() {
   serial_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_serial();
 }
 inline const ::std::string& QuotaRsp::serial() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.serial)
   return serial_.GetNoArena();
 }
 inline void QuotaRsp::set_serial(const ::std::string& value) {
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.serial)
 }
 #if LANG_CXX11
 inline void QuotaRsp::set_serial(::std::string&& value) {
-  set_has_serial();
+  
   serial_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QuotaRsp.serial)
@@ -5223,296 +4256,186 @@ inline void QuotaRsp::set_serial(::std::string&& value) {
 #endif
 inline void QuotaRsp::set_serial(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QuotaRsp.serial)
 }
 inline void QuotaRsp::set_serial(const void* value, size_t size) {
-  set_has_serial();
+  
   serial_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QuotaRsp.serial)
 }
 inline ::std::string* QuotaRsp::mutable_serial() {
-  set_has_serial();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QuotaRsp.serial)
   return serial_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QuotaRsp::release_serial() {
   // @@protoc_insertion_point(field_release:open_app_desc.QuotaRsp.serial)
-  clear_has_serial();
+  
   return serial_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QuotaRsp::set_allocated_serial(::std::string* serial) {
   if (serial != NULL) {
-    set_has_serial();
+    
   } else {
-    clear_has_serial();
+    
   }
   serial_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), serial);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QuotaRsp.serial)
 }
 
-// optional int32 ipnum = 6;
-inline bool QuotaRsp::has_ipnum() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void QuotaRsp::set_has_ipnum() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void QuotaRsp::clear_has_ipnum() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// int32 ipnum = 6;
 inline void QuotaRsp::clear_ipnum() {
   ipnum_ = 0;
-  clear_has_ipnum();
 }
 inline ::google::protobuf::int32 QuotaRsp::ipnum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.ipnum)
   return ipnum_;
 }
 inline void QuotaRsp::set_ipnum(::google::protobuf::int32 value) {
-  set_has_ipnum();
+  
   ipnum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.ipnum)
 }
 
-// optional int32 alloctype = 7;
-inline bool QuotaRsp::has_alloctype() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void QuotaRsp::set_has_alloctype() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void QuotaRsp::clear_has_alloctype() {
-  _has_bits_[0] &= ~0x00000040u;
-}
+// int32 alloctype = 7;
 inline void QuotaRsp::clear_alloctype() {
   alloctype_ = 0;
-  clear_has_alloctype();
 }
 inline ::google::protobuf::int32 QuotaRsp::alloctype() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.alloctype)
   return alloctype_;
 }
 inline void QuotaRsp::set_alloctype(::google::protobuf::int32 value) {
-  set_has_alloctype();
+  
   alloctype_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.alloctype)
 }
 
-// optional int32 allocpartnum = 8;
-inline bool QuotaRsp::has_allocpartnum() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void QuotaRsp::set_has_allocpartnum() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void QuotaRsp::clear_has_allocpartnum() {
-  _has_bits_[0] &= ~0x00000080u;
-}
+// int32 allocpartnum = 8;
 inline void QuotaRsp::clear_allocpartnum() {
   allocpartnum_ = 0;
-  clear_has_allocpartnum();
 }
 inline ::google::protobuf::int32 QuotaRsp::allocpartnum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.allocpartnum)
   return allocpartnum_;
 }
 inline void QuotaRsp::set_allocpartnum(::google::protobuf::int32 value) {
-  set_has_allocpartnum();
+  
   allocpartnum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.allocpartnum)
 }
 
-// optional int64 alloctime = 9;
-inline bool QuotaRsp::has_alloctime() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
-}
-inline void QuotaRsp::set_has_alloctime() {
-  _has_bits_[0] |= 0x00000100u;
-}
-inline void QuotaRsp::clear_has_alloctime() {
-  _has_bits_[0] &= ~0x00000100u;
-}
+// int64 alloctime = 9;
 inline void QuotaRsp::clear_alloctime() {
   alloctime_ = GOOGLE_LONGLONG(0);
-  clear_has_alloctime();
 }
 inline ::google::protobuf::int64 QuotaRsp::alloctime() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.alloctime)
   return alloctime_;
 }
 inline void QuotaRsp::set_alloctime(::google::protobuf::int64 value) {
-  set_has_alloctime();
+  
   alloctime_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.alloctime)
 }
 
-// optional int64 self = 10;
-inline bool QuotaRsp::has_self() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
-}
-inline void QuotaRsp::set_has_self() {
-  _has_bits_[0] |= 0x00000200u;
-}
-inline void QuotaRsp::clear_has_self() {
-  _has_bits_[0] &= ~0x00000200u;
-}
+// int64 self = 10;
 inline void QuotaRsp::clear_self() {
   self_ = GOOGLE_LONGLONG(0);
-  clear_has_self();
 }
 inline ::google::protobuf::int64 QuotaRsp::self() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.self)
   return self_;
 }
 inline void QuotaRsp::set_self(::google::protobuf::int64 value) {
-  set_has_self();
+  
   self_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.self)
 }
 
-// optional int64 total = 11;
-inline bool QuotaRsp::has_total() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
-}
-inline void QuotaRsp::set_has_total() {
-  _has_bits_[0] |= 0x00000400u;
-}
-inline void QuotaRsp::clear_has_total() {
-  _has_bits_[0] &= ~0x00000400u;
-}
+// int64 total = 11;
 inline void QuotaRsp::clear_total() {
   total_ = GOOGLE_LONGLONG(0);
-  clear_has_total();
 }
 inline ::google::protobuf::int64 QuotaRsp::total() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.total)
   return total_;
 }
 inline void QuotaRsp::set_total(::google::protobuf::int64 value) {
-  set_has_total();
+  
   total_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.total)
 }
 
-// optional int64 nowsum = 12;
-inline bool QuotaRsp::has_nowsum() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
-}
-inline void QuotaRsp::set_has_nowsum() {
-  _has_bits_[0] |= 0x00000800u;
-}
-inline void QuotaRsp::clear_has_nowsum() {
-  _has_bits_[0] &= ~0x00000800u;
-}
+// int64 nowsum = 12;
 inline void QuotaRsp::clear_nowsum() {
   nowsum_ = GOOGLE_LONGLONG(0);
-  clear_has_nowsum();
 }
 inline ::google::protobuf::int64 QuotaRsp::nowsum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.nowsum)
   return nowsum_;
 }
 inline void QuotaRsp::set_nowsum(::google::protobuf::int64 value) {
-  set_has_nowsum();
+  
   nowsum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.nowsum)
 }
 
-// optional int64 totalworkernum = 13;
-inline bool QuotaRsp::has_totalworkernum() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
-}
-inline void QuotaRsp::set_has_totalworkernum() {
-  _has_bits_[0] |= 0x00001000u;
-}
-inline void QuotaRsp::clear_has_totalworkernum() {
-  _has_bits_[0] &= ~0x00001000u;
-}
+// int64 totalworkernum = 13;
 inline void QuotaRsp::clear_totalworkernum() {
   totalworkernum_ = GOOGLE_LONGLONG(0);
-  clear_has_totalworkernum();
 }
 inline ::google::protobuf::int64 QuotaRsp::totalworkernum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.totalworkernum)
   return totalworkernum_;
 }
 inline void QuotaRsp::set_totalworkernum(::google::protobuf::int64 value) {
-  set_has_totalworkernum();
+  
   totalworkernum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.totalworkernum)
 }
 
-// optional int32 setquota = 14;
-inline bool QuotaRsp::has_setquota() const {
-  return (_has_bits_[0] & 0x00002000u) != 0;
-}
-inline void QuotaRsp::set_has_setquota() {
-  _has_bits_[0] |= 0x00002000u;
-}
-inline void QuotaRsp::clear_has_setquota() {
-  _has_bits_[0] &= ~0x00002000u;
-}
+// int32 setquota = 14;
 inline void QuotaRsp::clear_setquota() {
   setquota_ = 0;
-  clear_has_setquota();
 }
 inline ::google::protobuf::int32 QuotaRsp::setquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.setquota)
   return setquota_;
 }
 inline void QuotaRsp::set_setquota(::google::protobuf::int32 value) {
-  set_has_setquota();
+  
   setquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.setquota)
 }
 
-// optional int32 setsum = 15;
-inline bool QuotaRsp::has_setsum() const {
-  return (_has_bits_[0] & 0x00004000u) != 0;
-}
-inline void QuotaRsp::set_has_setsum() {
-  _has_bits_[0] |= 0x00004000u;
-}
-inline void QuotaRsp::clear_has_setsum() {
-  _has_bits_[0] &= ~0x00004000u;
-}
+// int32 setsum = 15;
 inline void QuotaRsp::clear_setsum() {
   setsum_ = 0;
-  clear_has_setsum();
 }
 inline ::google::protobuf::int32 QuotaRsp::setsum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.setsum)
   return setsum_;
 }
 inline void QuotaRsp::set_setsum(::google::protobuf::int32 value) {
-  set_has_setsum();
+  
   setsum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.setsum)
 }
 
-// optional int32 procquota = 16;
-inline bool QuotaRsp::has_procquota() const {
-  return (_has_bits_[0] & 0x00008000u) != 0;
-}
-inline void QuotaRsp::set_has_procquota() {
-  _has_bits_[0] |= 0x00008000u;
-}
-inline void QuotaRsp::clear_has_procquota() {
-  _has_bits_[0] &= ~0x00008000u;
-}
+// int32 procquota = 16;
 inline void QuotaRsp::clear_procquota() {
   procquota_ = 0;
-  clear_has_procquota();
 }
 inline ::google::protobuf::int32 QuotaRsp::procquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QuotaRsp.procquota)
   return procquota_;
 }
 inline void QuotaRsp::set_procquota(::google::protobuf::int32 value) {
-  set_has_procquota();
+  
   procquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QuotaRsp.procquota)
 }
@@ -5521,32 +4444,22 @@ inline void QuotaRsp::set_procquota(::google::protobuf::int32 value) {
 
 // SetItem
 
-// optional bytes setkey = 1;
-inline bool SetItem::has_setkey() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void SetItem::set_has_setkey() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void SetItem::clear_has_setkey() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes setkey = 1;
 inline void SetItem::clear_setkey() {
   setkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setkey();
 }
 inline const ::std::string& SetItem::setkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.setkey)
   return setkey_.GetNoArena();
 }
 inline void SetItem::set_setkey(const ::std::string& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.setkey)
 }
 #if LANG_CXX11
 inline void SetItem::set_setkey(::std::string&& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.SetItem.setkey)
@@ -5554,56 +4467,46 @@ inline void SetItem::set_setkey(::std::string&& value) {
 #endif
 inline void SetItem::set_setkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.SetItem.setkey)
 }
 inline void SetItem::set_setkey(const void* value, size_t size) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.SetItem.setkey)
 }
 inline ::std::string* SetItem::mutable_setkey() {
-  set_has_setkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.SetItem.setkey)
   return setkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* SetItem::release_setkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.SetItem.setkey)
-  clear_has_setkey();
+  
   return setkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SetItem::set_allocated_setkey(::std::string* setkey) {
   if (setkey != NULL) {
-    set_has_setkey();
+    
   } else {
-    clear_has_setkey();
+    
   }
   setkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.SetItem.setkey)
 }
 
-// optional int32 setquota = 2;
-inline bool SetItem::has_setquota() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void SetItem::set_has_setquota() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void SetItem::clear_has_setquota() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int32 setquota = 2;
 inline void SetItem::clear_setquota() {
   setquota_ = 0;
-  clear_has_setquota();
 }
 inline ::google::protobuf::int32 SetItem::setquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.setquota)
   return setquota_;
 }
 inline void SetItem::set_setquota(::google::protobuf::int32 value) {
-  set_has_setquota();
+  
   setquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.setquota)
 }
@@ -5677,98 +4580,58 @@ SetItem::mutable_iplist() {
   return &iplist_;
 }
 
-// optional int32 feaid = 4;
-inline bool SetItem::has_feaid() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void SetItem::set_has_feaid() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void SetItem::clear_has_feaid() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int32 feaid = 4;
 inline void SetItem::clear_feaid() {
   feaid_ = 0;
-  clear_has_feaid();
 }
 inline ::google::protobuf::int32 SetItem::feaid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.feaid)
   return feaid_;
 }
 inline void SetItem::set_feaid(::google::protobuf::int32 value) {
-  set_has_feaid();
+  
   feaid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.feaid)
 }
 
-// optional int32 refuseid = 5;
-inline bool SetItem::has_refuseid() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void SetItem::set_has_refuseid() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void SetItem::clear_has_refuseid() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int32 refuseid = 5;
 inline void SetItem::clear_refuseid() {
   refuseid_ = 0;
-  clear_has_refuseid();
 }
 inline ::google::protobuf::int32 SetItem::refuseid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.refuseid)
   return refuseid_;
 }
 inline void SetItem::set_refuseid(::google::protobuf::int32 value) {
-  set_has_refuseid();
+  
   refuseid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.refuseid)
 }
 
-// optional int32 setrefuseid = 6;
-inline bool SetItem::has_setrefuseid() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void SetItem::set_has_setrefuseid() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void SetItem::clear_has_setrefuseid() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// int32 setrefuseid = 6;
 inline void SetItem::clear_setrefuseid() {
   setrefuseid_ = 0;
-  clear_has_setrefuseid();
 }
 inline ::google::protobuf::int32 SetItem::setrefuseid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.setrefuseid)
   return setrefuseid_;
 }
 inline void SetItem::set_setrefuseid(::google::protobuf::int32 value) {
-  set_has_setrefuseid();
+  
   setrefuseid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.setrefuseid)
 }
 
-// optional int32 realid = 7;
-inline bool SetItem::has_realid() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void SetItem::set_has_realid() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void SetItem::clear_has_realid() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// int32 realid = 7;
 inline void SetItem::clear_realid() {
   realid_ = 0;
-  clear_has_realid();
 }
 inline ::google::protobuf::int32 SetItem::realid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetItem.realid)
   return realid_;
 }
 inline void SetItem::set_realid(::google::protobuf::int32 value) {
-  set_has_realid();
+  
   realid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetItem.realid)
 }
@@ -5811,32 +4674,22 @@ SetMacInfo::itemlist() const {
 
 // SetFileInfo
 
-// optional bytes fpath = 1;
-inline bool SetFileInfo::has_fpath() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void SetFileInfo::set_has_fpath() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void SetFileInfo::clear_has_fpath() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes fpath = 1;
 inline void SetFileInfo::clear_fpath() {
   fpath_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_fpath();
 }
 inline const ::std::string& SetFileInfo::fpath() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetFileInfo.fpath)
   return fpath_.GetNoArena();
 }
 inline void SetFileInfo::set_fpath(const ::std::string& value) {
-  set_has_fpath();
+  
   fpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.SetFileInfo.fpath)
 }
 #if LANG_CXX11
 inline void SetFileInfo::set_fpath(::std::string&& value) {
-  set_has_fpath();
+  
   fpath_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.SetFileInfo.fpath)
@@ -5844,31 +4697,31 @@ inline void SetFileInfo::set_fpath(::std::string&& value) {
 #endif
 inline void SetFileInfo::set_fpath(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_fpath();
+  
   fpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.SetFileInfo.fpath)
 }
 inline void SetFileInfo::set_fpath(const void* value, size_t size) {
-  set_has_fpath();
+  
   fpath_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.SetFileInfo.fpath)
 }
 inline ::std::string* SetFileInfo::mutable_fpath() {
-  set_has_fpath();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.SetFileInfo.fpath)
   return fpath_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* SetFileInfo::release_fpath() {
   // @@protoc_insertion_point(field_release:open_app_desc.SetFileInfo.fpath)
-  clear_has_fpath();
+  
   return fpath_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SetFileInfo::set_allocated_fpath(::std::string* fpath) {
   if (fpath != NULL) {
-    set_has_fpath();
+    
   } else {
-    clear_has_fpath();
+    
   }
   fpath_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), fpath);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.SetFileInfo.fpath)
@@ -5947,32 +4800,22 @@ SetFileInfo::mutable_fname() {
 
 // ProcReport
 
-// optional bytes procid = 1;
-inline bool ProcReport::has_procid() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void ProcReport::set_has_procid() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void ProcReport::clear_has_procid() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes procid = 1;
 inline void ProcReport::clear_procid() {
   procid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_procid();
 }
 inline const ::std::string& ProcReport::procid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ProcReport.procid)
   return procid_.GetNoArena();
 }
 inline void ProcReport::set_procid(const ::std::string& value) {
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.ProcReport.procid)
 }
 #if LANG_CXX11
 inline void ProcReport::set_procid(::std::string&& value) {
-  set_has_procid();
+  
   procid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.ProcReport.procid)
@@ -5980,31 +4823,31 @@ inline void ProcReport::set_procid(::std::string&& value) {
 #endif
 inline void ProcReport::set_procid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.ProcReport.procid)
 }
 inline void ProcReport::set_procid(const void* value, size_t size) {
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.ProcReport.procid)
 }
 inline ::std::string* ProcReport::mutable_procid() {
-  set_has_procid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.ProcReport.procid)
   return procid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* ProcReport::release_procid() {
   // @@protoc_insertion_point(field_release:open_app_desc.ProcReport.procid)
-  clear_has_procid();
+  
   return procid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProcReport::set_allocated_procid(::std::string* procid) {
   if (procid != NULL) {
-    set_has_procid();
+    
   } else {
-    clear_has_procid();
+    
   }
   procid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), procid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.ProcReport.procid)
@@ -6040,32 +4883,22 @@ ProcReport::proclist() const {
   return proclist_;
 }
 
-// optional bytes setkey = 3;
-inline bool ProcReport::has_setkey() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void ProcReport::set_has_setkey() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void ProcReport::clear_has_setkey() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes setkey = 3;
 inline void ProcReport::clear_setkey() {
   setkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setkey();
 }
 inline const ::std::string& ProcReport::setkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ProcReport.setkey)
   return setkey_.GetNoArena();
 }
 inline void ProcReport::set_setkey(const ::std::string& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.ProcReport.setkey)
 }
 #if LANG_CXX11
 inline void ProcReport::set_setkey(::std::string&& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.ProcReport.setkey)
@@ -6073,31 +4906,31 @@ inline void ProcReport::set_setkey(::std::string&& value) {
 #endif
 inline void ProcReport::set_setkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.ProcReport.setkey)
 }
 inline void ProcReport::set_setkey(const void* value, size_t size) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.ProcReport.setkey)
 }
 inline ::std::string* ProcReport::mutable_setkey() {
-  set_has_setkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.ProcReport.setkey)
   return setkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* ProcReport::release_setkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.ProcReport.setkey)
-  clear_has_setkey();
+  
   return setkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProcReport::set_allocated_setkey(::std::string* setkey) {
   if (setkey != NULL) {
-    set_has_setkey();
+    
   } else {
-    clear_has_setkey();
+    
   }
   setkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.ProcReport.setkey)
@@ -6107,32 +4940,22 @@ inline void ProcReport::set_allocated_setkey(::std::string* setkey) {
 
 // SetQuotaReq
 
-// optional bytes setkey = 1;
-inline bool SetQuotaReq::has_setkey() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void SetQuotaReq::set_has_setkey() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void SetQuotaReq::clear_has_setkey() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes setkey = 1;
 inline void SetQuotaReq::clear_setkey() {
   setkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setkey();
 }
 inline const ::std::string& SetQuotaReq::setkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetQuotaReq.setkey)
   return setkey_.GetNoArena();
 }
 inline void SetQuotaReq::set_setkey(const ::std::string& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.SetQuotaReq.setkey)
 }
 #if LANG_CXX11
 inline void SetQuotaReq::set_setkey(::std::string&& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.SetQuotaReq.setkey)
@@ -6140,31 +4963,31 @@ inline void SetQuotaReq::set_setkey(::std::string&& value) {
 #endif
 inline void SetQuotaReq::set_setkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.SetQuotaReq.setkey)
 }
 inline void SetQuotaReq::set_setkey(const void* value, size_t size) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.SetQuotaReq.setkey)
 }
 inline ::std::string* SetQuotaReq::mutable_setkey() {
-  set_has_setkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.SetQuotaReq.setkey)
   return setkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* SetQuotaReq::release_setkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.SetQuotaReq.setkey)
-  clear_has_setkey();
+  
   return setkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SetQuotaReq::set_allocated_setkey(::std::string* setkey) {
   if (setkey != NULL) {
-    set_has_setkey();
+    
   } else {
-    clear_has_setkey();
+    
   }
   setkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.SetQuotaReq.setkey)
@@ -6200,50 +5023,30 @@ SetQuotaReq::itemlist() const {
   return itemlist_;
 }
 
-// optional int32 workernum = 3;
-inline bool SetQuotaReq::has_workernum() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void SetQuotaReq::set_has_workernum() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void SetQuotaReq::clear_has_workernum() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int32 workernum = 3;
 inline void SetQuotaReq::clear_workernum() {
   workernum_ = 0;
-  clear_has_workernum();
 }
 inline ::google::protobuf::int32 SetQuotaReq::workernum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetQuotaReq.workernum)
   return workernum_;
 }
 inline void SetQuotaReq::set_workernum(::google::protobuf::int32 value) {
-  set_has_workernum();
+  
   workernum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetQuotaReq.workernum)
 }
 
-// optional int32 id = 4;
-inline bool SetQuotaReq::has_id() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void SetQuotaReq::set_has_id() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void SetQuotaReq::clear_has_id() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int32 id = 4;
 inline void SetQuotaReq::clear_id() {
   id_ = 0;
-  clear_has_id();
 }
 inline ::google::protobuf::int32 SetQuotaReq::id() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetQuotaReq.id)
   return id_;
 }
 inline void SetQuotaReq::set_id(::google::protobuf::int32 value) {
-  set_has_id();
+  
   id_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetQuotaReq.id)
 }
@@ -6282,32 +5085,22 @@ SetQuotaReq::procitem() const {
 
 // ProcQ
 
-// optional bytes procid = 1;
-inline bool ProcQ::has_procid() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void ProcQ::set_has_procid() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void ProcQ::clear_has_procid() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes procid = 1;
 inline void ProcQ::clear_procid() {
   procid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_procid();
 }
 inline const ::std::string& ProcQ::procid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ProcQ.procid)
   return procid_.GetNoArena();
 }
 inline void ProcQ::set_procid(const ::std::string& value) {
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.ProcQ.procid)
 }
 #if LANG_CXX11
 inline void ProcQ::set_procid(::std::string&& value) {
-  set_has_procid();
+  
   procid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.ProcQ.procid)
@@ -6315,56 +5108,46 @@ inline void ProcQ::set_procid(::std::string&& value) {
 #endif
 inline void ProcQ::set_procid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.ProcQ.procid)
 }
 inline void ProcQ::set_procid(const void* value, size_t size) {
-  set_has_procid();
+  
   procid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.ProcQ.procid)
 }
 inline ::std::string* ProcQ::mutable_procid() {
-  set_has_procid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.ProcQ.procid)
   return procid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* ProcQ::release_procid() {
   // @@protoc_insertion_point(field_release:open_app_desc.ProcQ.procid)
-  clear_has_procid();
+  
   return procid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void ProcQ::set_allocated_procid(::std::string* procid) {
   if (procid != NULL) {
-    set_has_procid();
+    
   } else {
-    clear_has_procid();
+    
   }
   procid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), procid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.ProcQ.procid)
 }
 
-// optional int32 procquota = 2;
-inline bool ProcQ::has_procquota() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void ProcQ::set_has_procquota() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void ProcQ::clear_has_procquota() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int32 procquota = 2;
 inline void ProcQ::clear_procquota() {
   procquota_ = 0;
-  clear_has_procquota();
 }
 inline ::google::protobuf::int32 ProcQ::procquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.ProcQ.procquota)
   return procquota_;
 }
 inline void ProcQ::set_procquota(::google::protobuf::int32 value) {
-  set_has_procquota();
+  
   procquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.ProcQ.procquota)
 }
@@ -6373,32 +5156,22 @@ inline void ProcQ::set_procquota(::google::protobuf::int32 value) {
 
 // SetQuotaRsp
 
-// optional bytes setkey = 1;
-inline bool SetQuotaRsp::has_setkey() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void SetQuotaRsp::set_has_setkey() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void SetQuotaRsp::clear_has_setkey() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes setkey = 1;
 inline void SetQuotaRsp::clear_setkey() {
   setkey_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setkey();
 }
 inline const ::std::string& SetQuotaRsp::setkey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetQuotaRsp.setkey)
   return setkey_.GetNoArena();
 }
 inline void SetQuotaRsp::set_setkey(const ::std::string& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.SetQuotaRsp.setkey)
 }
 #if LANG_CXX11
 inline void SetQuotaRsp::set_setkey(::std::string&& value) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.SetQuotaRsp.setkey)
@@ -6406,56 +5179,46 @@ inline void SetQuotaRsp::set_setkey(::std::string&& value) {
 #endif
 inline void SetQuotaRsp::set_setkey(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.SetQuotaRsp.setkey)
 }
 inline void SetQuotaRsp::set_setkey(const void* value, size_t size) {
-  set_has_setkey();
+  
   setkey_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.SetQuotaRsp.setkey)
 }
 inline ::std::string* SetQuotaRsp::mutable_setkey() {
-  set_has_setkey();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.SetQuotaRsp.setkey)
   return setkey_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* SetQuotaRsp::release_setkey() {
   // @@protoc_insertion_point(field_release:open_app_desc.SetQuotaRsp.setkey)
-  clear_has_setkey();
+  
   return setkey_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SetQuotaRsp::set_allocated_setkey(::std::string* setkey) {
   if (setkey != NULL) {
-    set_has_setkey();
+    
   } else {
-    clear_has_setkey();
+    
   }
   setkey_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setkey);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.SetQuotaRsp.setkey)
 }
 
-// optional int32 setsum = 2;
-inline bool SetQuotaRsp::has_setsum() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void SetQuotaRsp::set_has_setsum() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void SetQuotaRsp::clear_has_setsum() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// int32 setsum = 2;
 inline void SetQuotaRsp::clear_setsum() {
   setsum_ = 0;
-  clear_has_setsum();
 }
 inline ::google::protobuf::int32 SetQuotaRsp::setsum() const {
   // @@protoc_insertion_point(field_get:open_app_desc.SetQuotaRsp.setsum)
   return setsum_;
 }
 inline void SetQuotaRsp::set_setsum(::google::protobuf::int32 value) {
-  set_has_setsum();
+  
   setsum_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.SetQuotaRsp.setsum)
 }
@@ -6494,56 +5257,36 @@ SetQuotaRsp::procq() const {
 
 // RealReport
 
-// optional int32 keytype = 1;
-inline bool RealReport::has_keytype() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void RealReport::set_has_keytype() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void RealReport::clear_has_keytype() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int32 keytype = 1;
 inline void RealReport::clear_keytype() {
   keytype_ = 0;
-  clear_has_keytype();
 }
 inline ::google::protobuf::int32 RealReport::keytype() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.keytype)
   return keytype_;
 }
 inline void RealReport::set_keytype(::google::protobuf::int32 value) {
-  set_has_keytype();
+  
   keytype_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.keytype)
 }
 
-// optional bytes keyname = 2;
-inline bool RealReport::has_keyname() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void RealReport::set_has_keyname() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void RealReport::clear_has_keyname() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes keyname = 2;
 inline void RealReport::clear_keyname() {
   keyname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_keyname();
 }
 inline const ::std::string& RealReport::keyname() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.keyname)
   return keyname_.GetNoArena();
 }
 inline void RealReport::set_keyname(const ::std::string& value) {
-  set_has_keyname();
+  
   keyname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.keyname)
 }
 #if LANG_CXX11
 inline void RealReport::set_keyname(::std::string&& value) {
-  set_has_keyname();
+  
   keyname_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.RealReport.keyname)
@@ -6551,86 +5294,66 @@ inline void RealReport::set_keyname(::std::string&& value) {
 #endif
 inline void RealReport::set_keyname(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_keyname();
+  
   keyname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.RealReport.keyname)
 }
 inline void RealReport::set_keyname(const void* value, size_t size) {
-  set_has_keyname();
+  
   keyname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.RealReport.keyname)
 }
 inline ::std::string* RealReport::mutable_keyname() {
-  set_has_keyname();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.RealReport.keyname)
   return keyname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* RealReport::release_keyname() {
   // @@protoc_insertion_point(field_release:open_app_desc.RealReport.keyname)
-  clear_has_keyname();
+  
   return keyname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void RealReport::set_allocated_keyname(::std::string* keyname) {
   if (keyname != NULL) {
-    set_has_keyname();
+    
   } else {
-    clear_has_keyname();
+    
   }
   keyname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), keyname);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.RealReport.keyname)
 }
 
-// optional int64 timekey = 3;
-inline bool RealReport::has_timekey() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void RealReport::set_has_timekey() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void RealReport::clear_has_timekey() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// int64 timekey = 3;
 inline void RealReport::clear_timekey() {
   timekey_ = GOOGLE_LONGLONG(0);
-  clear_has_timekey();
 }
 inline ::google::protobuf::int64 RealReport::timekey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.timekey)
   return timekey_;
 }
 inline void RealReport::set_timekey(::google::protobuf::int64 value) {
-  set_has_timekey();
+  
   timekey_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.timekey)
 }
 
-// optional bytes setname = 4;
-inline bool RealReport::has_setname() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void RealReport::set_has_setname() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void RealReport::clear_has_setname() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes setname = 4;
 inline void RealReport::clear_setname() {
   setname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setname();
 }
 inline const ::std::string& RealReport::setname() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.setname)
   return setname_.GetNoArena();
 }
 inline void RealReport::set_setname(const ::std::string& value) {
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.setname)
 }
 #if LANG_CXX11
 inline void RealReport::set_setname(::std::string&& value) {
-  set_has_setname();
+  
   setname_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.RealReport.setname)
@@ -6638,152 +5361,102 @@ inline void RealReport::set_setname(::std::string&& value) {
 #endif
 inline void RealReport::set_setname(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.RealReport.setname)
 }
 inline void RealReport::set_setname(const void* value, size_t size) {
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.RealReport.setname)
 }
 inline ::std::string* RealReport::mutable_setname() {
-  set_has_setname();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.RealReport.setname)
   return setname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* RealReport::release_setname() {
   // @@protoc_insertion_point(field_release:open_app_desc.RealReport.setname)
-  clear_has_setname();
+  
   return setname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void RealReport::set_allocated_setname(::std::string* setname) {
   if (setname != NULL) {
-    set_has_setname();
+    
   } else {
-    clear_has_setname();
+    
   }
   setname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setname);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.RealReport.setname)
 }
 
-// optional int32 total = 5;
-inline bool RealReport::has_total() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void RealReport::set_has_total() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void RealReport::clear_has_total() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// int32 total = 5;
 inline void RealReport::clear_total() {
   total_ = 0;
-  clear_has_total();
 }
 inline ::google::protobuf::int32 RealReport::total() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.total)
   return total_;
 }
 inline void RealReport::set_total(::google::protobuf::int32 value) {
-  set_has_total();
+  
   total_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.total)
 }
 
-// optional int32 refuse = 6;
-inline bool RealReport::has_refuse() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void RealReport::set_has_refuse() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void RealReport::clear_has_refuse() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// int32 refuse = 6;
 inline void RealReport::clear_refuse() {
   refuse_ = 0;
-  clear_has_refuse();
 }
 inline ::google::protobuf::int32 RealReport::refuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.refuse)
   return refuse_;
 }
 inline void RealReport::set_refuse(::google::protobuf::int32 value) {
-  set_has_refuse();
+  
   refuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.refuse)
 }
 
-// optional int32 setrefuse = 7;
-inline bool RealReport::has_setrefuse() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void RealReport::set_has_setrefuse() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void RealReport::clear_has_setrefuse() {
-  _has_bits_[0] &= ~0x00000040u;
-}
+// int32 setrefuse = 7;
 inline void RealReport::clear_setrefuse() {
   setrefuse_ = 0;
-  clear_has_setrefuse();
 }
 inline ::google::protobuf::int32 RealReport::setrefuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.setrefuse)
   return setrefuse_;
 }
 inline void RealReport::set_setrefuse(::google::protobuf::int32 value) {
-  set_has_setrefuse();
+  
   setrefuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.setrefuse)
 }
 
-// optional int32 real = 8;
-inline bool RealReport::has_real() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void RealReport::set_has_real() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void RealReport::clear_has_real() {
-  _has_bits_[0] &= ~0x00000080u;
-}
+// int32 real = 8;
 inline void RealReport::clear_real() {
   real_ = 0;
-  clear_has_real();
 }
 inline ::google::protobuf::int32 RealReport::real() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.real)
   return real_;
 }
 inline void RealReport::set_real(::google::protobuf::int32 value) {
-  set_has_real();
+  
   real_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.real)
 }
 
-// optional int32 quota = 9;
-inline bool RealReport::has_quota() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
-}
-inline void RealReport::set_has_quota() {
-  _has_bits_[0] |= 0x00000100u;
-}
-inline void RealReport::clear_has_quota() {
-  _has_bits_[0] &= ~0x00000100u;
-}
+// int32 quota = 9;
 inline void RealReport::clear_quota() {
   quota_ = 0;
-  clear_has_quota();
 }
 inline ::google::protobuf::int32 RealReport::quota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.RealReport.quota)
   return quota_;
 }
 inline void RealReport::set_quota(::google::protobuf::int32 value) {
-  set_has_quota();
+  
   quota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.RealReport.quota)
 }
@@ -6792,32 +5465,22 @@ inline void RealReport::set_quota(::google::protobuf::int32 value) {
 
 // QReport
 
-// optional bytes actid = 1;
-inline bool QReport::has_actid() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void QReport::set_has_actid() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void QReport::clear_has_actid() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// bytes actid = 1;
 inline void QReport::clear_actid() {
   actid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_actid();
 }
 inline const ::std::string& QReport::actid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.actid)
   return actid_.GetNoArena();
 }
 inline void QReport::set_actid(const ::std::string& value) {
-  set_has_actid();
+  
   actid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.actid)
 }
 #if LANG_CXX11
 inline void QReport::set_actid(::std::string&& value) {
-  set_has_actid();
+  
   actid_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QReport.actid)
@@ -6825,62 +5488,52 @@ inline void QReport::set_actid(::std::string&& value) {
 #endif
 inline void QReport::set_actid(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_actid();
+  
   actid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QReport.actid)
 }
 inline void QReport::set_actid(const void* value, size_t size) {
-  set_has_actid();
+  
   actid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QReport.actid)
 }
 inline ::std::string* QReport::mutable_actid() {
-  set_has_actid();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QReport.actid)
   return actid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QReport::release_actid() {
   // @@protoc_insertion_point(field_release:open_app_desc.QReport.actid)
-  clear_has_actid();
+  
   return actid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QReport::set_allocated_actid(::std::string* actid) {
   if (actid != NULL) {
-    set_has_actid();
+    
   } else {
-    clear_has_actid();
+    
   }
   actid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), actid);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QReport.actid)
 }
 
-// optional bytes ip = 2;
-inline bool QReport::has_ip() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void QReport::set_has_ip() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void QReport::clear_has_ip() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// bytes ip = 2;
 inline void QReport::clear_ip() {
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_ip();
 }
 inline const ::std::string& QReport::ip() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.ip)
   return ip_.GetNoArena();
 }
 inline void QReport::set_ip(const ::std::string& value) {
-  set_has_ip();
+  
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.ip)
 }
 #if LANG_CXX11
 inline void QReport::set_ip(::std::string&& value) {
-  set_has_ip();
+  
   ip_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QReport.ip)
@@ -6888,110 +5541,80 @@ inline void QReport::set_ip(::std::string&& value) {
 #endif
 inline void QReport::set_ip(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_ip();
+  
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QReport.ip)
 }
 inline void QReport::set_ip(const void* value, size_t size) {
-  set_has_ip();
+  
   ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QReport.ip)
 }
 inline ::std::string* QReport::mutable_ip() {
-  set_has_ip();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QReport.ip)
   return ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QReport::release_ip() {
   // @@protoc_insertion_point(field_release:open_app_desc.QReport.ip)
-  clear_has_ip();
+  
   return ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QReport::set_allocated_ip(::std::string* ip) {
   if (ip != NULL) {
-    set_has_ip();
+    
   } else {
-    clear_has_ip();
+    
   }
   ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QReport.ip)
 }
 
-// optional int32 procid = 3;
-inline bool QReport::has_procid() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void QReport::set_has_procid() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void QReport::clear_has_procid() {
-  _has_bits_[0] &= ~0x00000010u;
-}
+// int32 procid = 3;
 inline void QReport::clear_procid() {
   procid_ = 0;
-  clear_has_procid();
 }
 inline ::google::protobuf::int32 QReport::procid() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.procid)
   return procid_;
 }
 inline void QReport::set_procid(::google::protobuf::int32 value) {
-  set_has_procid();
+  
   procid_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.procid)
 }
 
-// optional int64 timekey = 4;
-inline bool QReport::has_timekey() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void QReport::set_has_timekey() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void QReport::clear_has_timekey() {
-  _has_bits_[0] &= ~0x00000008u;
-}
+// int64 timekey = 4;
 inline void QReport::clear_timekey() {
   timekey_ = GOOGLE_LONGLONG(0);
-  clear_has_timekey();
 }
 inline ::google::protobuf::int64 QReport::timekey() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.timekey)
   return timekey_;
 }
 inline void QReport::set_timekey(::google::protobuf::int64 value) {
-  set_has_timekey();
+  
   timekey_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.timekey)
 }
 
-// optional bytes setname = 5;
-inline bool QReport::has_setname() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void QReport::set_has_setname() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void QReport::clear_has_setname() {
-  _has_bits_[0] &= ~0x00000004u;
-}
+// bytes setname = 5;
 inline void QReport::clear_setname() {
   setname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_setname();
 }
 inline const ::std::string& QReport::setname() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.setname)
   return setname_.GetNoArena();
 }
 inline void QReport::set_setname(const ::std::string& value) {
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.setname)
 }
 #if LANG_CXX11
 inline void QReport::set_setname(::std::string&& value) {
-  set_has_setname();
+  
   setname_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
   // @@protoc_insertion_point(field_set_rvalue:open_app_desc.QReport.setname)
@@ -6999,176 +5622,116 @@ inline void QReport::set_setname(::std::string&& value) {
 #endif
 inline void QReport::set_setname(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:open_app_desc.QReport.setname)
 }
 inline void QReport::set_setname(const void* value, size_t size) {
-  set_has_setname();
+  
   setname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:open_app_desc.QReport.setname)
 }
 inline ::std::string* QReport::mutable_setname() {
-  set_has_setname();
+  
   // @@protoc_insertion_point(field_mutable:open_app_desc.QReport.setname)
   return setname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* QReport::release_setname() {
   // @@protoc_insertion_point(field_release:open_app_desc.QReport.setname)
-  clear_has_setname();
+  
   return setname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void QReport::set_allocated_setname(::std::string* setname) {
   if (setname != NULL) {
-    set_has_setname();
+    
   } else {
-    clear_has_setname();
+    
   }
   setname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), setname);
   // @@protoc_insertion_point(field_set_allocated:open_app_desc.QReport.setname)
 }
 
-// optional int32 actquota = 6;
-inline bool QReport::has_actquota() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void QReport::set_has_actquota() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void QReport::clear_has_actquota() {
-  _has_bits_[0] &= ~0x00000020u;
-}
+// int32 actquota = 6;
 inline void QReport::clear_actquota() {
   actquota_ = 0;
-  clear_has_actquota();
 }
 inline ::google::protobuf::int32 QReport::actquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.actquota)
   return actquota_;
 }
 inline void QReport::set_actquota(::google::protobuf::int32 value) {
-  set_has_actquota();
+  
   actquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.actquota)
 }
 
-// optional int32 setquota = 7;
-inline bool QReport::has_setquota() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void QReport::set_has_setquota() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void QReport::clear_has_setquota() {
-  _has_bits_[0] &= ~0x00000040u;
-}
+// int32 setquota = 7;
 inline void QReport::clear_setquota() {
   setquota_ = 0;
-  clear_has_setquota();
 }
 inline ::google::protobuf::int32 QReport::setquota() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.setquota)
   return setquota_;
 }
 inline void QReport::set_setquota(::google::protobuf::int32 value) {
-  set_has_setquota();
+  
   setquota_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.setquota)
 }
 
-// optional int32 total = 8;
-inline bool QReport::has_total() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void QReport::set_has_total() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void QReport::clear_has_total() {
-  _has_bits_[0] &= ~0x00000080u;
-}
+// int32 total = 8;
 inline void QReport::clear_total() {
   total_ = 0;
-  clear_has_total();
 }
 inline ::google::protobuf::int32 QReport::total() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.total)
   return total_;
 }
 inline void QReport::set_total(::google::protobuf::int32 value) {
-  set_has_total();
+  
   total_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.total)
 }
 
-// optional int32 refuse = 9;
-inline bool QReport::has_refuse() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
-}
-inline void QReport::set_has_refuse() {
-  _has_bits_[0] |= 0x00000100u;
-}
-inline void QReport::clear_has_refuse() {
-  _has_bits_[0] &= ~0x00000100u;
-}
+// int32 refuse = 9;
 inline void QReport::clear_refuse() {
   refuse_ = 0;
-  clear_has_refuse();
 }
 inline ::google::protobuf::int32 QReport::refuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.refuse)
   return refuse_;
 }
 inline void QReport::set_refuse(::google::protobuf::int32 value) {
-  set_has_refuse();
+  
   refuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.refuse)
 }
 
-// optional int32 setrefuse = 10;
-inline bool QReport::has_setrefuse() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
-}
-inline void QReport::set_has_setrefuse() {
-  _has_bits_[0] |= 0x00000200u;
-}
-inline void QReport::clear_has_setrefuse() {
-  _has_bits_[0] &= ~0x00000200u;
-}
+// int32 setrefuse = 10;
 inline void QReport::clear_setrefuse() {
   setrefuse_ = 0;
-  clear_has_setrefuse();
 }
 inline ::google::protobuf::int32 QReport::setrefuse() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.setrefuse)
   return setrefuse_;
 }
 inline void QReport::set_setrefuse(::google::protobuf::int32 value) {
-  set_has_setrefuse();
+  
   setrefuse_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.setrefuse)
 }
 
-// optional int32 real = 11;
-inline bool QReport::has_real() const {
-  return (_has_bits_[0] & 0x00000400u) != 0;
-}
-inline void QReport::set_has_real() {
-  _has_bits_[0] |= 0x00000400u;
-}
-inline void QReport::clear_has_real() {
-  _has_bits_[0] &= ~0x00000400u;
-}
+// int32 real = 11;
 inline void QReport::clear_real() {
   real_ = 0;
-  clear_has_real();
 }
 inline ::google::protobuf::int32 QReport::real() const {
   // @@protoc_insertion_point(field_get:open_app_desc.QReport.real)
   return real_;
 }
 inline void QReport::set_real(::google::protobuf::int32 value) {
-  set_has_real();
+  
   real_ = value;
   // @@protoc_insertion_point(field_set:open_app_desc.QReport.real)
 }

@@ -778,11 +778,11 @@ class ServiceQua {
     static int32_t ReportQuery(const T& act) {
         if (act.has_flux()) {
             const open_app_desc::Flux& flux = act.flux();
-            if ((flux.has_queryid()) && (flux.queryid() > 0)) {
+            if (flux.queryid() > 0) {
             } else {
             }
 
-            if ((flux.has_totalflowid()) && (flux.totalflowid() > 0)) {
+            if (flux.totalflowid() > 0) {
             } else {
             }
         } else {
@@ -796,11 +796,11 @@ class ServiceQua {
     static int32_t ReportAttend(const T& act) {
         if (act.has_flux()) {
             const open_app_desc::Flux& flux = act.flux();
-            if ((flux.has_attendid()) && (flux.attendid() > 0)) {
+            if (flux.attendid() > 0) {
             } else {
             }
 
-            if ((flux.has_totalflowid()) && (flux.totalflowid() > 0)) {
+            if (flux.totalflowid() > 0) {
             } else {
             }
         } else {
@@ -813,7 +813,7 @@ class ServiceQua {
         bool ret = false;
         if (act.has_flux()) {
             const open_app_desc::Flux& flux = act.flux();
-            if (flux.has_queryrate()) {
+            if (flux.queryrate()>0) {
                 uint32_t instance_rate = flux.queryrate();
                 if ((instance_rate > 0) && (instance_rate < s_ratio)) {
                     if ( !HitProba(instance_rate)) {
@@ -835,25 +835,22 @@ class ServiceQua {
         attendtype = 0;
         if (act.has_flux()) {
             const open_app_desc::Flux& flux = act.flux();
-            if (flux.has_flowswitch()) {
-                if (flux.flowswitch() == 0) {
-                    ret = false;
-                } else {
-                    ret = true;
-                }
+            if (flux.flowswitch() == 0) {
+                ret = false;
             } else {
                 ret = true;
             }
+            
             uint32_t type = 1;
-            if (flux.has_type() && (2 == flux.type())) {
+            if (2 == flux.type()) {
                 type = 2;
             }
 
-            if ((flux.has_queryquota()) && (flux.queryquota() > 0)) {
+            if (flux.queryquota() > 0) {
                 querytype = type;
             }
 
-            if ((flux.has_attendquota()) && (flux.attendquota() > 0)) {
+            if (flux.attendquota() > 0) {
                 attendtype = type;
             }
         }
@@ -906,7 +903,7 @@ class ServiceQua {
     template <typename T>
     static uint32_t GetSETCfgFirst(const T& req, const std::string& remoteip,
                             string& setkey, SETCfgFirst *&psetcfgfirst) {
-        if (req.has_setkey() && (req.setkey().size() > 0)) {
+        if (req.setkey().size() > 0) {
             setkey = req.setkey();
         } else {
             if (remoteip.size() > 0) {

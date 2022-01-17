@@ -284,10 +284,8 @@ bool ServiceQua::SysOverload(const open_app_desc::Flux *flux) {
 uint32_t ServiceQua::GetWinLen(const open_app_desc::Flux *flux) {
     uint32_t ret = s_win_len;
     if (flux != NULL) {
-        if (flux->has_winlen()) {
-            if ((flux->winlen() > 0) && (flux->winlen() <= 30)) {
-                ret = flux->winlen();
-            }
+        if ((flux->winlen() > 0) && (flux->winlen() <= 30)) {
+            ret = flux->winlen();
         }
     }
 
@@ -297,10 +295,8 @@ uint32_t ServiceQua::GetWinLen(const open_app_desc::Flux *flux) {
 uint32_t ServiceQua::GetErrNum(const open_app_desc::Flux *flux) {
     uint32_t ret = s_threshold;
     if (flux != NULL) {
-        if (flux->has_errnum()) {
-            if (flux->errnum() > 0) {
-                ret = flux->errnum();
-            }
+        if (flux->errnum() > 0) {
+            ret = flux->errnum();
         }
     }
 
@@ -310,10 +306,8 @@ uint32_t ServiceQua::GetErrNum(const open_app_desc::Flux *flux) {
 uint32_t ServiceQua::GetErrNumRate(const open_app_desc::Flux *flux) {
     uint32_t ret = s_flow_threshold;
     if (flux != NULL) {
-        if (flux->has_errnumrate()) {
-            if ((flux->errnumrate() > 0) && (flux->errnumrate() < 100)) {
-                ret = flux->errnumrate();
-            }
+        if ((flux->errnumrate() > 0) && (flux->errnumrate() < 100)) {
+            ret = flux->errnumrate();
         }
     }
 
@@ -323,10 +317,8 @@ uint32_t ServiceQua::GetErrNumRate(const open_app_desc::Flux *flux) {
 uint32_t ServiceQua::GetCPURate(const open_app_desc::Flux *flux) {
     uint32_t ret = 0;  //  s_cpu_threshold;
     if (flux != NULL) {
-        if (flux->has_cpurate()) {
-            if ((flux->cpurate() > 0) && (flux->cpurate() < 100)) {
-                ret = flux->cpurate();
-            }
+        if ((flux->cpurate() > 0) && (flux->cpurate() < 100)) {
+            ret = flux->cpurate();
         }
     }
 
@@ -336,10 +328,8 @@ uint32_t ServiceQua::GetCPURate(const open_app_desc::Flux *flux) {
 time_t ServiceQua::GetCPUInterval(const open_app_desc::Flux *flux) {
     time_t ret = s_interval;
     if (flux != NULL) {
-        if (flux->has_cpuinterval()) {
-            if ((flux->cpuinterval() > 0) && (flux->cpuinterval() < 10)) {
-                ret = flux->cpuinterval();
-            }
+        if ((flux->cpuinterval() > 0) && (flux->cpuinterval() < 10)) {
+            ret = flux->cpuinterval();
         }
     }
 
@@ -349,10 +339,8 @@ time_t ServiceQua::GetCPUInterval(const open_app_desc::Flux *flux) {
 uint32_t ServiceQua::GetMemRate(const open_app_desc::Flux *flux) {
     uint32_t ret = 0;  //  s_mem_threshold;
     if (flux != NULL) {
-        if (flux->has_memrate()) {
-            if ((flux->memrate() > 0) && (flux->memrate() < 100)) {
-                ret = flux->memrate();
-            }
+        if ((flux->memrate() > 0) && (flux->memrate() < 100)) {
+            ret = flux->memrate();
         }
     }
 
@@ -580,11 +568,11 @@ int32_t ServiceQua::FluxQuota(string& keyid, int32_t groupid,
                 int ret1 = cmd.ParseRspTmplt(buf + 4, buf_size - 4);
                 if (0 == ret1) {
                     const open_app_desc::QuotaRsp& rsp = cmd.spe_rsp;
-                    if ((rsp.has_localq()) && (0 == rsp.localq())) {
+                    if (0 == rsp.localq()) {
                         return 2;
                     }
 
-                    if ((rsp.procquota()) && (0 == rsp.procquota())) {
+                    if (0 == rsp.procquota()) {
                         return 3;
                     }
                 }
@@ -765,8 +753,8 @@ int32_t ServiceQua::CheckQuota(string& keyid, int32_t groupid, int32_t totalquot
                             const open_app_desc::QuotaRsp& rsp = cmd.spe_rsp;
                             SF_LOG(LOG_DEBUG, "ServiceQua::CheckQuota rsp:%s\n",
                                     rsp.DebugString().c_str());
-                            if ((rsp.has_key()) && (rsp.key() == keyid)) {
-                                if (rsp.has_localq()) {
+                            if (rsp.key() == keyid) {
+                                if (rsp.localq()>0) {
                                     uint32_t arrind = (local.index++) % QUOTA_ARRAY_NUM;
                                     local.qarray[arrind] = rsp.localq();
                                     local.localquotaver = local.GetAverQ();
@@ -783,20 +771,20 @@ int32_t ServiceQua::CheckQuota(string& keyid, int32_t groupid, int32_t totalquot
                                         local.localquota = rsp.localq();
                                     }
 
-                                    if (rsp.has_totalworkernum()) {
+                                    if (rsp.totalworkernum()>0) {
                                         local.totalworkernum = rsp.totalworkernum();
                                     }
 
                                     // add set logic
-                                    if (rsp.has_setquota()) {
+                                    if (rsp.setquota()>0) {
                                         local.setquota = rsp.setquota();
                                     }
 
-                                    if (rsp.has_setsum()) {
+                                    if (rsp.setsum()>0) {
                                         local.setsum = rsp.setsum();
                                     }
 
-                                    if (rsp.has_procquota()) {
+                                    if (rsp.procquota()>0) {
                                         local.procquota = rsp.procquota();
                                     }
                                     SF_LOG(LOG_DEBUG,
@@ -910,14 +898,14 @@ int32_t ServiceQua::CheckQuota(string& keyid, int32_t groupid, int32_t totalquot
 static const time_t s_service_runing_time = 60 *  5;
 
 int32_t GetRefuse(const open_app_desc::ReportItem& item) {
-    if (item.has_refuse())
+    if (item.refuse()>0)
         return item.refuse();
     else
         return 0;
 }
 
 int32_t GetSetRefuse(const open_app_desc::ReportItem& item) {
-    if (item.has_setrefuse())
+    if (item.setrefuse()>0)
         return item.setrefuse();
     else
         return 0;
@@ -957,7 +945,7 @@ int32_t ServiceQua::RealReport(int32_t keytype, const string& keyname,
         if (total.size() > 0) {
             if ((0 == port) || (0 == num)) {
                 string tmpip = ip;
-                int tmpport = port;
+                //int tmpport = port;
                 GetL5IpAndPort(s_report_mod, s_report_cmd, ip, port);
                 //  if ((tmpip != ip) || (tmpport != port)) {
                 //  }
@@ -1011,7 +999,7 @@ int32_t ServiceQua::QuotaReport(const string& actkey, const string& ip,
         if (total.size() > 0) {
             if ((0 == port) || (0 == num)) {
                 string tmpip = reportip;
-                int tmpport = port;
+                //int tmpport = port;
                 GetL5IpAndPort(s_report_mod, s_report_cmd, reportip, port);
                 //  if ((tmpip != reportip) || (tmpport != port)) {
                 //  }
@@ -1130,7 +1118,7 @@ int32_t ReSetAddAll(TIMEITEM& titem, const open_app_desc::ReportItem& item,
 
 void ShowFirstReq(const string& ip, const open_app_desc::QuotaReq& req) {
     return;
-    bool flag = (req.has_key()) && ("ame_167145" == req.key());
+    bool flag = "ame_167145" == req.key();
     if (!flag) {
         return;
     }
@@ -1178,7 +1166,7 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
 
     stringstream ssid;
     ssid << info.remoteip;
-    if (req.has_id()) {
+    if (req.id()>0) {
         ssid << "_" << req.id();
         groupid = req.id();
     }
@@ -1197,24 +1185,22 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
     //  get quota
     uint32_t actquota = 0;
     if (flux != NULL) {
-        if (flux->has_queryquota()) {
-            if (flux->queryquota() > 0) {
-                actquota = flux->queryquota();
-            }
+        if (flux->queryquota() > 0) {
+            actquota = flux->queryquota();
         }
     } else {
-        if ((req.has_totalquota()) && (req.totalquota() > 0)) {
+        if (req.totalquota() > 0) {
             actquota = req.totalquota();
         }
     }
 
     int32_t localquota = 0;
-    if ((req.has_localquota()) && (req.localquota() > 0)) {
+    if (req.localquota() > 0) {
         localquota = req.localquota();
     }
 
     int hostworkernum = 0;
-    if ((req.has_workernum()) && (req.workernum() > 0)) {
+    if (req.workernum() > 0) {
         hostworkernum = req.workernum();
     }
 
@@ -1226,9 +1212,9 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
     //  gen key
     if (actquota > 0) {
         string actkey;
-        if ((req.has_key()) && (req.key().size() > 0)) {
+        if (req.key().size() > 0) {
             actkey = req.key();
-        } else if ((req.has_referkey()) && (req.referkey().size() > 0)) {
+        } else if (req.referkey().size() > 0) {
             actkey = req.referkey();
         }
 
@@ -1245,8 +1231,7 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
             //  update sum
             for (int i = 0; i < req.reportitem_size(); i++) {
                 const open_app_desc::ReportItem& item = req.reportitem(i);
-                if ((item.has_timekey()) && (item.timekey() > 0) &&
-                    (item.has_reportnum()) && (item.reportnum() > 0)) {
+                if ((item.timekey() > 0) && (item.reportnum() > 0)) {
                     int index = 0;
                     time_t timekey = 0;
                     GetTimeKey(item.timekey(), timekey, index);
@@ -1397,7 +1382,7 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
         }
     }
 
-    if (req.has_serial() && (req.serial().size() > 0)) {
+    if (req.serial().size() > 0) {
         rsp.set_serial(req.serial());
     }
 
@@ -1482,14 +1467,13 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
                         if (0 == ret1) {
                             psetcfgfirst->updatetime = now;
                             const open_app_desc::SetQuotaRsp& rsp = cmd.spe_rsp;
-                            if (rsp.has_setkey() && rsp.setkey() == setkey) {
-                                if (rsp.has_setsum() && rsp.setsum() > 0)
+                            if (rsp.setkey() == setkey) {
+                                if (rsp.setsum() > 0)
                                     psetcfgfirst->setsum = rsp.setsum();
 
                                 for (int f = 0; f < rsp.procq_size(); f++) {
                                     const open_app_desc::ProcQ& procq = rsp.procq(f);
-                                    if (procq.has_procid() > 0 && procq.procid().size() > 0
-                                        && procq.has_procquota() && procq.procquota() > 0) {
+                                    if ((procq.procid().size() > 0) && (procq.procquota() > 0)) {
                                         QDATA& pd = s_map_proc_quota[procq.procid()];
                                         string procip;
                                         if (GetReportIP(procq.procid(), procip) > 0) {
@@ -1521,7 +1505,7 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
     rsp.set_self(self);
     rsp.set_total(total);
     rsp.set_totalworkernum(totalworkernum);
-    if (req.has_nowsum()) {
+    if (req.nowsum()>0) {
         rsp.set_nowsum(req.nowsum());
     }
 
@@ -1596,7 +1580,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
 
     stringstream ssid;
     ssid << firstip;  //  first ip
-    if (req.has_id()) {
+    if (req.id()>0) {
         ssid << "_" << req.id();  //  group id
     }
     const string& firstid = ssid.str();
@@ -1615,7 +1599,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
             continue;
 
         string tmpsetkey;
-        if (procitem.has_setkey()) {
+        if (procitem.setkey().size()>0) {
             tmpsetkey = procitem.setkey();
         }
 
@@ -1623,8 +1607,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
         QDATA& setprocdata = InitKeyQuaAlloc(procid, s_map_setprocdata);
         for (int i = 0; i < procitem.proclist_size(); i++) {
             const open_app_desc::ReportItem& item = procitem.proclist(i);
-            if ((item.has_timekey()) && (item.timekey() > 0) &&
-                (item.has_reportnum()) && (item.reportnum() > 0)) {
+            if ((item.timekey() > 0) && (item.reportnum() > 0)) {
                 int index = 0;
                 time_t timekey = 0;
                 GetTimeKey(item.timekey(), timekey, index);
@@ -1680,7 +1663,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
 
             setprocdata.updatetime = now;
             string tmpsetkey;
-            if (procitem.has_setkey()) {
+            if (procitem.setkey().size()>0) {
                 tmpsetkey = procitem.setkey();
             }
             PROCQ tmpPQ = {procid, procvalid, tmpsetkey};
@@ -1694,14 +1677,13 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
         rsp.set_setkey(setkey);
         QDATA& setdata = InitKeyQuaAlloc(setkey, s_map_setsumdata);
         setdata.setfirstvalid = false;
-        if (req.has_workernum())
+        if (req.workernum()>0)
             setdata.workernum = req.workernum();
 
         //  update sum
         for (int i = 0; i < req.itemlist_size(); i++) {
             const open_app_desc::ReportItem& item = req.itemlist(i);
-            if ((item.has_timekey()) && (item.timekey() > 0)
-                && (item.has_reportnum()) && (item.reportnum() > 0)) {
+            if ((item.timekey() > 0) &&(item.reportnum() > 0)) {
                 int index = 0;
                 time_t timekey = 0;
                 GetTimeKey(item.timekey(), timekey, index);
@@ -1904,7 +1886,7 @@ int ServiceQua::LoadSETInfoWrap() {
 
     const open_app_desc::SetFileInfo& setfileinfo = *pfdata;
     string filepath = SET_CFG_PATH;
-    if (setfileinfo.has_fpath() && setfileinfo.fpath().size() > 0)
+    if (setfileinfo.fpath().size() > 0)
         filepath = setfileinfo.fpath();
 
     for (int i = 0; i < setfileinfo.fname_size(); i++) {

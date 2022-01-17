@@ -89,8 +89,7 @@ class ProtoPack {
             return -1;
         }
 
-        bool flag = cmd_rsp_base.has_type() &&
-            (open_app_desc::BODY_RESPONSE == cmd_rsp_base.type());
+        bool flag = open_app_desc::BODY_RESPONSE == cmd_rsp_base.type();
 
         if (flag) {
             if (!spe_rsp.ParseFromArray(cmd_rsp_base.body().c_str(),
@@ -149,8 +148,8 @@ inline int ProtocolCheck(void *data, int32_t len) {
 }
 }  //  namespace prototemplate
 
-#define GET_PRO_VAL(item, name) (item.has_##name())?(item.name()):0;
-#define GET_PRO_STR(item, name) (item.has_##name())?(item.name()):string("");
+#define GET_PRO_VAL(item, name) (item.name()>0)?(item.name()):0;
+#define GET_PRO_STR(item, name) (item.name().size()>0)?(item.name()):string("");
 
 #endif   //  FLUX_QUASERVER_PROTOTEMPLATE_H_
 
