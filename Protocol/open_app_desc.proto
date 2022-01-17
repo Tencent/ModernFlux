@@ -3,8 +3,8 @@ package open_app_desc;
 enum BODY_TYPE
 {
 	BODY_BEGIN = 0;
-    BODY_REQUEST = 1;
-    BODY_RESPONSE = 2;
+	BODY_REQUEST = 1;
+	BODY_RESPONSE = 2;
 };
 
 message CmdBase
