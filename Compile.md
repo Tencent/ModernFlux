@@ -187,7 +187,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 protoc --version
 ~~~
 
-如版本不符或没有使用-fPIC选项编译出protobuf静态库libprotobuf.a，可按如下步骤更换到protoc-2.4.1版本:
+如版本不符或没有使用-fPIC选项编译出protobuf静态库libprotobuf.a，可按如下步骤更换到protoc-3.5.1版本:
 
 卸载protoc：
 
@@ -305,23 +305,21 @@ sudo ldconfig
 
 
 
-## 二、protocol
+## 二、Protocol
 
 pb协议，如需修改串行化的数据结构信息，请先编辑文件夹内的open_app_desc.proto，再重新编译
 
 open_app_desc.pb.cc和open_app_desc.pb.h：
 
 ~~~linux
-cd /data/ModernFlux-master/protocol/
+make clean
 make
 ~~~
-
-并将新编译的.cc和.h文件放入QuaServer文件夹内覆盖原有的。
 
 如需搭配go语言使用，编译命令例如：
 
 ~~~ linux
-protoc -I=/data/ModernFlux-master/protocol/ --go_out=/data/ModernFlux-master/protocol/ /data/ModernFlux-master/protocol/open_app_desc.proto
+protoc -I=/data/ModernFlux/Protocol/ --go_out=/data/ModernFlux/Protocol/ /data/ModernFlux/Protocol/open_app_desc.proto
 ~~~
 
 以上三个路径参数分别是：
@@ -331,8 +329,6 @@ protoc -I=/data/ModernFlux-master/protocol/ --go_out=/data/ModernFlux-master/pro
 　　　　-go_out= “输出的go文件存放的路径”
 
 　　　　　　　　“.proto的源码路径”
-
-如需编写client端与
 
 ## 三、QuaAgent
 
@@ -374,40 +370,21 @@ go mod verify
 
 配额计算Server,统计计算并分配各节点配额。
 
-进入QuaServer 
+进入QuaServer
 
 ~~~
-vim Makefile
+make
 ~~~
 
-将Makefile中的第15行指向之前根据自己系统情况设置的protoc-3.5.1的安装路径中的/lib/libprotobuf.a
+ 即可在lib文件夹内生成aquota.so
+
+移动aquota.so到Lib下的spp/bin，可搭配脚本spp.sh启动server端
 
 ~~~
-  1 include ../PreDefine
-  2 
-  3 INC += -I./ \
-  4         -I../Protocol/ \
-  5         -I../Lib/tinyxml \
-  6         -I../Lib/spp/module/include/spp_incl/ \
-  7         -I../Lib/spp/module/include/ \
-  8         -I../Lib/basiclib/inc/ \
-  9         -I../Lib/l5/ \
- 10         -I$(PROTOINC) \
- 11         
- 12 LIB += -lrt \
- 13         ../Lib/tinyxml/libtinyxml.a \
- 14         ../Lib/l5/libqos_client.a \
- 15         /usr/protobuf-3.5.1/lib/libprotobuf.a \
- 16         $(PROTOLIB) \
- 17         
- 18 OBJ_DIR=./obj
- 19 LIB_DIR=./lib
- 20 
- 21 LIB_NAME=aquota.so
- 22 
+mv aquota.so ../../Lib/spp/bin
 ~~~
 
-保存修改
-
-再执行 make 即可。 
+~~~
+sh spp.sh start
+~~~
 

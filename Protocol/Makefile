@@ -4,9 +4,12 @@ INC = -I./ -I$(PROTOINC)
 PROTOCFLAG = --proto_path=./ --cpp_out=.  
 
 OBJDIR  =./obj
+$(shell if [ ! -e $(OBJDIR) ];then mkdir -p $(OBJDIR); fi)
 CPPSRCS =$(wildcard ./*.cc)
 OBJS    =$(patsubst ./%.cc,$(OBJDIR)/%.o, $(CPPSRCS))
 
+target_dir := ./lib
+$(shell if [ ! -e $(target_dir) ];then mkdir -p $(target_dir); fi)
 TARGET = lib/libproto.a
     
 PROTO_SRCS = $(wildcard ./*.proto)
