@@ -34,5 +34,5 @@ go mod verify
 
 Client端Demo与流控Server端的架构关系如下图所示：
 
-![Image text](https://github.com/Xie-Jianxin/img-folder/Flux_Demo.png)
+![Image text](https://github.com/Xie-Jianxin/img-folder/blob/master/Flux_Demo.png)
 
