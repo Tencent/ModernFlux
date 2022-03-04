@@ -9,6 +9,8 @@ PROTOINC=/usr/local/include/
 PROTOC=/usr/local/bin/protoc
 CFLAGS  += -g -fPIC  -Wall -O2 -pipe -fno-ident -MMD -D_GNU_SOURCE -D_REENTRANT  -D_FILE_OFFSET_BITS=64  -DSPP3
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/mpc/lib:/usr/local/gmp/lib:/usr/local/mpfr/lib/
+
 OBJ_EXT= .o
 CXXSRC_EXT= .cpp
 CSRC_EXT= .c

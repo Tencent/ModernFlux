@@ -20,7 +20,6 @@
 
 int32_t SppBinRoute(void *arg1) {
     open_app_desc::CmdBase pack;
-    int type = 0;
     int cmd = 0;
     uint32_t route = 0;
 
@@ -32,7 +31,6 @@ int32_t SppBinRoute(void *arg1) {
     uint32_t iPkgLen = ntohl(*(reinterpret_cast<uint32_t *>(blob->data)));
     if ((blob->len >= 5) && (pack.ParseFromArray(blob->data + 4, iPkgLen))) {
         if (pack.type()>0) {
-            type = pack.type();
         }
 
         if (pack.cmd_id()>0) {
