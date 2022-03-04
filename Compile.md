@@ -232,7 +232,7 @@ cd protobuf-3.5.1
 根据自己系统情况设置安装路径，同时使用-fPIC选项编译出protobuf静态库libprotobuf.a
 
 ~~~
-./configure --prefix=/usr/protobuf-3.5.1 CFLAGS="-fPIC"  CXXFLAGS="-fPIC"
+./configure --prefix=/usr/local CFLAGS="-fPIC"  CXXFLAGS="-fPIC"
 ~~~
 
 ~~~
