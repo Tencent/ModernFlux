@@ -972,8 +972,8 @@ int32_t ServiceQua::QuotaReport(const string& actkey, const string& ip,
     static uint64_t num = 0;
     static string reportip;
     static int port = 0;
-    //  num++;
-    num = ++num % 100;
+    ++num;
+    num = num % 100;
 
     open_app_desc::CmdBase base;
     base.set_cmd_id(QUOTA_REPORT_CMD);
@@ -1161,14 +1161,12 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
     time_t alloctime = 0;
     int64_t self = 0;
     int64_t total = 0;
-    int32_t groupid = 0;
     bool quotavalid = false;
 
     stringstream ssid;
     ssid << info.remoteip;
     if (req.id()>0) {
         ssid << "_" << req.id();
-        groupid = req.id();
     }
     const string& procid = ssid.str();  //  ip_group id
 
@@ -1194,9 +1192,7 @@ uint32_t ServiceQua::GetQueryQuota(const QEXTINFO& info, const open_app_desc::Qu
         }
     }
 
-    int32_t localquota = 0;
     if (req.localquota() > 0) {
-        localquota = req.localquota();
     }
 
     int hostworkernum = 0;
@@ -1563,15 +1559,7 @@ uint32_t ServiceQua::ProSETQuota(const open_app_desc::SetQuotaReq& req, const st
     string setkey;
     SETCfgFirst *psetcfgfirst = NULL;
     GetSETCfgFirst(req, "", setkey, psetcfgfirst);
-    uint32_t feaid = 0;
-    uint32_t refuseid = 0;
-    uint32_t setrefuseid = 0;
-    uint32_t realid = 0;
     if (psetcfgfirst) {
-        feaid = psetcfgfirst->feaid;
-        refuseid = psetcfgfirst->refuseid;
-        setrefuseid = psetcfgfirst->setrefuseid;
-        realid = psetcfgfirst->realid;
     }
 
     if (s_localhost.size() == 0) {

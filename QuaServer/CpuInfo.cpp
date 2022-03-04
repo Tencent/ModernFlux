@@ -91,7 +91,6 @@ int CpuInfo::GetMEMInfo(uint64_t mem_data[4]) {
     uint32_t k = 0;
     char s0[] = "MemTotal", s1[] = "MemFree", s2[] = "Buffers", s3[] = "Cached";
 
-    fclose(fd);
     fd = fopen("/proc/meminfo", "r");
     /*
     MemTotal:        xxxxxxx kB
@@ -146,8 +145,6 @@ int CpuInfo::GetWorkTimeInfo(uint64_t& worktime , uint64_t& totaltime) {
     char buff[1024];
     char name[32];
     uint64_t data[7];
-    int i = 0, j = 0;
-    size_t k = 0;
 
     fd = fopen("/proc/stat", "r");
     /*
