@@ -20,7 +20,7 @@ class ExampleMsg : public CSyncMsg
 public:
     ExampleMsg() {
         dst.sin_family = AF_INET;
-        dst.sin_addr.s_addr = inet_addr("172.27.6.252");
+        dst.sin_addr.s_addr = inet_addr("ip");
         dst.sin_port = htons(15111);
     }
 
