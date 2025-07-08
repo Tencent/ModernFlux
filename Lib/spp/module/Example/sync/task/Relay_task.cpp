@@ -19,7 +19,7 @@ public:
         /* 获取目的地址信息, 简单示例 */
         memset(&server_addr, 0, sizeof(server_addr));
         server_addr.sin_family = AF_INET;
-        server_addr.sin_addr.s_addr = inet_addr("172.27.6.252");
+        server_addr.sin_addr.s_addr = inet_addr("ip");
         server_addr.sin_port = htons(15111);
 
         static char buff[1024];
