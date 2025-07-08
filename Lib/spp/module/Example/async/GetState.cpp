@@ -35,7 +35,7 @@ int CGetState::HandleEncode(CAsyncFrame *pFrame,
     //CMsg *msg = (CMsg *)pUserData;
     CActionInfo *pAction1 = new CActionInfo(512);
     pAction1->SetID(1);
-    pAction1->SetDestIp("172.25.0.29");
+    pAction1->SetDestIp("ip");
     pAction1->SetDestPort(5574);
     pAction1->SetProto(ProtoType_TCP);
     pAction1->SetActionType(ActionType_SendRecv_KeepAlive);
@@ -46,7 +46,7 @@ int CGetState::HandleEncode(CAsyncFrame *pFrame,
 
     CActionInfo *pAction2 = new CActionInfo(512);
     pAction2->SetID(2);
-    pAction2->SetDestIp("172.25.0.29");
+    pAction2->SetDestIp("ip");
     pAction2->SetDestPort(5574);
     pAction2->SetProto(ProtoType_TCP);
     pAction2->SetActionType(ActionType_SendRecv_KeepAliveWithPending);
