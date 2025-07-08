@@ -1,4 +1,4 @@
-//  Copyright (C) 2019 THL A29 Limited, a Tencent company. All rights reserved.
+//  Copyright (C) 2019 Tencent. All rights reserved.
 //
 //  Licensed under the BSD 3-Clause License (the "License"); you may not use this file
 //  except in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 //=============================================================================
 /**
  *  @file       type_transform.h
- *  @brief      ÀàĞÍ×ª»»¹¤¾ßÍ·ÎÄ¼ş
+ *  @brief      ç±»å‹è½¬æ¢å·¥å…·å¤´æ–‡ä»¶
  *  @author     jimzhou
  *  @date       2016/08/04
  */
@@ -29,7 +29,7 @@
 #include <algorithm>
 
 /*! \class TypeTransform
- *  \brief ÀàĞÍ×ª»»¹¤¾ßÀà
+ *  \brief ç±»å‹è½¬æ¢å·¥å…·ç±»
  */
 class TypeTransform {
  public:
@@ -42,9 +42,9 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«string×ª³ÉÕûÊı
-    * \param[in] sSour Òª×ª»»µÄstring
-    * \return ×ª»»ºóµÄÕûÊı
+    /*! \brief å°†stringè½¬æˆæ•´æ•°
+    * \param[in] sSour è¦è½¬æ¢çš„string
+    * \return è½¬æ¢åçš„æ•´æ•°
     * \sa IntToString
     */
     static int StringToInt(const std::string& sSour) {
@@ -52,9 +52,9 @@ class TypeTransform {
     }
 
 
-    /*! \brief ½«ÕûÊı¸ñÊ½»¯Îªstring
-    * \param[in] nSour Òª¸ñÊ½»¯µÄÕûÊı
-    * \return ¸ñÊ½»¯ºóµÄstring
+    /*! \brief å°†æ•´æ•°æ ¼å¼åŒ–ä¸ºstring
+    * \param[in] nSour è¦æ ¼å¼åŒ–çš„æ•´æ•°
+    * \return æ ¼å¼åŒ–åçš„string
     * \sa StringToInt
     */
     static std::string IntToString(int nSour) {
@@ -64,18 +64,18 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«string×ª³É³¤ÕûÊı
-    * \param[in] sSour Òª×ª»»µÄstring
-    * \return ×ª»»ºóµÄ³¤ÕûÊı
+    /*! \brief å°†stringè½¬æˆé•¿æ•´æ•°
+    * \param[in] sSour è¦è½¬æ¢çš„string
+    * \return è½¬æ¢åçš„é•¿æ•´æ•°
     * \sa LongToString
     */
     static long StringToLong(const std::string& sSour) {
         return atol(sSour.c_str());
     }
 
-    /*! \brief ½«³¤ÕûÊı¸ñÊ½»¯Îªstring
-    * \param[in] nSour Òª¸ñÊ½»¯µÄ³¤ÕûÊı
-    * \return ¸ñÊ½»¯ºóµÄstring
+    /*! \brief å°†é•¿æ•´æ•°æ ¼å¼åŒ–ä¸ºstring
+    * \param[in] nSour è¦æ ¼å¼åŒ–çš„é•¿æ•´æ•°
+    * \return æ ¼å¼åŒ–åçš„string
     * \sa StringToLong
     */
     static std::string LongToString(long nSour) {
@@ -85,18 +85,18 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«string×ª³É64Î»ÕûÊı
-    * \param[in] sSour Òª×ª»»µÄstring
-    * \return ×ª»»ºóµÄ64Î»ÕûÊı
+    /*! \brief å°†stringè½¬æˆ64ä½æ•´æ•°
+    * \param[in] sSour è¦è½¬æ¢çš„string
+    * \return è½¬æ¢åçš„64ä½æ•´æ•°
     * \sa LongToString
     */
     static long long StringToLongLong(const std::string& sSour) {
         return atoll(sSour.c_str());
     }
 
-    /*! \brief ½«64Î»ÕûÊı¸ñÊ½»¯Îªstring
-    * \param[in] nSour Òª¸ñÊ½»¯µÄ64Î»ÕûÊı
-    * \return ¸ñÊ½»¯ºóµÄstring
+    /*! \brief å°†64ä½æ•´æ•°æ ¼å¼åŒ–ä¸ºstring
+    * \param[in] nSour è¦æ ¼å¼åŒ–çš„64ä½æ•´æ•°
+    * \return æ ¼å¼åŒ–åçš„string
     * \sa StringToLong
     */
     static std::string LongLongToString(long long nSour) {
@@ -106,18 +106,18 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«string×ª³É¸¡µãÊı
-    * \param[in] sSour Òª×ª»»µÄstring
-    * \return ×ª»»ºóµÄ¸¡µãÊı
+    /*! \brief å°†stringè½¬æˆæµ®ç‚¹æ•°
+    * \param[in] sSour è¦è½¬æ¢çš„string
+    * \return è½¬æ¢åçš„æµ®ç‚¹æ•°
     * \sa FloatToString
     */
     static float StringToFloat(const std::string& sSour) {
         return (atof(sSour.c_str()));
     }
 
-    /*! \brief ½«¸¡µãÊı¸ñÊ½»¯Îªstring
-    * \param[in] nSour Òª¸ñÊ½»¯µÄ¸¡µãÊı
-    * \return ¸ñÊ½»¯ºóµÄstring
+    /*! \brief å°†æµ®ç‚¹æ•°æ ¼å¼åŒ–ä¸ºstring
+    * \param[in] nSour è¦æ ¼å¼åŒ–çš„æµ®ç‚¹æ•°
+    * \return æ ¼å¼åŒ–åçš„string
     * \sa StringToFloat
     */
     static std::string FloatToString(float nSour) {
@@ -127,18 +127,18 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«string×ª³ÉË«¾«¶È¸¡µãÊı
-    * \param[in] sSour Òª×ª»»µÄstring
-    * \return ×ª»»ºóµÄË«¾«¶È¸¡µãÊı
+    /*! \brief å°†stringè½¬æˆåŒç²¾åº¦æµ®ç‚¹æ•°
+    * \param[in] sSour è¦è½¬æ¢çš„string
+    * \return è½¬æ¢åçš„åŒç²¾åº¦æµ®ç‚¹æ•°
     * \sa DoubleToString
     */
     static double StringToDouble(const std::string& sSour) {
         return (atof(sSour.c_str()));
     }
 
-    /*! \brief ½«Ë«¾«¶È¸¡µãÊı¸ñÊ½»¯Îªstring
-    * \param[in] nSour Òª¸ñÊ½»¯µÄË«¾«¶È¸¡µãÊı
-    * \return ¸ñÊ½»¯ºóµÄstring
+    /*! \brief å°†åŒç²¾åº¦æµ®ç‚¹æ•°æ ¼å¼åŒ–ä¸ºstring
+    * \param[in] nSour è¦æ ¼å¼åŒ–çš„åŒç²¾åº¦æµ®ç‚¹æ•°
+    * \return æ ¼å¼åŒ–åçš„string
     * \sa StringToDouble
     */
     static std::string DoubleToString(double nSour) {
@@ -187,9 +187,9 @@ class TypeTransform {
 
     //=============================================================================
 
-    /*! \brief ½«char×ª³É16½øÖÆµÄ±íÊ¾ĞÎÊ½
-    * \param[in] c Ô´×Ö·û
-    * \return Ô´×Ö·ûµÄ16½øÖÆstring
+    /*! \brief å°†charè½¬æˆ16è¿›åˆ¶çš„è¡¨ç¤ºå½¢å¼
+    * \param[in] c æºå­—ç¬¦
+    * \return æºå­—ç¬¦çš„16è¿›åˆ¶string
     * \sa HexToChar
     */
     static std::string CharToHex(char c) {
@@ -201,9 +201,9 @@ class TypeTransform {
         return sValue;
     }
 
-    /*! \brief ½«×Ö·ûµÄ16½øÖÆµÄ±íÊ¾ĞÎÊ½×ª»»³Échar
-    * \param[in] sHex Òª×ª»»µÄ×Ö·û16½øÖÆµÄ±íÊ¾ĞÎÊ½
-    * \return Ä¿±ê×Ö·û
+    /*! \brief å°†å­—ç¬¦çš„16è¿›åˆ¶çš„è¡¨ç¤ºå½¢å¼è½¬æ¢æˆchar
+    * \param[in] sHex è¦è½¬æ¢çš„å­—ç¬¦16è¿›åˆ¶çš„è¡¨ç¤ºå½¢å¼
+    * \return ç›®æ ‡å­—ç¬¦
     * \sa CharToHex
     */
     static char HexToChar(const std::string& sHex) {
