@@ -32,7 +32,7 @@ int CUpdateState::HandleEncode(CAsyncFrame *pFrame,
 
     CActionInfo *pAction1 = new CActionInfo(512);
     pAction1->SetID(3);
-    pAction1->SetDestIp("172.25.0.29");
+    pAction1->SetDestIp("ip");
     pAction1->SetDestPort(5575);
     pAction1->SetProto(ProtoType_TCP);
     pAction1->SetActionType(ActionType_SendRecv_KeepAliveWithPending);
