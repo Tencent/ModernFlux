@@ -147,8 +147,8 @@ func (r *RateLimitAPI) requestQuotaServer(rateLimitData *RateLimitData) (*pb.Quo
 func (r *RateLimitAPI) accessQuotaServerTCP(reqBytes []byte) ([]byte, error) {
 	d := net.Dialer{Timeout: quotaServerTimeOut * time.Millisecond}
 	var getPort uint32 = 19106
-	fmt.Println(fmt.Sprintf("%s:%d", "9.134.131.166", getPort))
-	conn, err := d.Dial("tcp", "9.134.131.166:19106")
+	fmt.Println(fmt.Sprintf("%s:%d", "ip", getPort))
+	conn, err := d.Dial("tcp", "ip:19106")
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
